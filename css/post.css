@@ -1,0 +1,38 @@
+.center{
+    text-align: center;
+}
+.header-title{
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+.col-md-4.col-sm-6{
+    margin-bottom:20px ;
+}
+.blog-image img{
+    width: 100%;
+}
+.blog-title{
+    margin: 10px 0px 10px 0px;
+}
+.blog-content{
+    font-size: 15px;
+    line-height: 150%;
+    border-bottom: 1px solid gray;
+    padding: 0px 0px 20px 0px;
+    margin: 10px 0px 10px 0px;
+}
+.blog-footer{
+    font-size: 15px;
+}
+.material-icons{
+    position: relative;
+    top: 5px;
+    font-size: 25px;
+}
+.post-info{
+    list-style-type: none;
+    display: inline-flex;
+}
+.post-info li{
+    padding: 0px 10px 0px 0px;
+}
