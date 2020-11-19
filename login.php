@@ -3,10 +3,12 @@
 <head>
       <meta charset="utf-8"/>
     <title>Login</title>
-
+<?php include "head.php";
+    ?>
 </head>
 
 <body>
+<?php include "navbar.php"; ?>
 
 <h1>Login</h1>
     <br><br>
