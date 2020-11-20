@@ -5,14 +5,25 @@ $(document).ready(function(){
          window.location.href = "viewpost.php?id="+id;
     })
 
-    $('.addressClick').click(function(){
-        var page = $(this).attr("data-id");
-        var linktext = $(this).text();
-        console.log(page);
-        console.log(linktext);
-        if (page == linktext)
+    $(document).on('click','#createPost',function(){
+        window.location.href = "createPost.php";
+    })
+
+    activePage();
+  
+})
+
+function activePage()
+{
+    var current_page_URL = location.href;
+
+    $('.addressClick').each(function(){
+        var target = $(this).prop("href");
+        if (target == current_page_URL)
         {
             $(this).addClass('active');
+            return false;
         }
     })
-})
+}
+

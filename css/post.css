@@ -1,5 +1,8 @@
 .center{
     text-align: center;
+    position: relative;
+    left: 60px;
+    width: 87%;
 }
 .center.create-post{
     float:right;
@@ -66,10 +69,10 @@
     font-size: 15px;
     padding-bottom: 5px;
 }
-.material-icons{
+.material-icons.edit{
     position: relative;
     top: 5px;
-    font-size: 25px;
+    font-size: 20px;
 }
 .post-info{
     list-style-type: none;
@@ -103,3 +106,7 @@
 .paging a:hover:not(.active){
     background-color: #ddd;
 }
+.create {
+    float: right;
+}
+

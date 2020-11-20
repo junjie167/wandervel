@@ -5,9 +5,6 @@ include "head.php";
 ?>
 
 <head>
-    <!-- Post CSS Files -->
-    <link rel="stylesheet" href="css/post.css">
-    
     <script defer src="js/post.js"></script>
 </head>
 
@@ -20,9 +17,9 @@ include "head.php";
     <main>
         <section class="blog-posts grid-system">
             <div class="container">
+                <button id="createPost" class="btn btn-primary create"><i class="material-icons edit">border_color</i>Create</button>
                 <div class="center">
-                    <h1 class="header-title">Post</h1>
-                    <button class="create-post">CREATE POST</button>
+                    <h1 class="header-title">Post</h1>                   
                 </div>
                 <div class="row">
                     <?php
@@ -34,11 +31,8 @@ include "head.php";
                                 if($_GET["page"] != 1)
                                 {
                                  echo '<a class="addressClick"  href="post.php?page='. ($_GET["page"] - 1) .'">&laquo;</a>';
-                                }else
-                                {
-                                    echo '<a>&laquo;</a>';
                                 }
-                                for($page = 1 ; $page < $total_no_ofpages ; $page++)
+                                for($page = 1 ; $page <= $total_no_ofpages ; $page++)
                                 {
                                     echo '<a class="addressClick" href="post.php?page='. $page.'" data-id="'.$page.'">'. $page . '</a>';
                                 }
@@ -69,7 +63,7 @@ function display()
     $offset = ($page_no - 1)*$max_records_per_page;
     $previous_page = $page_no - 1;
     $next_page = $page_no + 1;
-    $adjacents = "2";
+
 
     $config = parse_ini_file('../../private/db-config.ini');
     $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
@@ -81,7 +75,7 @@ function display()
         $stmt->execute();
         $result_records = $stmt->get_result();
         $total_post = $result_records->num_rows;
-        $total_no_ofpages = ceil($total_post/$max_records_per_page);
+        $total_no_ofpages = ceil($result_records->num_rows/$max_records_per_page);
 
 
         $stmt = $conn->prepare("SELECT * FROM post ORDER BY post_id DESC LIMIT " . $offset . "," . $max_records_per_page);
@@ -104,8 +98,8 @@ function display()
                 <a href="viewpost.php?id=' .$row["post_id"].'">Read more</a></div>';
                 echo '<div class="blog-footer">';
                 echo '<ul class="post-info">';
-                echo '<li><i class="material-icons">date_range</i>' . $date . '</li>';
-                echo '<li><i class="material-icons">create</i>' . $row["author"] . '</li>';
+                echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
+                echo '<li><i class="material-icons edit">create</i>' . $row["author"] . '</li>';
                 echo '</ul>';
                 echo '</div>';
                 echo '</div>';
