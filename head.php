@@ -44,9 +44,12 @@
        
        
         <title>Wandervel</title>
-
+         <!-- Custom JS -->
+        <script defer src="js/post.js"></script>
+        <script defer src="js/main.js"></script>
         <!-- Additional CSS Files -->
         <!--<link rel="stylesheet" href="css/fontawesome.css">-->
+        <link rel="stylesheet" href="css/post.css">
         <link rel="stylesheet" href="css/main.css">
-        <!--<link rel="stylesheet" href="css/owl.css">-->
+        
     </head>

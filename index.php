@@ -8,7 +8,7 @@
     <body>
         <header>
         <?php
-        include "navbar.php";
+        include "indexnavbar.php";
         ?>
         </header>
         <section class="blog-posts grid-system">
