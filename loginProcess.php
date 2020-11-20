@@ -3,7 +3,8 @@
 $e = $_POST['email'];
 $p = $_POST['password'];
 
-$conn = mysqli_connect("localhost", "1004", "P@ssw0rd", "1004proj");
+$config = parse_ini_file('../../private/db-config.ini');
+$conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
 $sql = "SELECT * FROM 1004proj.user WHERE email = '$e' and password = '$p' " ;
 $search_result = mysqli_query($conn, $sql); //to search table
