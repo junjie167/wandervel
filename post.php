@@ -28,22 +28,28 @@ include "head.php";
                     <?php
                     display();
                     ?>
-                    <div class="paging">
-                        <?php 
-                            if($_GET["page"] > 2)
-                            {
-                                echo '<a href="post.php?page='. ($_GET["page"] - 1) .'">&laquo;</a>';
-                            }
-                            for($page = 1 ; $page < $total_no_ofpages ; $page++)
-                            {
-                                echo '<a href="post.php?page='. $page.'">'. $page . '</a>';
-                            }
-                            if($_GET["page"] < $total_no_ofpages)
-                            {
-                                echo '<a href="post.php?page='. ($_GET["page"] + 1) .'">&raquo;</a>';
-                            }
-                        ?>
+                    <div class="paging-wrapper">
+                        <div class="paging">
+                            <?php 
+                                if($_GET["page"] != 1)
+                                {
+                                 echo '<a class="addressClick"  href="post.php?page='. ($_GET["page"] - 1) .'">&laquo;</a>';
+                                }else
+                                {
+                                    echo '<a>&laquo;</a>';
+                                }
+                                for($page = 1 ; $page < $total_no_ofpages ; $page++)
+                                {
+                                    echo '<a class="addressClick" href="post.php?page='. $page.'" data-id="'.$page.'">'. $page . '</a>';
+                                }
+                                if($_GET["page"] < $total_no_ofpages)
+                                {
+                                    echo '<a class="addressClick" href="post.php?page='. ($_GET["page"] + 1) .'">&raquo;</a>';
+                                }
+                            ?>
+                        </div>
                     </div>
+                    
                 </div>
             </div>
         </section>

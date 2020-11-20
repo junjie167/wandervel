@@ -79,21 +79,27 @@
 .post-info li{
     padding: 0px 10px 0px 0px;
 }
-.paging {
+.paging-wrapper{
     width: 100%;
     text-align: center;
 }
-  
-.pagingn a {
+.paging{
+    display: inline-block;
+    padding: 2px;
+    margin: 2px;
+}
+.paging a {
+    text-decoration: none;
     color: black;
     float: left;
-    padding: 20px;
-    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
 }
-  
-.paging a.active {
+.paging a.active{
     background-color: #4CAF50;
     color: white;
+    border-radius: 5px;
 }
-  
-.paging a:hover:not(.active) {background-color: #ddd;}
+.paging a:hover:not(.active){
+    background-color: #ddd;
+}
