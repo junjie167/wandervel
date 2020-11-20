@@ -13,7 +13,7 @@
 <h1>Login</h1>
     <br><br>
 
-    <form id="loginform" name="loginform" action="loginProcess.php" method="post">
+    <form id="loginform" name="loginform" action="checklogin.php" method="post">
     <p>
     <input type="text" name="email" placeholder="email" required/>
    </p>
