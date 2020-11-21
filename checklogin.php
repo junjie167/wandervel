@@ -2,17 +2,33 @@
 
 $e = $_POST['email'];
 $p = $_POST['password'];
+$userfound = 0;
 
 $config = parse_ini_file('../../private/db-config.ini');
 $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
-$sql = "SELECT * FROM 1004proj.user WHERE email = '$e' and password = '$p' " ;
-$search_result = mysqli_query($conn, $sql); //to search table
-$id = mysqli_fetch_assoc($search_result);
-$role=$id['role'];
+if($conn->connect_error){
+    echo "<p>Welp cant even connect</p>";
+}else{
+    $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
+    $stmt->bind_param("s", $e);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $e = "It didnt work either";
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc){
+            $role = $row['role'];
+            $e = $row['email'];
+            $userfound = 1;
+        }
+    }
+    
+    echo "<p>" . $role . "</p>";
+    echo "<p>" . $e . "</p>";
+}
 
-// return the number of rows in search result
-$userfound = mysqli_num_rows($search_result);
+
 
 if ($userfound == 1)
 {
@@ -24,19 +40,17 @@ if ($userfound == 1)
         header("Location:index.php");
     }
     else { 
-        // for when it is user logging in 
+        //for when it is user logging in 
         session_start();
         $_SESSION["email"]=$e;
         $_SESSION["role"]=$role;
         header("Location:userProfile.php");
     }
-}
-
-    else {
+// } else {
         
-        // user record is not FOUND in the user table
-        header("Location:login.php?fail=1"); // go back to login page
-    }
+//         // user record is not FOUND in the user table
+//         header("Location:login.php?fail=1"); // go back to login page
+ }
 
 
 ?>
