@@ -1,5 +1,4 @@
- <head>
-
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -29,7 +28,6 @@
         </script>
         
          <!--Bootstrap JS-->
-
         <script defer
                 src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
                 integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
@@ -37,7 +35,6 @@
         </script>
         
         
-
         
         
         
@@ -52,4 +49,7 @@
         <link rel="stylesheet" href="css/post.css">
         <link rel="stylesheet" href="css/main.css">
         
+
     </head>
+
+
