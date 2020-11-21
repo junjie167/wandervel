@@ -1,5 +1,4 @@
- <head>
-
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -29,7 +28,6 @@
         </script>
         
          <!--Bootstrap JS-->
-
         <script defer
                 src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
                 integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
@@ -37,16 +35,21 @@
         </script>
         
         
-
         
         
         
        
        
         <title>Wandervel</title>
-
+         <!-- Custom JS -->
+        <script defer src="js/post.js"></script>
+        <script defer src="js/main.js"></script>
         <!-- Additional CSS Files -->
         <!--<link rel="stylesheet" href="css/fontawesome.css">-->
+        <link rel="stylesheet" href="css/post.css">
         <link rel="stylesheet" href="css/main.css">
-        <!--<link rel="stylesheet" href="css/owl.css">-->
+        
+
     </head>
+
+
