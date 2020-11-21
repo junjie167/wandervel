@@ -78,18 +78,24 @@ function display()
         $total_no_ofpages = ceil($result_records->num_rows/$max_records_per_page);
 
 
-        $stmt = $conn->prepare("SELECT * FROM post ORDER BY post_id DESC LIMIT " . $offset . "," . $max_records_per_page);
+        $stmt = $conn->prepare("SELECT *, picture.image AS picture_image FROM post p JOIN image AS picture
+        ON p.post_id = picture.post_id ORDER BY p.post_id DESC LIMIT " . $offset . "," . $max_records_per_page);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
             while ($row = mysqli_fetch_array($result)) {
+
+                if ($row["picture_image"] == NULL)
+                {
+                    
+                }
                 
                 $date = date("jS M Y",strtotime($row["publish_date"]));
                 $content = substr($row["content"],0,100);
                 echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["post_id"].'>';
                 echo '<div class="blog post effect">';
                 echo '<div class="blog-image">';
-                echo '<img src="image/astronomy-1867616__340.jpg" alt="astronomy">';
+                echo '<img src="image/'.$row["picture_image"].'">';
                 echo '</div>';
                 echo '<div class="blog-title">';
                 echo '<h3>' . $row["title"] . '</h3>';
