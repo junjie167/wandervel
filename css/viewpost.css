@@ -1,0 +1,57 @@
+.title-header{
+    background-image: linear-gradient(rgb(0, 0, 0, 0.7), rgb(0, 0, 0, 0.7)), url(../image/astronomy-1867616__340.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 70vh;
+    margin-bottom: 30px;
+}
+.post-title-box h1{
+    margin: 0;
+    color: white;
+}
+.post-title-box{
+    position: relative;
+    top: 50px;
+    padding: 20px;
+}
+.user-profile-image img{
+    border-radius: 50%;
+    width: 95%;
+}
+.user-profile-image{
+    text-align: center;
+}
+.viewpost-info{
+    vertical-align: middle;
+}
+.middle{
+    margin: auto;
+}
+.viewpost-info ul{
+    list-style: none;
+    display: inline-flex;
+    margin-left: -50px;
+}
+.viewpost-info li{
+    padding-right: 10px;
+}
+.fr{
+    float: right;
+}
+.mar{
+    margin-bottom: 50px;
+}
+.post-content{
+    font-size: 25px;
+    line-height: 120%;
+    font-family: sans-serif;
+    margin-bottom: 50px;
+}
+.social-info ul{
+    list-style: none;
+    display: inline-flex;
+    margin-left: -20px;
+}
+.social-info li{
+    padding-right: 10px;
+}
