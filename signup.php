@@ -3,9 +3,12 @@
 <head>
       <meta charset="utf-8"/>
     <title>Registration</title>
-    
+    <?php include "head.php";
+    ?>
 </head>
+
 <body>
+<?php include "navbar.php"; ?>
            <h1>Sign Up</h1>
            
            <form id="registerform" name="registerform" action="signupProcess.php" method="post" enctype="multipart/form-data">
