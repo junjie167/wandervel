@@ -36,7 +36,7 @@ include "head.php";
         } else
         {
             $stmt = $conn->prepare("SELECT *, picture.image AS picture_image , user.profile_picture AS user_profile_picture 
-            FROM post AS p JOIN image AS picture ON p.post_id = picture.post_id
+            FROM post AS p LEFT JOIN image AS picture ON p.post_id = picture.post_id
             JOIN user AS user ON p.user_id = user.user_id WHERE p.post_id = ". $postid);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -54,7 +54,7 @@ include "head.php";
                     }
 
                     $date = date("jS M Y",strtotime($row["publish_date"]));
-                    echo '<div class="title-header">';
+                    echo '<div class="title-header" style="--url: url(../image/'.$row["picture_image"].')">';
                         echo '<div class="post-title-box">';
                             echo '<h1>'. $row["title"] .'</h1>';
                         echo '</div>';

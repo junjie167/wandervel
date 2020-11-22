@@ -4,9 +4,6 @@
 include "head.php";
 ?>
 
-<head>
-    <script defer src="js/post.js"></script>
-</head>
 
 <body>
     <header>
@@ -78,8 +75,10 @@ function display()
         $total_no_ofpages = ceil($result_records->num_rows/$max_records_per_page);
 
 
-        $stmt = $conn->prepare("SELECT *, picture.image AS picture_image FROM post p JOIN image AS picture
-        ON p.post_id = picture.post_id ORDER BY p.post_id DESC LIMIT " . $offset . "," . $max_records_per_page);
+        $stmt = $conn->prepare("SELECT  p.post_id AS p_post_id, p.user_id AS p_user_id, p.author AS p_author,
+        p.title AS p_title, p.content AS p_content, p.publish_date AS p_publish_date,
+        picture.image AS picture_image FROM post p LEFT JOIN image AS picture
+        ON picture.post_id = p.post_id ORDER BY p.post_id DESC LIMIT " . $offset . "," . $max_records_per_page);
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
@@ -90,22 +89,22 @@ function display()
                     
                 }
                 
-                $date = date("jS M Y",strtotime($row["publish_date"]));
+                $date = date("jS M Y",strtotime($row["p_publish_date"]));
                 $content = substr($row["content"],0,100);
-                echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["post_id"].'>';
+                echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["p_post_id"].'>';
                 echo '<div class="blog post effect">';
                 echo '<div class="blog-image">';
                 echo '<img src="image/'.$row["picture_image"].'">';
                 echo '</div>';
                 echo '<div class="blog-title">';
-                echo '<h3>' . $row["title"] . '</h3>';
+                echo '<h3>' . $row["p_title"] . '</h3>';
                 echo '</div>';
                 echo '<div class="blog-content">' . $content . ' ... 
-                <a href="viewpost.php?id=' .$row["post_id"].'">Read more</a></div>';
+                <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
                 echo '<div class="blog-footer">';
                 echo '<ul class="post-info">';
                 echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
-                echo '<li><i class="material-icons edit">create</i>' . $row["author"] . '</li>';
+                echo '<li><i class="material-icons edit">create</i>' . $row["p_author"] . '</li>';
                 echo '</ul>';
                 echo '</div>';
                 echo '</div>';
