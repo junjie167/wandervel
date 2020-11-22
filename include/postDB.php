@@ -47,7 +47,7 @@ function display()
                 echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["p_post_id"].'>';
                 echo '<div class="blog post effect">';
                 echo '<div class="blog-image">';
-                echo '<img src="image/'.$row["picture_image"].'">';
+                echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                 echo '</div>';
                 echo '<div class="blog-title">';
                 echo '<h3>' . $row["p_title"] . '</h3>';
@@ -136,7 +136,7 @@ function display()
                         echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';                   
                     echo '</div>';
                     echo '<div class="post-content">';
-                        echo '<p>'.$row["content"].'</p>';
+                        echo nl2br($row["content"]);
                     echo '</div>';
                     echo '<div class="row mar border-bottom">';
                         echo '<div class="col-m-6">';
