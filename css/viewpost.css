@@ -1,5 +1,5 @@
 .title-header{
-    background-image: linear-gradient(rgb(0, 0, 0, 0.7), rgb(0, 0, 0, 0.7)), url(../image/astronomy-1867616__340.jpg);
+    background-image: linear-gradient(rgb(0, 0, 0, 0.7), rgb(0, 0, 0, 0.7)), var(--url);
     background-size: cover;
     background-position: center;
     height: 70vh;
