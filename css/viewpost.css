@@ -1,22 +1,23 @@
 .title-header{
-    background-image: linear-gradient(rgb(0, 0, 0, 0.7), rgb(0, 0, 0, 0.7)), var(--url);
-    background-size: cover;
-    background-position: center;
-    height: 70vh;
-    margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 80px;
 }
 .post-title-box h1{
     margin: 0;
-    color: white;
-}
-.post-title-box{
-    position: relative;
-    top: 50px;
-    padding: 20px;
 }
 .user-profile-image img{
     border-radius: 50%;
-    width: 95%;
+    width: 55px;
+}
+.material-icons.resize{
+    font-size: 20px;
+}
+.list-border{
+    border-right: 1px solid black;
+}
+.pl{
+    padding-left: 10px;
+    height: fit-content;
 }
 .user-profile-image{
     text-align: center;
@@ -55,3 +56,34 @@
 .social-info li{
     padding-right: 10px;
 }
+.border-bottom{
+    border-bottom: 1px solid gray;
+}
+.post-img{
+    margin-bottom: 50px;
+}
+.post-img img{
+    height: 50vh;
+    object-fit: cover;
+    width: 100%;
+}
+.icon{
+    font-size: 25px;
+    color: blue;
+    position: relative;
+    bottom: 5px;
+}
+.previous-post{
+    width: 50%;
+    margin-bottom: 20px;
+}
+ a{
+    color: black;
+}
+.next-post{
+    width: 50%;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+

@@ -5,6 +5,7 @@ include "head.php";
 ?>
 <head>
     <link rel="stylesheet" href="css/viewpost.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
     <body>
         <header>
@@ -18,6 +19,12 @@ include "head.php";
                     <?php
                         display_post();
                     ?>
+                    <?php 
+                        relatedPost();
+                    ?>
+                    <div>
+                        <h1>Comments</h1>
+                    </div>
                 </div>
             </section>
         </main>
@@ -54,22 +61,24 @@ include "head.php";
                     }
 
                     $date = date("jS M Y",strtotime($row["publish_date"]));
-                    echo '<div class="title-header" style="--url: url(../image/'.$row["picture_image"].')">';
+                    echo '<div class="title-header">';
                         echo '<div class="post-title-box">';
                             echo '<h1>'. $row["title"] .'</h1>';
                         echo '</div>';
                     echo '</div>';
                     echo '<div class="row mar">';
-                        echo '<div class="col-md-1 col-sm-6">';
-                            echo '<div class="user-profile-image">';
-                                echo  $displayImg;
-                            echo '</div>';
-                        echo '</div>';
-                        echo '<div class="col-md-8 col-sm-6 middle">';
+                        echo '<div class="col-md-9 col-sm-6 middle">';
                             echo '<div class="viewpost-info">';
                                 echo '<ul>';
-                                    echo '<li>'.$date.'</li>';
-                                    echo '<li>, '.$row["author"].'</li>';
+                                    echo '<li>';
+                                        echo '<div class="user-profile-image">';
+                                            echo  $displayImg;
+                                        echo '</div>';
+                                    echo '</li>';
+                                    echo '<li class="list-border pl">by '.$row["author"].'</li>';
+                                    echo '<li class="pl list-border">'.$date.'</li>';
+                                    echo '<li class="pl"><i class="material-icons resize">chat_bubble_outline</i>
+                                            0 comments</li>';
                                 echo '</ul>';
                             echo '</div>';
                         echo '</div>';
@@ -77,16 +86,18 @@ include "head.php";
                             echo '<i class="material-icons fr">bookmark_border</i>';
                         echo '</div>';
                     echo '</div>';
+                    echo '<div class="post-img">';
+                        echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';                   
+                    echo '</div>';
                     echo '<div class="post-content">';
                         echo $row["content"];
                     echo '</div>';
-                    echo '<div class="row">';
+                    echo '<div class="row mar border-bottom">';
                         echo '<div class="col-m-6">';
                             echo '<div class="social-info">';
                                 echo '<ul>';
                                     echo '<li>Share: </li>';
-                                    echo '<li>Facebook</li>';
-                                    echo '<li>Twitter</li>';
+                                    echo '<li class="icon"><i class="fa fa-facebook-square"></i></li>';
                                 echo '</ul>';
                             echo '</div>';
                         echo '</div>';
@@ -94,6 +105,85 @@ include "head.php";
                 }
                 $stmt->close();
             }
+        }
+        $conn->close();
+    }
+?>
+
+<?php
+    function relatedPost()
+    {
+        $postid = $_GET["id"];
+        $havePrev = 0;
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        }else
+        {
+            $stmt = $conn->prepare("SELECT * FROM post AS p WHERE p.post_id > $postid ORDER BY  p.post_id ASC LIMIT 1
+            ");
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    $havePrev = 1;
+                    echo '<div class="row mar border-bottom">';
+                        echo '<div class="col-md-6 col-sm-6 previous-post">';
+                            echo '<p>Previous Post: </p>';
+                            echo '<a href="viewpost.php?id='.$row["post_id"].'">';
+                                echo '<h1>'.$row["title"].'</h1>';
+                            echo '</a>';
+                        echo '</div>';
+                        
+                    
+                }
+            }
+
+            $stmt = $conn->prepare("SELECT * FROM post AS p WHERE p.post_id < $postid ORDER BY  p.post_id DESC LIMIT 1
+            ");
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    if ($havePrev)
+                    {
+                        echo '<div class="col-md-6 col-sm-6 next-post">';
+                            echo '<p>Next Post: </p>';
+                            echo '<a href="viewpost.php?id='.$row["post_id"].'">';
+                                    echo '<h1>'.$row["title"].'</h1>';
+                            echo '</a>';
+                        echo '</div>';
+                        echo '</div>';
+                        
+                    }else
+                    {
+                        echo '<div class="row mar border-bottom">';
+                        echo '<div class="col-md-6 col-sm-6 previous-post">';
+                        echo '</div>';
+                        echo '<div class="col-md-6 col-sm-6 next-post">';
+                            echo '<p>Next Post: </p>';
+                                echo '<a href="viewpost.php?id='.$row["post_id"].'">';
+                                    echo '<h1>'.$row["title"].'</h1>';
+                                echo '</a>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+
+                        
+                }
+                $stmt->close();
+            }
+
+
         }
         $conn->close();
     }
