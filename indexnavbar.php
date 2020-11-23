@@ -27,8 +27,8 @@
                                     <i class="material-icons">perm_identity</i>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown1">
-                                    <a class="dropdown-item" href="#">Log In</a>
-                                    <a class="dropdown-item" href="#">Register</a>
+                                    <a class="dropdown-item" href="login.php">Log In</a>
+                                    <a class="dropdown-item" href="signup.php">Register</a>
                                     
                                 </div>
                             </li>
