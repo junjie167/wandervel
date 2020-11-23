@@ -58,6 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if ($success) {
         saveMemberToDB();
+        // echo $email;
+        // echo $name;
+        // echo $nationality;
+        // echo $gender;
+        // echo $dob;
+        // echo $pwd_hashed;
+
+
     }
 } else {
     echo "<h2> This page is not meant to be run directly</h2>";
@@ -92,7 +100,7 @@ function saveMemberToDB() {
     } else {
         // Prepare the statement:
 
-        $stmt = $conn->prepare("INSERT INTO (email, name, password, gender, dob, nationality) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO user (email, name, password, gender, dob, nationality) VALUES (?, ?, ?, ?, ?, ?)");
         // Bind & execute the query statement:
         $stmt->bind_param("ssssss", $email, $name, $pwd_hashed, $gender, $dob, $nationality);
         if (!$stmt->execute()) {
