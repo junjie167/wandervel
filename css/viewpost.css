@@ -90,6 +90,20 @@
     list-style: none;
     display: inline-flex;
 }
+.bookmark-modal{
+    background-color: lightgreen;
+    position: relative;
+    bottom:50px;
+    padding: 2px;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+}
+#unbookmark{
+    display: none;
+}
+
 
 
 
