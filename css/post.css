@@ -11,7 +11,7 @@
 }
 .header-title{
     font-size: 55px;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
 }
 .col-md-4.col-sm-6{
     margin-bottom:50px ;
@@ -100,8 +100,8 @@
     border-radius: 5px;
 }
 .paging a.active{
-    background-color: #4CAF50;
-    color: white;
+    background-color: lightblue;
+    color: black;
     border-radius: 5px;
 }
 .paging a:hover:not(.active){

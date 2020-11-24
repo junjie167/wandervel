@@ -1,4 +1,57 @@
 <?php
+    $config = parse_ini_file('../../private/db-config.ini');
+    $GLOBALS['s'] = $servername;
+    
+        $action = $_POST['action'];
+        $pid = $_POST['id'];
+
+        if ($action == "add_fav_post")
+        {
+            add_fav_post($pid);
+        }else if ($action == "remove_fav_post")
+        {
+            remove_fav_post($pid);
+        }
+    
+        // switch($action){
+    
+        //     case "add_fav_post":
+        //         add_fav_post($pid);
+        //     break;
+    
+        //     case "remove_fav_post":
+        //         remove_fav_post($pid);
+        //     break;
+        // }
+?>
+<?php
+
+
+function get_user_id()
+{
+    global $user_id;
+
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    }else
+    {
+        $stmt = $conn->prepare("SELECT user_id FROM user WHERE email=?");
+        $stmt->bind_param("s", $email);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $value = $result->fetch_object();
+        $user_id = $value->user_id;
+        $stmt->close();
+    }
+    $conn->close();
+
+
+}
 
 //Retrieve all the post
 function display()
@@ -39,7 +92,7 @@ function display()
 
                 if ($row["picture_image"] == NULL)
                 {
-                    
+                    $row["picture_image"] = "defaultimg.png";
                 }
                 
                 $date = date("jS M Y",strtotime($row["p_publish_date"]));
@@ -73,6 +126,7 @@ function display()
     //Retrieve function to display post
     function display_post()
     {
+        global $s;
         $postid = $_GET["id"];
         $config = parse_ini_file('../../private/db-config.ini');
         $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
@@ -84,7 +138,8 @@ function display()
         {
             $stmt = $conn->prepare("SELECT *, picture.image AS picture_image , user.profile_picture AS user_profile_picture 
             FROM post AS p LEFT JOIN image AS picture ON p.post_id = picture.post_id
-            JOIN user AS user ON p.user_id = user.user_id WHERE p.post_id = ". $postid);
+            JOIN user AS user ON p.user_id = user.user_id
+            WHERE p.post_id = ". $postid);
             $stmt->execute();
             $result = $stmt->get_result();
             
@@ -97,7 +152,12 @@ function display()
                     if ($row["user_profile_picture"] == NULL)
                     {
                         
-                        $displayImg = '<img src="image/astronomy-1867616__340.jpg"/>';
+                        $displayImg = '<img src="image/defaultprofile.png" alt="default profile image">';
+                    }
+                    
+                    if ($row["picture_image"] == NULL)
+                    {
+                        $row["picture_image"] = "defaultimg.png";
                     }
 
                     $date = date("jS M Y",strtotime($row["publish_date"]));
@@ -128,7 +188,14 @@ function display()
                                     echo '<li class="pl"><a href="deletePost.php">Delete<a>';
                                     echo '<li class="pl"><a href="updatePost.php">Edit</a>';
                                 echo '</ul>';
-                                echo '<i class="material-icons fr">bookmark_border</i>';
+                                echo '<i id="unbookmark" data-id="'.$row["post_id"].'" class="material-icons fr">bookmark</i>';
+                                if(checkFav())
+                                {
+                                    echo '<i id="unbookmark" style="display:block" data-id="'.$row["post_id"].'" class="material-icons fr">bookmark</i>';
+                                }else
+                                {
+                                    echo '<i id="bookmark" data-id="'.$row["post_id"].'" class="material-icons fr">bookmark_border</i>';
+                                }
                             echo '</div>';                              
                         echo '</div>';
                     echo '</div>';
@@ -235,5 +302,156 @@ function display()
         }
         $conn->close();
     }
+
+    
+    // Insert bookmarked post
+    function add_fav_post($pid)
+    {
+        $postid = $pid;
+        $uid = "1";
+
+        $s = "localhost";
+        $u = "1004";
+        $p = "P@ssw0rd";
+        $d = "1004proj";
+
+        $conn = new mysqli($s, $u,            
+            $p, $d);
+
+        // $config = parse_ini_file('../../private/db-config.ini');    
+        // $conn = new mysqli($config['servername'], $config['username'],            
+        //     $config['password'], $config['dbname']);
+
+
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+            echo $errorMsg;
+        }else
+        {
+            echo $GLOBALS['s'];
+            $stmt = $conn->prepare("INSERT INTO favourite (post_id, user_id) VALUES(?,?)");
+            
+
+            $stmt->bind_param("ii", $postid, $uid);
+
+            if(!$stmt->execute()){
+                $errorMsg = "Execute failed: (".$stmt->errno.")".$stmt->error;
+            }
+            $stmt->close();
+
+        }
+        $conn->close();
+        
+    }
+
+    
+
+    function remove_fav_post($pid)
+    {
+        global $x, $servername;
+        $postid = $pid;
+        $uid = "1";
+
+        $s = "localhost";
+        $u = "1004";
+        $p = "P@ssw0rd";
+        $d = "1004proj";
+
+        $conn = new mysqli($s, $u,            
+            $p, $d);
+
+        // $config = parse_ini_file('../../private/db-config.ini');
+        // $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($conn->connect_error)
+        {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+            
+        }else
+        {
+            
+            $stmt = $conn->prepare("DELETE FROM favourite WHERE post_id=? AND user_id=?");
+
+            $stmt->bind_param("ii", $postid, $uid);
+
+            if(!$stmt->execute()){
+                $errorMsg = "Execute failed: (".$stmt->errno.")".$stmt->error;
+            }
+            $stmt->close();
+               
+        }
+        $conn->close();
+
+    }
+
+    function checkFav()
+    {
+        $postid = $_GET["id"];
+        $uid = "1";
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        }else
+        {
+            $stmt = $conn->prepare("SELECT * FROM favourite WHERE post_id=? AND user_id=?");
+
+            $stmt->bind_param("ii", $postid, $uid);
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0)
+            {
+                return true;
+            }
+            $stmt->close();
+        }
+        $conn->close();
+
+        return false;
+    }
+    
+
+    // function insert($postid)
+    // {
+    //     $posti = $postid;
+    //     $uid = "1";
+    //     // $s = "localhost";
+    //     // $u = "1004";
+    //     // $p = "P@ssw0rd";
+    //     // $d = "1004proj";
+
+    //     // $config = parse_ini_file('../../private/db-config.ini'); 
+    //     // $conn = new mysqli($s, $u,            
+    //     //     $p, $d);
+
+        
+
+    //     if ($conn->connect_error) {
+    //         $errorMsg = "Connection failed: " . $conn->connect_error;
+    //         $success = false;
+    //         echo $errorMsg;
+            
+    //     }else
+    //     {
+    //         echo "hello";            
+    //         $stmt = $conn->prepare("INSERT INTO favourite(post_id, user_id) VALUES(?,?)");
+
+    //         $stmt->bind_param("ss", $posti, $uid);
+
+    //         if(!$stmt->execute()){
+    //             $errorMsg = "Execute failed: (".$stmt->errno.")".$stmt->error;
+    //         }
+    //         $stmt->close();
+
+    //     }
+    //     $conn->close();
+    // }
+
 
 ?>
