@@ -100,10 +100,21 @@
     text-align: center;
     display: none;
 }
+#bookmark{
+    color: gray;
+}
 #unbookmark{
     display: none;
+    color: gray;
 }
-
+#bookmark2{
+    display: none;
+    color: gray;
+}
+#unbookmark2{
+    display: none;
+    color: gray;
+}
 
 
 
