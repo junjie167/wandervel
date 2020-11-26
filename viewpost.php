@@ -33,6 +33,9 @@ include "include/postDB.php";
                     ?>
                     <div>
                         <h1>Comments</h1>
+                            <?php
+                            include "comment.php";
+                            ?>
                     </div>
                 </div>
             </section>
