@@ -1,105 +1,87 @@
+<!DOCTYPE html>
+<html>
 <?php
-
-$e = $_POST['email'];
-$p = $_POST['password'];
 
 session_start();
 // if user isn't logged in, will redirect them back to login page
-if(!isset($_SESSION['email']))
+if(!isset($_SESSION["email"]))
 {
     header("Location: login.php");
 }
+$e = $_SESSION["email"];
 
-$res=mysqli_query("SELECT * FROM users WHERE email=".$_SESSION['email']);
-$userRow=mysql_fetch_array($res);
+global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepic;
+  // Create database connection
+  $config = parse_ini_file('../../private/db-config.ini');
+  $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
 
-if(isset($_POST['name']) )
-{
-    $name= $_POST['name'];
-    $e  = $_SESSION['email'];
-    $sql  = "UPDATE users SET name='$name' WHERE email=$e";
-    $res    = mysql_query($sql) 
-                                or die("Could not update".mysql_error());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
+  if($conn->connect_error){
+    $errorMsg = "Connection failed: " . $conn->connect_error;
+    $success = false;
+}else{
+    // Prepare the statement
+    $stmt = $conn->prepare("SELECT * FROM user WHERE email= '".$_SESSION['email']."'");
+    
+    // Bind and execute
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->num_rows > 0){
+        // Note that email field is unique
+        $row = $result->fetch_assoc();
+        $name = $row["name"];
+        $gender = $row["gender"];
+        $dob = $row["dob"];
+        $nationality = $row["nationality"];
+        $bio = $row["bio"];
+        $pwd_hashed = $row["password"];  
+        $profilepic = $row["profile_picture"];
+    }
+
+
 }
+$conn->close();
+    echo "SELECT * FROM user WHERE email= '".$_SESSION['email']."'";
 
-if( isset($_POST['gender']) )
-{
-    $gender= $_POST['gender'];
-    $e  = $_SESSION['email'];
-    $sql  = "UPDATE users SET gender='$gender' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_error());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
-
-if( isset($_POST['dob']) )
-{
-    $dob= $_POST['dob'];
-    $e  = $_SESSION['email'];
-    $sql = "UPDATE users SET dob='$dob' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_affected_rows());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
-
-if( isset($_POST['nationality']) )
-{
-    $dob= $_POST['nationality'];
-    $e  = $_SESSION['email'];
-    $sql = "UPDATE users SET nationality='$nationality' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_affected_rows());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
-
-if( isset($_POST['bio']) )
-{
-    $bio= $_POST['bio'];
-    $e  = $_SESSION['email'];
-    $sql = "UPDATE users SET bio='$bio' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_affected_rows());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-    <?php
-    include "head.php";
-    ?>
-
-    <body>
-        <header>
+<head>
+<header>
             <?php
             include "navbar.php";
             ?>
         </header> 
+</head>
+    <?php
+    include "head.php";
+    ?>
+ <body>
         <section>
             <main class="container">   
                 <form action="userProfile.php" method="POST">
+                   
+                
+
                     <div>
                         <label for="name"><a>Name:</a></label>
-                        <input type="text" name="name"  value="<?php echo $userRow['name']; ?>"/>
+                        <input type="text" name="name"  value="<?php echo $name; ?>"/>
                     </div>
 
                     <div>
                         <label for="gender"><a>Gender:</a></label>
-                        <input type="text" name="gender"  value="<?php echo $userRow['gender']; ?>"/>
+                        <input type="text" name="gender"  value="<?php echo $row['gender']; ?>"/>
                     </div>
                     <div>
                         <label for="dob"><a>Date of Birth:</a></label>
-                        <input name="dob" value="<?php echo $userRow['dob']; ?>"/>
+                        <input name="dob" value="<?php echo $row['dob']; ?>"/>
                     </div>
                     <div>
                         <label for="nationality"><a>Nationality:</a></label>
-                        <input name="nationality" value="<?php echo $userRow['dob']; ?>"/>
+                        <input name="nationality" value="<?php echo $row['nationality']; ?>"/>
                     </div>
                     <div>
                         <label for="bio"><a>About Yourself:</a></label>
-                        <input name="bio" value="<?php echo $userRow['bio']; ?>"/>
+                        <input name="bio" value="<?php echo $row['bio']; ?>"/>
                     </div>
 
                     <input type="submit"  value="Update">
@@ -113,4 +95,4 @@ if( isset($_POST['bio']) )
     <?php
     include "footer.php";
     ?>
-</html>
+</html> 

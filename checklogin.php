@@ -33,14 +33,14 @@
                         
                         // Check if password matches
                         // $_POST refers to the data collected from form and $pwd_hashed refers to password store in DB. 
-                        if(password_verify($_POST["pwd"], $pwd_hashed)){
+                        if(!password_verify($_POST["pwd"], $pwd_hashed)){
                             $errorMsg = "Email not found or password doesn't match...";
                             $success = false;
                         }
                     }else{
                          $errorMsg = "Email not found or password doesn't match... ";
                             $success = false;
-                    }
+                   } 
                     $stmt->close();
                 }
                 $conn->close();
