@@ -14,11 +14,11 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="post.php">Posts</a>
+                                <a class="nav-link" href="post.php?page=1">Posts</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">My Favourites</a>
+                                <a class="nav-link" href="favourite.php?page=1">My Favourites</a>
                             </li>
 
                         </ul>
