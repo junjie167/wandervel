@@ -5,9 +5,9 @@
 
 <?php
 
-            
+    session_start();
      function authenticateUser(){
-        global $uname, $email, $pwd_hashed, $errorMsg, $success;
+        global $uname, $email, $id, $pwd_hashed, $errorMsg, $success;
                         
                 // Create database connection
                 $config = parse_ini_file('../../private/db-config.ini');
@@ -29,7 +29,8 @@
                         // Note that email field is unique
                         $row = $result->fetch_assoc();
                         $uname = $row["name"];
-                        $pwd_hashed = $row["password"];                
+                        $pwd_hashed = $row["password"];
+                        $id = $row["user_id"];              
                         
                         // Check if password matches
                         // $_POST refers to the data collected from form and $pwd_hashed refers to password store in DB. 
@@ -75,6 +76,7 @@ if ($success)
 {
     session_start();
     $_SESSION["email"]=$email;
+    $_SESSION["user_id"]=$id;
     header("Location:userProfile.php");
 }
 else

@@ -4,13 +4,14 @@
 
 session_start();
 // if user isn't logged in, will redirect them back to login page
-if(!isset($_SESSION["email"]))
+if(!isset($_SESSION["user_id"]))
 {
     header("Location: login.php");
 }
 $e = $_SESSION["email"];
 
-global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepic;
+
+global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepic, $id;
   // Create database connection
   $config = parse_ini_file('../../private/db-config.ini');
   $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
@@ -30,6 +31,7 @@ global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepi
         // Note that email field is unique
         $row = $result->fetch_assoc();
         $name = $row["name"];
+        $id = $row["user_id"];
         $gender = $row["gender"];
         $dob = $row["dob"];
         $nationality = $row["nationality"];
@@ -41,8 +43,6 @@ global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepi
 
 }
 $conn->close();
-    echo "SELECT * FROM user WHERE email= '".$_SESSION['email']."'";
-
 ?>
 
 <head>
@@ -58,9 +58,12 @@ $conn->close();
  <body>
         <section>
             <main class="container">   
-                <form action="userProfile.php" method="POST">
+            <form action="userProfile.php" method="post" enctype="multipart/form-data">
                    
-                
+                <div>
+                        <label for="profile_picture"><a>Profile Picture:</a></label>
+                        <input type="file" name="image"  value="<?php echo $profilepic; ?>"/>
+                    </div>
 
                     <div>
                         <label for="name"><a>Name:</a></label>
@@ -83,7 +86,6 @@ $conn->close();
                         <label for="bio"><a>About Yourself:</a></label>
                         <input name="bio" value="<?php echo $row['bio']; ?>"/>
                     </div>
-
                     <input type="submit"  value="Update">
                     <div>
                     </div>
