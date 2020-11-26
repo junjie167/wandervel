@@ -170,8 +170,8 @@ function display()
                         echo '<div class="col-md-3 col-sm-6 middle">';
                             echo '<div class="edit_delete">';
                                 echo '<ul>';
-                                    echo '<li class="pl"><a href="deletePost.php">Delete<a>';
-                                    echo '<li class="pl"><a href="updatePost.php">Edit</a>';
+                                    echo '<li class="pl"><a href="deletePost.php?id='.$postid.'">Delete<a>';
+                                    echo '<li class="pl"><a href="updatePost.php?id='.$postid.'">Edit</a>';
                                 echo '</ul>';
                                 echo '<i id="unbookmark2" data-id="'.$row["post_id"].'" class="material-icons fr">bookmark</i>';
                                 echo '<i id="bookmark2"  data-id="'.$row["post_id"].'" class="material-icons fr">bookmark_border</i>';
