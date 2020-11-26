@@ -20,9 +20,7 @@ include "include/postDB.php";
         </header>
         <main>
             <section class="blog-posts grid-system">
-                <div id="fav-modal" class="bookmark-modal">
-                    <p id="bookmark-text"></p>
-                </div>
+                
                 <div class="container">
                     
                     <?php
