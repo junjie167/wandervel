@@ -14,7 +14,7 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Posts</a>
+                                <a class="nav-link" href="post.php?page=1">Posts</a>
                             </li>
 
                            
