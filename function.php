@@ -1,7 +1,7 @@
 <?php 
-        session_start();
-        
-        $config = parse_ini_file('../../private/db-config.ini');
+		session_start();
+		
+        $config = parse_ini_file($_SERVER["DOCUMENT_ROOT"].'/../private/db-config.ini');
         $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
         // Check connection    
         if ($conn->connect_error)    {        
@@ -10,13 +10,13 @@
 
         }
         
-$result = mysqli_query($conn, "SELECT user_id FROM users WHERE email=" .$_SESSION['email'] . "");
-$user_id = mysqli_fetch_assoc($result)['user_id'];
+$result = mysqli_query($conn, "SELECT user_id FROM user WHERE email=" .$_SESSION['email'] . "");
+//$user_id = mysqli_fetch_assoc($result)['user_id'];
                 
-//$user_id = 4;
+		$user_id = 4;
         $errorMsg = "";
-        //$post_id = 90;
-        $post_id = $_GET["id"];
+        $post_id = 90;
+        //$post_id = $_GET["id"];
         date_default_timezone_set('Asia/Singapore');
         
 	// connect to database
@@ -28,7 +28,7 @@ $user_id = mysqli_fetch_assoc($result)['user_id'];
 	// Get all comments from database
 	$comments_query_result = mysqli_query($conn, "SELECT * FROM comment WHERE post_id=" . $post_id . " ORDER BY comment_date DESC");
 	$comments = mysqli_fetch_all($comments_query_result, MYSQLI_ASSOC);
-
+	
 	// Receives a user id and returns the username
 	function getUsernameById($id)
 	{
@@ -81,11 +81,13 @@ if (isset($_POST['comment_posted'])) {
         $today = date("F j, Y, g:i a");
 	// insert comment into database
         $stmt = $conn->prepare("INSERT INTO comment (post_id, user_id, comment, comment_date) VALUES (?, ?, ?, ?)");           
-        $stmt->bind_param("ssss", $post_id, $user_id, $comment_text, $today);
+		$stmt->bind_param("ssss", $post_id, $user_id, $comment_text, $today);
+		
         
 	// if insert was successful, get that same comment from the database and return it
         if (!$stmt->execute()) {
-            echo "Unable to insert to db in function";     
+			echo "Unable to insert to db in function";    
+			// echo "hello";
             exit(); 
         } else{
             $res = mysqli_query($conn, "SELECT * FROM comment ORDER BY comment_id DESC LIMIT 1");

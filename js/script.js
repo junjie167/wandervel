@@ -5,19 +5,20 @@ $(document).ready(function(){
 		e.preventDefault();
 		var comment_text = $('#comment_text').val();
                 
-		var url = $('#comment_form').attr('action');
+		//var url = $('#comment_form').attr('action');
 		// Stop executing if not value is entered
 		console.log(comment_text);
-                if (comment_text === "" ) return;
+				if (comment_text === "" ) return;
+		
 		$.ajax({
-			url: url,
+			url: "function.php",
 			type: "POST",
 			data: {
 				comment_text: comment_text,
 				comment_posted: 1
-			},
-                        
+			},      
 			success: function(data){
+				console.log(data);
 				var response = JSON.parse(data);
                                 console.log(comment_text);
 				if (data === "error") {
@@ -45,10 +46,10 @@ $(document).ready(function(){
 			// elements
 			var reply_textarea = $(this).siblings('textarea'); // reply textarea element
 			var reply_text = $(this).siblings('textarea').val();
-			var url = $(this).parent().attr('action');
+			//var url = $(this).parent().attr('action');
                         console.log(reply_text);
 			$.ajax({
-				url: url,
+				url: "function.php",
 				type: "POST",
 				data: {
 					comment_id: comment_id,
@@ -56,6 +57,7 @@ $(document).ready(function(){
 					reply_posted: 1
 				},
 				success: function(data){
+					console.log(data);
 					if (data === "error") {
 						alert('There was an error adding reply. Please try again');
 					} else {
