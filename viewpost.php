@@ -16,7 +16,14 @@ include "include/postDB.php";
     <body>
         <header>
             <?php
-            include "navbar.php";
+                 session_start();
+                 if(isset($_SESSION['email']))
+                 {
+                     include "navbar.php";
+                 }else
+                 {
+                     include "indexnavbar.php";
+                 }     
             ?>
         </header>
         <main>

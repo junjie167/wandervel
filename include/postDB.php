@@ -10,8 +10,8 @@
             remove_fav_post($pid);
         }
 ?>
-
 <?php
+session_start();
 function get_user_id()
 {
     global $user_id;
@@ -168,6 +168,8 @@ function display()
                             echo '</div>';
                         echo '</div>';
                         echo '<div class="col-md-3 col-sm-6 middle">';
+                       
+                            
                             echo '<div class="edit_delete">';
                                 echo '<ul>';
                                     echo '<li class="pl"><a href="deletePost.php?id='.$postid.'">Delete<a>';
@@ -183,6 +185,8 @@ function display()
                                     echo '<i id="bookmark" data-id="'.$row["post_id"].'" class="material-icons fr">bookmark_border</i>';
                                 }
                             echo '</div>';                              
+                       
+                        
                         echo '</div>';
                     echo '</div>';
                     echo '<div class="post-img">';
@@ -294,7 +298,7 @@ function display()
     function add_fav_post($pid)
     {
         $postid = $pid;
-        $uid = "1";
+        $uid = "2";
 
          $config = parse_ini_file($_SERVER["DOCUMENT_ROOT"].'/../private/db-config.ini');    
          $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
@@ -390,6 +394,7 @@ function display()
     function display_fav_post()
     {
         global $fav_page_no, $fav_total_no_ofpages;
+        $uid = "2";
 
         if($_GET["page"] != "")
         {
@@ -409,24 +414,24 @@ function display()
             $success = false;
         }else
         {
-            $stmt = $conn->prepare("SELECT * FROM favourite");
+            $stmt = $conn->prepare("SELECT * FROM favourite WHERE user_id=?");
+            $stmt->bind_param("i", $uid);
             $stmt->execute();
             $result_records = $stmt->get_result();
             $total_post = $result_records->num_rows;
             $total_no_ofpages = ceil($result_records->num_rows/$max_records_per_page);
 
-
-            $stmt = $conn->prepare("SELECT p.post_id AS p_post_id, p.user_id AS p_user_id, p.author AS p_author,
+           
+            $stmt = $conn->prepare("SELECT f.post_id, f.user_id, p.user_id AS p_user_id, p.author AS p_author,
             p.title AS p_title, p.content AS p_content, p.publish_date AS p_publish_date,
-            picture.image AS picture_image, f.user_id, f.post_id FROM post p LEFT JOIN image AS picture
-            ON picture.post_id = p.post_id JOIN favourite AS f ON f.post_id = p.post_id WHERE f.user_id=? 
-            ORDER BY p.post_id DESC LIMIT " . $offset . "," . $max_records_per_page);
+            picture.image AS picture_image FROM favourite AS f INNER JOIN post AS p ON f.post_id = p.post_id 
+            INNER JOIN image AS picture ON p.post_id = picture.post_id WHERE f.user_id=? 
+            ");
 
             $stmt->bind_param("i", $uid);
-
             $stmt->execute();
             $result = $stmt->get_result();
-
+            
             if ($result->num_rows > 0)
             {
                 while($row = mysqli_fetch_array($result))

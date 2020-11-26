@@ -9,13 +9,25 @@ include "include/postDB.php";
 <body>
     <header>
         <?php
-        include "navbar.php";
+            session_start();
+            if(isset($_SESSION['email']))
+            {
+                include "navbar.php";
+            }else
+            {
+                include "indexnavbar.php";
+            }     
         ?>
     </header>
     <main>
         <section class="blog-posts grid-system">
             <div class="container">
-                <button id="createPost" class="btn btn-primary create"><i class="material-icons edit">border_color</i>Create</button>
+                <?php
+                    if(isset($_SESSION['email']))
+                    {
+                        echo '<button id="createPost" class="btn btn-primary create"><i class="material-icons edit">border_color</i>Create</button>';
+                    }
+                ?>
                 <div class="center">
                     <h1 class="header-title">Post</h1>                   
                 </div>
