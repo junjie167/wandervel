@@ -6,6 +6,7 @@ include "head.php";
 <?php
 include "include/postDB.php";
 ?>
+<?php include "function.php"; ?>
 <head>
     <link rel="stylesheet" href="css/viewpost.css">
     <script defer src="js/viewpost.js"></script>

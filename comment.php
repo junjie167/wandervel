@@ -1,12 +1,7 @@
-<?php include('functions.php'); ?>
-<!DOCTYPE html>
+
+<!--<!DOCTYPE html>-->
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="css/comment.css">
-</head>
+<link rel="stylesheet" href="css/comment.css">
 <body>
 <div class="container">
 	<div class="row">
@@ -22,6 +17,7 @@
 			<?php if (isset($comments)): ?>
 				<!-- Display comments -->
 				<?php foreach ($comments as $comment): ?>
+				
 				<!-- comment -->
 				<div class="comment clearfix">
 					<img src="<?php echo getCUserPicById($comment['comment_id']) ?>" alt="" class="profile_pic">
@@ -69,6 +65,6 @@
 <!-- Bootstrap Javascript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="js/scripts.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
