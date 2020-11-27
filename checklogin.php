@@ -1,3 +1,6 @@
+<?php
+ session_start(); 
+?>
 <!DOCTYPE html>
 <html>
 <body>
@@ -5,7 +8,6 @@
 
 <?php
 
-    session_start();
      function authenticateUser(){
         global $uname, $email, $id, $pwd_hashed, $errorMsg, $success;
                         
@@ -74,7 +76,6 @@ authenticateUser();
 
 if ($success)
 {
-    session_start();
     $_SESSION["email"]=$email;
     $_SESSION["user_id"]=$id;
     header("Location:userProfile.php");

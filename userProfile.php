@@ -1,17 +1,24 @@
+<?php
+ session_start(); 
+?>
 <!DOCTYPE html>
 <html>
 <?php
 
-session_start();
+
+$e = $_SESSION["email"];
+$id = $_SESSION["user_id"];
+
+echo "Welcome, " . $_SESSION["email"];
+
 // if user isn't logged in, will redirect them back to login page
 if(!isset($_SESSION["user_id"]))
 {
-    header("Location: login.php");
+    header("Location:login.php");
 }
-$e = $_SESSION["email"];
 
 
-global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepic, $id;
+global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepic, $userid;
   // Create database connection
   $config = parse_ini_file('../../private/db-config.ini');
   $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);

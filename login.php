@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 
 <body>
 <?php include "navbar.php"; ?>
+
 
 <  <main class="container">
             <h1>Member Login</h1>
