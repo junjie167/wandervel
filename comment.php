@@ -1,13 +1,13 @@
 
 <!--<!DOCTYPE html>-->
 <html lang="en">
-<link rel="stylesheet" href="css/comment.css">
+
 <body>
 <div class="container">
 	<div class="row">
             <div class="col-md-6 col-md-offset-3 comments-section" id="comment_list">
 				<form class="clearfix" action="comment.php" method="post" id="comment_form">
-					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3" required></textarea>
 					<button <?php echo 'data-id='.$_GET['id'].'' ?> class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
 				</form>
                         <h2><span id="comments_count"><?php echo count($comments) ?></span> Comment(s)</h2>
@@ -20,7 +20,7 @@
 				
 				<!-- comment -->
 				<div class="comment clearfix">
-					<img src="<?php echo getCUserPicById($comment['comment_id']) ?>" alt="" class="profile_pic">
+					<img src="<?php echo getCUserPicById($comment['comment_id']) ?>" alt="pic" class="profile_pic">
 					<div class="comment-details">
 						<span class="comment-name"><?php echo getUsernameById($comment['user_id']) ?></span>
 						<span class="comment-date"><?php echo date("F j, Y, g:i a", strtotime($comment["comment_date"])); ?></span>
@@ -29,8 +29,8 @@
 					</div>
 					<!-- reply form -->
 					<form action="comment.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment['comment_id'] ?>" data-id="<?php echo $comment['comment_id']; ?>">
-						<textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2"></textarea>
-						<button class="btn btn-primary btn-xs pull-right submit-reply" id="btn_submit" >Submit reply</button>
+                                            <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2" required></textarea>
+						<button class="btn btn-primary btn-xs pull-right submit-reply" id="btn_submit">Submit reply</button>
 					</form>
 
 					<!-- GET ALL REPLIES -->
@@ -40,7 +40,7 @@
 							<?php foreach ($replies as $reply): ?>
 								<!-- reply -->
 								<div class="comment reply clearfix">
-									<img src="<?php echo getRUserPicById($reply['reply_id']) ?>" alt="" class="profile_pic">
+									<img src="<?php echo getRUserPicById($reply['reply_id']) ?>" alt="pic" class="profile_pic">
 									<div class="comment-details">
 										<span class="comment-name"><?php echo getUsernameById($reply['user_id']) ?></span>
 										<span class="comment-date"><?php echo date("F j, Y, g:i a", strtotime($reply["reply_date"])); ?></span>

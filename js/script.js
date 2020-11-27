@@ -6,10 +6,11 @@ $(document).ready(function(){
 		var comment_text = $('#comment_text').val();
 		var id = $(this).attr("data-id");
 		console.log(id);
-                
+                var count = parseInt($('#comments_count').text());
+                count = count + 1;
 		//var url = $('#comment_form').attr('action');
 		// Stop executing if not value is entered
-		console.log(comment_text);
+		console.log(count);
 				if (comment_text === "" ) return;
 		
 		$.ajax({
@@ -28,7 +29,7 @@ $(document).ready(function(){
 					alert('There was an error adding comment. Please try again');
 				} else {
 					$('#comments-wrapper').prepend(response.comment);
-					$('#comments_count').text(response.comments_count); 
+					$('#comments_count').text(count); 
 					$('#comment_text').val('');
                                         
 				}
@@ -49,6 +50,10 @@ $(document).ready(function(){
 			// elements
 			var reply_textarea = $(this).siblings('textarea'); // reply textarea element
 			var reply_text = $(this).siblings('textarea').val();
+                        if(reply_text == ""){
+                            alert('Please input your reply');
+                            return false;
+                        }
 			//var url = $(this).parent().attr('action');
                         console.log(reply_text);
 			$.ajax({
@@ -71,6 +76,23 @@ $(document).ready(function(){
 				}
 			});
 		});
+	});
+        
+        $(document).on('click', '#btn_submit', function(e) {
+		e.preventDefault();
+		var id = $(this).attr("data-id");
+		console.log(id);
+                $.ajax({
+			url: "function.php",
+			type: "POST",
+			data: {
+				id: id
+			},      
+			success: function(data){
+                                    $('#comment_reply_form_' + id).hide();
+			}
+                        
+                 });       
 	});
 });
 

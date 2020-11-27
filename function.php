@@ -10,10 +10,11 @@
 
         }
         
-$result = mysqli_query($conn, "SELECT user_id FROM user WHERE email=" .$_SESSION['email'] . "");
-//$user_id = mysqli_fetch_assoc($result)['user_id'];
-                
-		$user_id = 4;
+        $result = mysqli_query($conn, "SELECT user_id FROM user WHERE email=" .$_SESSION['email'] . "");
+        //$user_id = mysqli_fetch_assoc($result)['user_id'];
+
+        //$user_id = 4;
+        $user_id = $_SESSION['user_id'];
         $errorMsg = "";
         //$post_id = 90;
         $post_id = $_GET["id"];
@@ -94,7 +95,7 @@ if (isset($_POST['comment_posted'])) {
             $res = mysqli_query($conn, "SELECT * FROM comment ORDER BY comment_id DESC LIMIT 1");
             $inserted_comment = mysqli_fetch_assoc($res);
             $comment = "<div class='comment clearfix'>
-					<img src=". getCUserPicById($inserted_comment['comment_id']) . " alt='' class='profile_pic'>
+					<img src=". getCUserPicById($inserted_comment['comment_id']) . " alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_id']) . "</span>
 						<span class='comment-date'>" . date('F j, Y, g:i a', strtotime($inserted_comment['comment_date'])) . "</span>
@@ -107,9 +108,10 @@ if (isset($_POST['comment_posted'])) {
 						<button class='btn btn-primary btn-xs pull-right submit-reply'>Submit reply</button>
 					</form>
 				</div>";
+                $commentCount = getCommentsCountByPostId($p_id);
 		$comment_info = array(
 			'comment' => $comment,
-			'comments_count' => getCommentsCountByPostId($post_id)
+			'comments_count' => $commentCount
 		);
 		echo json_encode($comment_info);
                 
@@ -136,7 +138,7 @@ if (isset($_POST['reply_posted'])) {
             $res = mysqli_query($conn, "SELECT * FROM replies ORDER BY reply_id DESC LIMIT 1");
             $inserted_reply = mysqli_fetch_assoc($res);
             $reply = "<div class='comment reply clearfix'>
-					<img src='". getRUserPicById($inserted_reply['reply_id']) . "' alt='' class='profile_pic'>
+					<img src='". getRUserPicById($inserted_reply['reply_id']) . "' alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_reply['user_id']) . "</span>
 						<span class='comment-date'>" . date('F j, Y, g:i a', strtotime($inserted_reply['reply_date'])) . "</span>

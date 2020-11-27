@@ -10,7 +10,7 @@ include "include/postDB.php";
 <head>
     <link rel="stylesheet" href="css/viewpost.css">
     <script defer src="js/viewpost.js"></script>
-    
+    <link rel="stylesheet" href="css/comment.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
     <body>
