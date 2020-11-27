@@ -1,3 +1,7 @@
+  
+<?php
+ session_start(); 
+?>
 <!DOCTYPE html>
 <html>
 <body>
@@ -5,7 +9,6 @@
 
 <?php
 
-    session_start();
      function authenticateUser(){
         global $uname, $email, $id, $pwd_hashed, $errorMsg, $success;
                         
@@ -74,7 +77,6 @@ authenticateUser();
 
 if ($success)
 {
-    session_start();
     $_SESSION["email"]=$email;
     $_SESSION["user_id"]=$id;
     header("Location:userProfile.php");
@@ -103,7 +105,6 @@ function sanitize_input($data)
         </body>
         </html>
 <!-- 
-
 // if ($userfound == 1)
 // {
 //     if($role=="Admin") //when it is admin logging in
@@ -125,4 +126,3 @@ function sanitize_input($data)
 //         // user record is not FOUND in the user table
 //         header("Location:login.php?fail=1"); // go back to login page
 //  } -->
-

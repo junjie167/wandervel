@@ -15,8 +15,8 @@ $result = mysqli_query($conn, "SELECT user_id FROM user WHERE email=" .$_SESSION
                 
 		$user_id = 4;
         $errorMsg = "";
-        $post_id = 90;
-        //$post_id = $_GET["id"];
+        //$post_id = 90;
+        $post_id = $_GET["id"];
         date_default_timezone_set('Asia/Singapore');
         
 	// connect to database
@@ -80,8 +80,9 @@ if (isset($_POST['comment_posted'])) {
 	$comment_text = $_POST['comment_text'];
         $today = date("F j, Y, g:i a");
 	// insert comment into database
+		$p_id = $_POST['id'];
         $stmt = $conn->prepare("INSERT INTO comment (post_id, user_id, comment, comment_date) VALUES (?, ?, ?, ?)");           
-		$stmt->bind_param("ssss", $post_id, $user_id, $comment_text, $today);
+		$stmt->bind_param("isss", $p_id, $user_id, $comment_text, $today);
 		
         
 	// if insert was successful, get that same comment from the database and return it

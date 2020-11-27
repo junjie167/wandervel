@@ -4,6 +4,8 @@ $(document).ready(function(){
 	$(document).on('click', '#submit_comment', function(e) {
 		e.preventDefault();
 		var comment_text = $('#comment_text').val();
+		var id = $(this).attr("data-id");
+		console.log(id);
                 
 		//var url = $('#comment_form').attr('action');
 		// Stop executing if not value is entered
@@ -14,6 +16,7 @@ $(document).ready(function(){
 			url: "function.php",
 			type: "POST",
 			data: {
+				id: id,
 				comment_text: comment_text,
 				comment_posted: 1
 			},      

@@ -8,7 +8,7 @@
             <div class="col-md-6 col-md-offset-3 comments-section" id="comment_list">
 				<form class="clearfix" action="comment.php" method="post" id="comment_form">
 					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
-					<button class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
+					<button <?php echo 'data-id='.$_GET['id'].'' ?> class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
 				</form>
                         <h2><span id="comments_count"><?php echo count($comments) ?></span> Comment(s)</h2>
 			<hr>

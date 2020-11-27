@@ -394,11 +394,11 @@ function display()
     function display_fav_post()
     {
         global $fav_page_no, $fav_total_no_ofpages;
-        $uid = "2";
+        $uid = "1";
 
         if($_GET["page"] != "")
         {
-            $page_no = $_GET["page"];
+            $fav_page_no = $_GET["page"];
         }
 
         $max_records_per_page = 9;
@@ -419,14 +419,14 @@ function display()
             $stmt->execute();
             $result_records = $stmt->get_result();
             $total_post = $result_records->num_rows;
-            $total_no_ofpages = ceil($result_records->num_rows/$max_records_per_page);
+            $fav_total_no_ofpages = ceil($result_records->num_rows/$max_records_per_page);
 
            
-            $stmt = $conn->prepare("SELECT f.post_id, f.user_id, p.user_id AS p_user_id, p.author AS p_author,
+            $stmt = $conn->prepare("SELECT f.post_id AS f_post_id, f.user_id, p.user_id AS p_user_id, p.author AS p_author,
             p.title AS p_title, p.content AS p_content, p.publish_date AS p_publish_date,
             picture.image AS picture_image FROM favourite AS f INNER JOIN post AS p ON f.post_id = p.post_id 
-            INNER JOIN image AS picture ON p.post_id = picture.post_id WHERE f.user_id=? 
-            ");
+            INNER JOIN image AS picture ON p.post_id = picture.post_id  WHERE f.user_id=? 
+            ORDER BY f.post_id DESC LIMIT " . $offset . "," . $max_records_per_page);
 
             $stmt->bind_param("i", $uid);
             $stmt->execute();
@@ -443,7 +443,7 @@ function display()
                 
                     $date = date("jS M Y",strtotime($row["p_publish_date"]));
                     $content = substr($row["p_content"],0,100);
-                    echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["p_post_id"].'>';
+                    echo '<div class="col-md-4 col-sm-6 click shake" data-id='.$row["f_post_id"].'>';
                     echo '<div class="blog post effect">';
                     echo '<div class="blog-image">';
                     echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
