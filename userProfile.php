@@ -18,6 +18,7 @@ if(!isset($_SESSION["user_id"]))
 }
 
 
+
 global $name, $gender, $email, $dob, $nationality, $bio, $pwd_hashed, $profilepic, $userid;
   // Create database connection
   $config = parse_ini_file('../../private/db-config.ini');

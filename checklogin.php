@@ -1,3 +1,6 @@
+
+  
+
 <?php
  session_start(); 
 ?>
@@ -104,7 +107,6 @@ function sanitize_input($data)
         </body>
         </html>
 <!-- 
-
 // if ($userfound == 1)
 // {
 //     if($role=="Admin") //when it is admin logging in
@@ -126,4 +128,3 @@ function sanitize_input($data)
 //         // user record is not FOUND in the user table
 //         header("Location:login.php?fail=1"); // go back to login page
 //  } -->
-
