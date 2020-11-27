@@ -1,79 +1,11 @@
 <?php
-  
-//function PostToDB()
-//{
-//  global $user_id,$author,$title,$content,$publish_date,$errorMsg,$success,$last_id;
-//
-//    // Create database connection.    
-//    $config = parse_ini_file('../../private/db-config.ini');    
-//    $conn = new mysqli($config['servername'], $config['username'],            
-//            $config['password'], $config['dbname']);
-//    if ($conn->connect_error)    
-//    {        
-//        $errorMsg = "Connection failed: " . $conn->connect_error;        
-//        $success = false;    
-//        
-//    }else{  
-//        
-//    // Prepare the statement:       
-//      
-//       $stmt = $conn->prepare("INSERT INTO post (user_id,author,title,content,publish_date) VALUES (?, ?, ?, ?, ?)");   
-//       // Bind & execute the query statement:        
-//       $stmt->bind_param("sssss", $user_id, $author, $title, $content, $publish_date);        
-//       if (!$stmt->execute())        
-//       {            
-//           $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;           
-//           $success = false;        
-//           
-//       } 
-//   
-//         $last_id = $conn->insert_id;
-//       $stmt->close();    
-//       
-//       }    
-//       $conn->close();
-//
-//}
-//function saveimgToDB()
-//{
-// 
-//   $filename=$_FILES["uploadfile"]["name"];
-//   $tempname=$_FILES["uploadfile"]["tmp_name"];
-//   $folder="image/".$filename;  
-//    $config = parse_ini_file('../../private/db-config.ini');    
-//    $conn = new mysqli($config['servername'], $config['username'],            
-//            $config['password'], $config['dbname']);
-//    if ($conn->connect_error)    
-//    {        
-//        $errorMsg = "Connection failed: " . $conn->connect_error;        
-//        $success = false;    
-//        
-//    }else{  
-//        
-//    // Prepare the statement:      
-//       
-//       $stmt = $conn->prepare("INSERT INTO image (image) VALUES (?)");   
-//       // Bind & execute the query statement:        
-//       $stmt->bind_param("s", $filename);        
-//       move_uploaded_file($tempname, $folder);
-//    //  move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name);
-//       if (!$stmt->execute())        
-//       {            
-//           $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;           
-//           $success = false;        
-//           
-//       }           
-//       $stmt->close();           
-//       }    
-//       $conn->close();
-//   
-//}
+  session_start();
+
 function sendDB(){
     global $user_id,$author,$title,$content,$publish_date,$errorMsg,$success,$last_id,$path;    
     $filename=$_FILES["uploadfile"]["name"];
     $tempname=$_FILES["uploadfile"]["tmp_name"];
     $folder="image/".$filename; 
-    $id=69;
     // Create database connection.    
     $config = parse_ini_file('../../private/db-config.ini');    
     $conn = new mysqli($config['servername'], $config['username'],            
@@ -116,8 +48,8 @@ function sendDB(){
 
 
 }
-$user_id=5;
-$author= "Dominic";
+$user_id=$_SESSION['user_id'];
+$author= $_SESSION['name'];
 $title= $content= "";
 
 $publish_date=date("d-m-Y h:i:sa");
@@ -189,6 +121,9 @@ function sanitize_input($data)
         echo "<h4>Title of post is  " . $title .".</h4>";
         echo "<h4>Content of post is  " . $content .".</h4>";
         echo "<h4>Filepath of image is  " . $path .".</h4>";
+        echo "<h4>userid: " .$_SESSION['user_id'] .".</h4>";
+       
+
   
         }
         else 

@@ -1,6 +1,3 @@
-
-  
-
 <?php
  session_start(); 
 ?>
@@ -80,6 +77,7 @@ authenticateUser();
 if ($success)
 {
     $_SESSION["email"]=$email;
+    $_SESSION["name"]=$uname;
     $_SESSION["user_id"]=$id;
     header("Location:userProfile.php");
 }

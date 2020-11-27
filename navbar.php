@@ -30,7 +30,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown1">
                                     <a class="dropdown-item" href="userProfile.php">My Profile</a>
-                                    <a class="dropdown-item" href="#">My Posts</a>
+                                    <a class="dropdown-item" href="mypost.php?page=1">My Posts</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Log Out</a>                                                                    
                                 </div>

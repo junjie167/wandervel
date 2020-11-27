@@ -1,8 +1,29 @@
 <?php 
 global $post_id;
-function del(){
+
+ if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    $action = $_POST['action'];
+    $post_id = $_POST['id'];
+
+    if ($action == "del")
+    {
+        if(is_array($post_id))
+        {
+            foreach ($post_id as $i)
+            {
+                del($i);
+            }
+        }else
+        {
+            del($post_id);
+        }
+    }
+}
+
+function del($post_id){
       
-    $post_id = $_POST["id"];
+    //$post_id = $_POST["id"];
    $config = parse_ini_file('../../private/db-config.ini');   
    $conn = new mysqli($config['servername'], $config['username'],           
            $config['password'], $config['dbname']);      
@@ -32,7 +53,7 @@ function del(){
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {   $success = true;
-    del();
+    //del();
 }
 else 
 {
