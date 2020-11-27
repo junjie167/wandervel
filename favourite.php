@@ -9,7 +9,7 @@ include "include/postDB.php";
 <head>
     <link rel="stylesheet" href="css/viewpost.css">
     <link rel="stylesheet" href="css/favouritepost.css">
-    <script defer src="js/viewpost.js"></script>
+    <script defer src="js/favouritepost.js"></script>
 </head>
     <body>
         <header>
@@ -22,6 +22,26 @@ include "include/postDB.php";
                 <div class="container">
                     <div class="center">
                         <h1 class="header-title">My Favourites</h1>                   
+                    </div>
+                    <div id="mypopup" class="popup">
+                        <div class="popup-content">
+                            <span id="close">
+                                &times;
+                            </span>
+                            <br>
+                            <div>
+                                <p>This action cannot be undone</p>
+                            </div>
+                            <div class="popup-footer">
+                                <button id="proceed" class="btn btn-primary">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mar">
+                        <div class="col-md-12 col-sm-6">
+                            <i id="remove" class="material-icons fr">delete</i>
+                            <i id="delete" class="material-icons fr">done</i>
+                        </div>
                     </div>
                     <div class="row">
                     <?php

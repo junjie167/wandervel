@@ -90,6 +90,9 @@
     list-style: none;
     display: inline-flex;
 }
+.edit_delete{
+    text-align: right;
+}
 .bookmark-modal{
     background-color: lightgreen;
     position: relative;
