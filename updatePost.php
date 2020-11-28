@@ -74,7 +74,7 @@ $_SESSION['post_id'] = $post_id;
                         <div class="form-group">   
                             <label for="title">Title:</label>  
                             <input class="form-control" type="text" id="title"          
-                            name="title" value=<?php echo $title?>>    
+                            name="title" value='<?php echo $title?>'>    
                         </div>   
                         <div class="form-group">   
                             <label for="content">Share your post with everyone!</label>  
