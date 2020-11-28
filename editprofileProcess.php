@@ -1,56 +1,132 @@
-<?php 
-$e = $_SESSION['email'];
+<?php
 
-$res=mysqli_query("SELECT * FROM user WHERE email=".$_SESSION['email']);
-$userRow=mysql_fetch_array($res);
+$name = $nationality = $dob = $bio = $errorMsg = "";
+$success = true;
 
-if(isset($_POST['name']) )
-{
-    $name= $_POST['name'];
-    $e  = $_SESSION['email'];
-    $sql  = "UPDATE user SET name='$name' WHERE email=$e";
-    $res    = mysql_query($sql) 
-                                or die("Could not update".mysql_error());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
+// Only process if the form has been submitted via POST.
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    // name
+    if (!empty($_POST["name"]))
+    {
+        $name = sanitize_input($_POST["name"]);
+    }
+    
+   // dob
+    if (!empty($_POST["dob"]))
+    {
+        $dob = sanitize_input($_POST["dob"]);
+
+    }
+    //nationality
+    if (!empty($_POST["nationality"]))
+    {
+        $nationality = sanitize_input($_POST["nationality"]);
+
+    }
+    //bio
+    if (!empty($_POST["bio"]))
+    {
+        $bio = sanitize_input($_POST["bio"]);
+
+    }
+    //if success 
+    if ($success)
+    {
+        saveProfileToDB();
+    }
+} 
+else {
+    echo "<h2>This page is not meant to be run directly.</h2>";
+
+    exit();
+}
+//Helper function that checks input for malicious or unwanted content.
+function sanitize_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
-if( isset($_POST['gender']) )
-{
-    $gender= $_POST['gender'];
-    $e  = $_SESSION['email'];
-    $sql  = "UPDATE user SET gender='$gender' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_error());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
-
-if( isset($_POST['dob']) )
-{
-    $dob= $_POST['dob'];
-    $e  = $_SESSION['email'];
-    $sql = "UPDATE user SET dob='$dob' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_affected_rows());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
-
-if( isset($_POST['nationality']) )
-{
-    $dob= $_POST['nationality'];
-    $e  = $_SESSION['email'];
-    $sql = "UPDATE user SET nationality='$nationality' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_affected_rows());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
-
-if( isset($_POST['bio']) )
-{
-    $bio= $_POST['bio'];
-    $e  = $_SESSION['email'];
-    $sql = "UPDATE user SET bio='$bio' WHERE email=$e";
-    $res = mysql_query($sql) 
-                                or die("Could not update".mysql_affected_rows());
-    echo "<meta http-equiv='refresh' content='0;url=profile.php'>";
-}
 ?>
+<?php
+function saveProfileToDB() {
+    
+    global $name,$email, $dob, $nationality, $bio, $errorMsg,$success;
+    session_start();
+    $email = $_SESSION['email'];
+    //$id = $_SESSION["user_id"];
+
+
+// if user isn't logged in, will redirect them back to login page
+//if (!isset($_SESSION["user_id"])) {
+  //  header("Location:login.php");
+//}
+
+
+    // Create database connection.    
+    $config = parse_ini_file('../../private/db-config.ini');
+    $conn = new mysqli($config['servername'], $config['username'],
+            $config['password'], $config['dbname']);
+    if ($conn->connect_error) {
+        $errorMsg = "Connection failed: " . $conn->connect_error;
+        $success = false;
+    } else {
+
+        // Prepare the statement:        
+        $stmt = $conn->prepare("UPDATE user SET name=? ,dob=?,nationality=?, bio=? WHERE email=?");
+        // Bind & execute the query statement:        
+        $stmt->bind_param("sssss", $name, $dob, $nationality, $bio,$email);
+        if (!$stmt->execute()) {
+            $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            $success = false;
+        }
+        $stmt->close();
+    }
+    $conn->close();
+}
+$success = true;
+
+
+?>
+
+    
+<html>
+    <head>
+        <title>Edited Profile</title>
+        <?php include"head.php"?>
+    </head>
+    <body>
+        <?php
+        include "navbar.php";
+        ?>
+        <main class="container">
+        <hr>
+        <?php
+        if ($success)
+        {
+            echo "<h2>Profile has been updated successfully!</h2>";
+            echo "<h4>Name : " . $name . "</h4>";
+            echo "<h4>Date Of Birth : " . $dob . "</h4>";
+            echo "<h4>Nationality : " . $nationality . "</h4>";
+            echo"<h4>About Yourself : " . $bio . "</h4>";
+            
+ 
+        }
+        else 
+        {
+            echo "<h2>Oops!</h2>";
+            
+        
+     
+        }
+        ?>
+       
+        </main>
+        <br>
+        <?php
+        include "footer.php";
+        ?>
+    </body>
+</html>
