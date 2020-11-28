@@ -72,8 +72,9 @@ $conn->close();
                    
                 <div class="form-group">
                         <label for="profile_picture"><a>Profile Picture:</a></label>
-                        <br>
+                        
                         <p>
+                        <img src="profileimages/<?php echo $profilepic?>" width="150" height="150">
                         <input type="file" name="fileToUpload" id="fileToUpload"/>
                         </p>
                     </div>
@@ -82,7 +83,7 @@ $conn->close();
                         <label for="name"><a>Name:</a></label>
                         <input class="form-control" type="text" name="name"  value="<?php echo $name ?>"/>
                     </div>
-             
+                        
 
                     <div class="form-group">
                         <label for="gender"><a>Gender:</a></label>
