@@ -104,7 +104,7 @@ function display()
                 echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                 echo '</div>';
                 echo '<div class="blog-title">';
-                echo '<h3>' . $row["p_title"] . '</h3>';
+                echo '<h2>' . $row["p_title"] . '</h2>';
                 echo '</div>';
                 echo '<div class="blog-content">' . $content . ' ... 
                 <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
@@ -190,8 +190,8 @@ function display()
                             if ($uid == $row["user_id"])
                             {
                                 echo '<ul>';
-                                    echo '<li class="pl"><a href="deletePost.php?id='.$postid.'">Delete<a>';
-                                    echo '<li class="pl"><a href="updatePost.php?id='.$postid.'">Edit</a>';
+                                    echo '<li class="pl"><button id="viewpost-delete" class="btn btn-outline-danger delete-button" data-id="'.$row["post_id"].'"><i class="material-icons edit">delete</i> Delete</button></li>';
+                                    echo '<li class="pl"><button id="viewpost-edit" class="btn btn-outline-secondary" data-id="'.$row["post_id"].'"><i class="material-icons edit">edit</i>Edit</button></li>';
                                 echo '</ul>';
                             }else
                             {
@@ -261,7 +261,7 @@ function display()
                         echo '<div class="col-md-6 col-sm-6 previous-post">';
                             echo '<p>Previous Post: </p>';
                             echo '<a class="link-color" href="viewpost.php?id='.$row["post_id"].'">';
-                                echo '<h4>'.$row["title"].'</h4>';
+                                echo '<h2>'.$row["title"].'</h2>';
                             echo '</a>';
                         echo '</div>';
                                                               
@@ -283,7 +283,7 @@ function display()
                         echo '<div class="col-md-6 col-sm-6 next-post">';
                             echo '<p>Next Post: </p>';
                             echo '<a class="link-color" href="viewpost.php?id='.$row["post_id"].'">';
-                                    echo '<h4>'.$row["title"].'</h4>';
+                                    echo '<h2>'.$row["title"].'</h2>';
                             echo '</a>';
                         echo '</div>';
                         echo '</div>';
@@ -296,7 +296,7 @@ function display()
                         echo '<div class="col-md-6 col-sm-6 next-post">';
                             echo '<p>Next Post: </p>';
                                 echo '<a class="link-color" href="viewpost.php?id='.$row["post_id"].'">';
-                                    echo '<h4>'.$row["title"].'</h4>';
+                                    echo '<h2>'.$row["title"].'</h2>';
                                 echo '</a>';
                         echo '</div>';
                         echo '</div>';
@@ -471,14 +471,15 @@ function display()
                     $content = substr($row["p_content"],0,100);
                     echo '<div class="col-md-4 col-sm-6">';
                     echo '<span class="blog post effect cross">';
-                    echo '<input class="checkmate" type="checkbox" value='.$row["f_post_id"].' name="fav">';
+                    //echo '<label for="'.$row["f_post_id"].'"></label>';
+                    echo '<input  class="checkmate" type="checkbox" value='.$row["f_post_id"].' aria-label="'.$row["f_post_id"].'" name="fav">';
                     echo '</span>';
                     echo '<div class="blog post effect click" data-id='.$row["f_post_id"].'>';
                     echo '<div class="blog-image">';
                     echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                     echo '</div>';
                     echo '<div class="blog-title">';
-                    echo '<h3>' . $row["p_title"] . '</h3>';
+                    echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
                     echo '<div class="blog-content">' . $content . ' ... 
                     <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
@@ -506,7 +507,6 @@ function display()
             $uid = $_SESSION["user_id"];
         }
 
-        $uid = "5";
 
         global $page_no, $total_no_ofpages;
 
@@ -556,17 +556,17 @@ function display()
                     $content = substr($row["p_content"],0,100);
                     echo '<div class="col-md-4 col-sm-6 " >';
                     echo '<span class="blog post effect del">';
-                    echo '<input class="checkmate" type="checkbox" value='.$row["p_post_id"].' name="delete">';
+                    echo '<input class="checkmate" type="checkbox" value='.$row["p_post_id"].' aria-label="'.$row["p_post_id"].'" name="delete">';
                     echo '</span>';
                     echo '<span class="blog post effect cross">';
-                    echo '<input class="radio" type="radio" value='.$row["p_post_id"].' name="edit">';
+                    echo '<input class="radio" type="radio" value='.$row["p_post_id"].' aria-label="'.$row["p_post_id"].'" name="edit">';
                     echo '</span>';
                     echo '<div class="blog post effect click" data-id='.$row["p_post_id"].'>';
                     echo '<div class="blog-image">';
                     echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                     echo '</div>';
                     echo '<div class="blog-title">';
-                    echo '<h3>' . $row["p_title"] . '</h3>';
+                    echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
                     echo '<div class="blog-content">' . $content . ' ... 
                     <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';

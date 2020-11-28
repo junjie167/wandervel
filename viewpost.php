@@ -9,6 +9,7 @@ include "include/postDB.php";
 <?php include "function.php"; ?>
 <head>
     <link rel="stylesheet" href="css/viewpost.css">
+    <link rel="stylesheet" href="css/favouritepost.css">
     <script defer src="js/viewpost.js"></script>
     <link rel="stylesheet" href="css/comment.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,10 +33,26 @@ include "include/postDB.php";
                     <p id="bookmark-text"></p>
                 </div>
                 <div class="container">
-                    
+                <div id="mypopup" class="popup">
+                        <div class="popup-content">
+                            <span id="close">
+                                &times;
+                            </span>
+                            <br>
+                            <div>
+                                <h4>Are you sure you want to delete this record?</h4>
+                                <p>This action cannot be undone</p>
+                            </div>
+                            <div class="popup-footer">
+                                <button id="viewproceed" class="btn btn-primary">Proceed</button>
+                            </div>
+                        </div>
+                </div>
                     <?php
                         display_post();
                     ?>
+                    <h1>Related Posts:</h1>
+                    <br>
                     <?php 
                         relatedPost();
                     ?>

@@ -15,7 +15,7 @@ global $post_id;
                 del($i);
             }
         }else
-        {
+        {   
             del($post_id);
         }
     }

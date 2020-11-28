@@ -1,13 +1,36 @@
 $(document).ready(function(){
 
-    $(document).on("click", "#remove", function(){
+    $(document).on("click", "#favpost-delete", function(){
         $('.cross').css("display"," block");
-        $('#delete').css("display", "block");
-        $('#remove').css("display", "none");
+        $('#favpost-done').css("display", "block");
+        $('#favpost-cancel').css("display", "block");
+        $('#favpost-delete').css("display", "none");
+        $("#favpost-done").attr("disabled", true);
     })
 
-    $(document).on("click", "#delete", function(){
-        
+    $(document).on("click", "#favpost-cancel", function(){
+
+        $.each($("input[name='fav']:checked"), function(){
+                $(this).prop("checked", false);
+        });
+        $('.cross').css("display"," none");
+        $('#favpost-done').css("display", "none");
+        $('#favpost-cancel').css("display", "none");
+        $('#favpost-delete').css("display", "block");
+    })
+
+    $(".checkmate").change(function(){
+        if (this.checked)
+        {
+            $("#favpost-done").attr("disabled", false);
+        }else
+        {
+            $("#favpost-done").attr("disabled", true);
+        }
+    })
+
+    $(document).on("click", "#favpost-done", function(){
+
         $("#mypopup").css("display", "block");
     })
 

@@ -118,6 +118,14 @@
     display: none;
     color: gray;
 }
+#viewpost-delete{
+    margin-right:20px;
+}
+
+#viewproceed{
+    width: 100%;
+    color:white;
+}
 
 
 
