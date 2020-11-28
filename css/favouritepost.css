@@ -100,3 +100,15 @@
     width: 100%;
     color:white;
 }
+
+.delete-button{
+  margin-right: 30px;;
+}
+
+#favpost-done{
+  display: none;
+}
+
+#favpost-cancel{
+  display: none;
+}

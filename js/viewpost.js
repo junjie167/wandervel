@@ -107,6 +107,37 @@ $(document).ready(function(){
         });
     })
 
+    $(document).on("click", "#close", function(){
+        $("#mypopup").css("display", "none");
+    })
+
+    var delid;
+    $(document).on("click", "#viewpost-delete", function(){
+        delid =  $(this).attr("data-id");
+        $("#mypopup").css("display", "block");
+    })
+
+    $(document).on("click", "#viewpost-edit", function(){
+        
+        var id = $(this).attr("data-id");
+
+        window.location.href = "updatePost.php?id="+id;
+    })
+
+    $(document).on("click", "#viewproceed", function(){
+
+        $.ajax({
+            url: "process_deletePost.php",
+            type: "POST",
+            data: {id: delid, action: "del"},
+            success: function (response) {
+                var deleted = {"deleted":"true"};
+                localStorage.setItem('success', JSON.stringify(deleted));
+                window.location.href = "post.php?page=1";
+            }
+        });
+    })
+
 
     $(document).on("click", "#facebook", function(){
         var id = $(this).attr("data-id");

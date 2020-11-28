@@ -1,8 +1,5 @@
 .center{
     text-align: center;
-    position: relative;
-    left: 60px;
-    width: 87%;
 }
 .center.create-post{
     float:right;
@@ -110,4 +107,16 @@
 .create {
     float: right;
 }
+.mar{
+    margin-bottom: 50px;
+}
+.blog-content a{
+    color: darkblue;
+}
+#postproceed{
+    width: 100%;
+    color:white;
+}
+
+
 

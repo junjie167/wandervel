@@ -1,4 +1,20 @@
 $(document).ready(function(){
+
+    if(localStorage.getItem('success') != null)
+    {
+        $("#mypopup").css("display", "block");
+        window.localStorage.clear();
+    }
+
+    $(document).on("click", "#close", function(){
+        $("#mypopup").css("display", "none");
+    })
+
+    $(document).on("click", "#postproceed", function(){
+        $("#mypopup").css("display", "none");
+    })
+
+
     $('div.click').click(function()
     {
         var id = $(this).attr("data-id");
@@ -8,6 +24,8 @@ $(document).ready(function(){
     $(document).on('click','#createPost',function(){
         window.location.href = "createPost.php";
     })
+
+   
 
     activePage();
   

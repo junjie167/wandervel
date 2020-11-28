@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <?php
 include "head.php";
 ?>
@@ -39,8 +39,11 @@ include "include/postDB.php";
                     </div>
                     <div class="row mar">
                         <div class="col-md-12 col-sm-6">
-                            <i id="remove" class="material-icons fr">delete</i>
-                            <i id="delete" class="material-icons fr">done</i>
+                            <ul class="popup-button fr">
+                                <li><button id="favpost-delete" class="btn btn-outline-danger delete-button"><i class="material-icons edit">delete</i> Remove</button></li>
+                                <li><button id="favpost-done" class="btn btn-outline-success delete-button"><i class="material-icons edit">done</i> Done</button></li>
+                                <li><button id="favpost-cancel" class="btn btn-outline-danger"><i class="material-icons edit">clear</i>Cancel</button></li>
+                            </ul>
                         </div>
                     </div>
                     <div class="row">

@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <?php
 include "head.php";
 ?>
 <?php
 include "include/postDB.php";
 ?>
+<head>
+<link rel="stylesheet" href="css/favouritepost.css">
+<link rel="stylesheet" href="css/viewpost.css">
+</head>
 <body>
     <header>
         <?php
@@ -22,14 +26,32 @@ include "include/postDB.php";
     <main>
         <section class="blog-posts grid-system">
             <div class="container">
-                <?php
-                    if(isset($_SESSION['email']))
-                    {
-                        echo '<button id="createPost" class="btn btn-primary create"><i class="material-icons edit">border_color</i>Create</button>';
-                    }
-                ?>
                 <div class="center">
                     <h1 class="header-title">Post</h1>                   
+                </div>
+                <div id="mypopup" class="popup">
+                        <div class="popup-content">
+                            <span id="close">
+                                &times;
+                            </span>
+                            <br>
+                            <div>
+                                <p>Your post has been deleted successfully</p>
+                            </div>
+                            <div class="popup-footer">
+                                <button id="postproceed" class="btn btn-primary">Close</button>
+                            </div>
+                        </div>
+                </div>
+                <div class="row mar">
+                    <div class="col-md-12 col-sm-6">
+                    <?php
+                            if(isset($_SESSION['email']))
+                            {
+                            echo '<button id="createPost" class="btn btn-outline-secondary create"><i class="material-icons edit">border_color</i>Create</button>';
+                            }
+                        ?>
+                    </div>
                 </div>
                 <div class="row">
                     <?php
@@ -58,6 +80,6 @@ include "include/postDB.php";
             </div>
         </section>
     </main>
-</body>
 <?php include "footer.php"; ?>
+</body>
 </html>

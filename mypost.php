@@ -1,6 +1,6 @@
 <?php session_start();?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <?php
 include "head.php";
 ?>
@@ -37,7 +37,7 @@ include "include/postDB.php";
                                 <p>This action cannot be undone</p>
                             </div>
                             <div class="popup-footer">
-                                <button id="proceed" class="btn btn-primary">Proceed</button>
+                                <button id="myproceed" class="btn btn-primary">Proceed</button>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ include "include/postDB.php";
                             <ul class="popup-button fr">
                                 <li><button id="mypost-delete" class="btn btn-outline-danger delete-button"><i class="material-icons edit">delete</i> Delete</button></li>
                                 <li><button id="mypost-done" class="btn btn-outline-success delete-button"><i class="material-icons edit">done</i> Done</button></li>
-                                <li><button id="mypost-edit" class="btn btn-outline-primary"><i class="material-icons edit">edit</i>Edit</button></li>
+                                <li><button id="mypost-edit" class="btn btn-outline-secondary"><i class="material-icons edit">edit</i>Edit</button></li>
                                 <li><button id="mypost-cancel" class="btn btn-outline-danger"><i class="material-icons edit">clear</i>Cancel</button></li>
                             </ul>
                         </div>

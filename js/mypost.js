@@ -56,7 +56,7 @@ $(document).ready(function(){
         }
     })
 
-    $(document).on("click", "#proceed", function(){
+    $(document).on("click", "#myproceed", function(){
 
         var removepost = [];
 

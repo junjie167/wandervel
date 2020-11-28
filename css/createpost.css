@@ -1,0 +1,72 @@
+label{
+    font-size: 20px;
+}
+.prelabel{
+    margin-top: 10px;
+    display: none;
+}
+.preimg{
+    margin-bottom: 30px;
+    display: none;
+}
+.preimg img{
+    width: 30%;
+}
+
+#imgImp{
+    margin-bottom: 10px;
+}
+
+.submitbtn{
+    width: 100%;
+}
+.submitbtn:hover{
+    background-color: #28a745;
+}
+
+#cancelbtn{
+    width: 100%;
+}
+.icon{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.icon .success{
+    color: lightgreen;
+    font-size: 200px;
+}
+.icon .failed{
+    color: red;
+    font-size: 200px;
+}
+.messagetitle{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.pretitle{
+    margin-bottom: 20px;
+}
+.previmg{
+    width: 100%;
+}
+.imgdesign{
+    width: 100%;
+    height: 80vh;
+    margin-bottom: 20px;
+}
+.plabel{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.pre-wrapper{
+    border:solid;
+    border-radius: 5px;
+    padding: 20px;
+}
+#backcreate{
+    width: 36%;
+}
+#canceledit{
+    width: 100%;
+}

@@ -1,8 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php include "head.php"?>
 <?php
   session_start();
 
 function sendDB(){
-    global $user_id,$author,$title,$content,$publish_date,$errorMsg,$success,$last_id,$path;    
+    global $user_id,$author,$title,$content,$publish_date,$errorMsg,$success,$last_id,$path,$filename;    
     $filename=$_FILES["uploadfile"]["name"];
     $tempname=$_FILES["uploadfile"]["tmp_name"];
     $folder="image/".$filename; 
@@ -86,7 +89,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     
 //    postToDB();
 //    saveimgToDB();
-    sendDB();
+    if ($success)
+    {
+        sendDB();
+    }
+    
 }
 else 
 {
@@ -102,38 +109,86 @@ function sanitize_input($data)
  return $data;
 }
 ?>
-<html>
-    <head>
-        <title>Registration Results</title>
-        <?php include"head.php"?>
-    </head>
+
+
+<head>
+    <link rel="stylesheet" href="css/createpost.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script defer src="js/createpost.js"></script>
+</head>
     <body>
-        <?php
-        include "navbar.php";
-        ?>
-        <main class="container">
-        <hr>
-        <?php
-        if ($success)
-        { 
-       
-        echo "<h4>Post successfully created by " . $author . ".</h4>";
-        echo "<h4>Title of post is  " . $title .".</h4>";
-        echo "<h4>Content of post is  " . $content .".</h4>";
-        echo "<h4>Filepath of image is  " . $path .".</h4>";
-        echo "<h4>userid: " .$_SESSION['user_id'] .".</h4>";
+        <header>
+            <?php
+            include "navbar.php";
+            ?>
+        </header>
+        
+        <main>
+            <section class="blog-posts grid-system">
+                <div class="container">
+                    <?php
+                        if ($success)
+                        { 
+                            echo '<div class="icon">';
+                                echo '<i class="fa fa-check-circle success"></i>';
+                            echo '</div>';
+                            echo '<div class="messagetitle">';
+                                echo "<h4>Post successfully created by " . $author . ".</h4>";
+                            echo '</div>';
+                            echo '<div class="plabel">';
+                                echo '<p>Post Preview:</p>';
+                            echo '</div>';
+                            echo '<div class="pre-wrapper">';
+                                echo '<div class="pretitle center">';
+                                    echo "<h1>" . $title .".</h1>";
+                                echo '</div>';
+                                echo '<div class="previmg">';
+                                    if (empty($filename))
+                                    {
+                                        echo '<img class="imgdesign" src="image/defaultimg.png" alt="default"';
+                                    }else
+                                    {
+                                        echo '<img class="imgdesign" src="'.$path.'" alt="'.$path.'"';
+                                    }
+                                    
+                                echo '</div>';
+                                echo '<div class="prevcontent">';
+                                    echo '<p>'.$content.'</p>';
+                                echo '</div>';
+                            echo '</div>';
+                            //echo "<h4>Title of post is  " . $title .".</h4>";
+                            //echo "<h4>Content of post is  " . $content .".</h4>";
+                            //echo "<h4>Filepath of image is  " . $path .".</h4>";
+                            //echo "<h4>userid: " .$_SESSION['user_id'] .".</h4>";
        
 
   
-        }
-        else 
-        {
-            echo "<h2>Oops!</h2>";
-            echo "<h4>The following errors were detected:</h4>";
-            echo "<p>" . $errorMsg . "</p>";
+                        }
+                        else 
+                        {
+                            echo '<div class="icon">';
+                                echo '<i class="fa fa-times-circle failed"></i>';
+                            echo '</div>';
+                            echo '<div class="messagetitle">';
+                                echo "<h2>Oops!</h2>";
+                            echo '</div>';
+                            echo '<div class="plabel">';
+                                echo "<h4>The following errors were detected:</h4>";
+                            echo '</div>';
+                            echo '<div class="plabel">';
+                                echo "<p>" . $errorMsg . "</p>";
+                            echo '</div>';
+                            echo '<div class="center">';
+                                echo '<button id="backcreate" class="btn btn-primary" >Back to post</button>';
+                            echo '</div>';
+                           
       
-        }
-        ?>
+                        }
+                    ?>
+                </div>
+            </section>
+        
+        
         </main>
         <br>
         <?php

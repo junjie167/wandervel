@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php include"head.php"?>
 <?php
 function img(){
    global $image_src,$image;
@@ -117,38 +120,70 @@ function sanitize_input($data)
  return $data;
 }
 ?>
-<html>
-    <head>
-        <title>Edited post</title>
-        <?php include"head.php"?>
-    </head>
     <body>
-        <?php
-        include "navbar.php";
-        ?>
-        <main class="container">
-        <hr>
-        <?php
-        if ($success)
-        {
-            echo "<h2>Post has been updated successful!</h2>";
-            echo "<h4>Author name is : " . $author . ".</h4><br>";
-            echo "<h4>New title is : " . $title . ".</h4><br>";
-            echo "<h4>New content is : " . $content . ".</h4>";
-            echo"<h4>New content is : " . $image_src . ".</h4>";
+        <head>
+            <link rel="stylesheet" href="css/createpost.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script defer src="js/createpost.js"></script>
+        </head>
+        <header>
+            <?php
+            include "navbar.php";
+            ?>
+        </header>
+        <main>
+            <section class="blog-posts grid-system">
+                <div class="container">
+                    <?php
+                        if ($success)
+                        {
+                            echo '<div class="icon">';
+                                echo '<i class="fa fa-check-circle success"></i>';
+                            echo '</div>';
+                            echo '<div class="messagetitle">';
+                                echo "<h2>Post has been updated successful!</h2>";
+                            echo '</div>';
+                            echo '<div class="plabel">';
+                                echo '<p>Post Preview:</p>';
+                            echo '</div>';
+                            echo '<div class="pre-wrapper">';
+                                echo '<div class="pretitle center">';
+                                    echo "<h1>" . $title .".</h1>";
+                                echo '</div>';
+                                echo '<div class="prevcontent">';
+                                    echo '<p>'.$content.'</p>';
+                                echo '</div>';
+                            echo '</div>';
+                            
+                            //echo "<h4>Author name is : " . $author . ".</h4><br>";
+                            //echo "<h4>New title is : " . $title . ".</h4><br>";
+                            //echo "<h4>New content is : " . $content . ".</h4>";
+                            echo"<h4>New content is : " . $image_src . ".</h4>";
             
  
-        }
-        else 
-        {
-            echo "<h2>Oops!</h2>";
-            echo "<h4>The following errors were detected:</h4>";
-  
-            echo "<p>" . $errorMsg . "</p>";
-        
+                        }
+                        else 
+                        {
+                            echo '<div class="icon">';
+                                echo '<i class="fa fa-times-circle failed"></i>';
+                            echo '</div>';
+                            echo '<div class="messagetitle">';
+                                echo "<h2>Oops!</h2>";
+                            echo '</div>';
+                            echo '<div class="plabel">';
+                                echo "<h4>The following errors were detected:</h4>";
+                            echo '</div>';
+                            echo '<div class="plabel">';
+                                echo "<p>" . $errorMsg . "</p>";
+                            echo '</div>';
+                            echo '<div class="center">';
+                                echo '<button id="backcreate" class="btn btn-primary" >Back to post</button>';
+                            echo '</div>';
      
-        }
-        ?>
+                        }
+                    ?>
+                </div>
+            </section>
         <img src='<?php echo $image_src;  ?>' >
         </main>
         <br>
