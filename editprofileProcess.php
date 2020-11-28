@@ -3,7 +3,24 @@
 $name = $nationality = $dob = $bio = $errorMsg = "";
 $success = true;
 
-// Only process if the form has been submitted via POST.
+$allowedType = array("image/gif", "image/jpeg", "image/jpg", "image/png"); //array to check for file type
+  if ( in_array ( $_FILES["fileToUpload"]["type"] , $allowedType ) ) //if the first value part of the member in array, then proceed
+  {
+   // proceed to upload
+   if ( $_FILES["fileToUpload"]["size"] < 1000000 ) // larger than 1MB
+   {
+   // proceed to upload
+    date_default_timezone_set("Asia/Singapore");
+
+    //Create a target folder called 'uploaded_files'.
+    $target = "profileimages/" . $r . $_FILES["fileToUpload"]["name"] ; 
+
+
+    //when upload file, it will auto upload to tmp folder. move from tmp folder to target folder. Can only run once per file
+    $result = move_uploaded_file($_FILES["fileToUpload"]["tmp_name"] , $target);
+
+    if ($result) {
+        // Only process if the form has been submitted via POST.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // name
@@ -41,6 +58,25 @@ else {
 
     exit();
 }
+    }
+    else
+     {
+      echo "Upload FAILED!<br>";
+     }
+   }
+   else
+   {
+    echo "File is too large<br>";
+    exit();
+   }
+  }  
+  else
+  {
+   echo "Invalid file type<br>";
+   exit();
+  }
+
+
 //Helper function that checks input for malicious or unwanted content.
 function sanitize_input($data) {
     $data = trim($data);
@@ -53,9 +89,10 @@ function sanitize_input($data) {
 <?php
 function saveProfileToDB() {
     
-    global $name,$email, $dob, $nationality, $bio, $errorMsg,$success;
+    global $name,$email, $dob, $nationality, $bio, $profilepic, $errorMsg,$success;
     session_start();
     $email = $_SESSION['email'];
+    $profilepic=$_FILES["fileToUpload"]["name"];
     //$id = $_SESSION["user_id"];
 
 
@@ -75,9 +112,9 @@ function saveProfileToDB() {
     } else {
 
         // Prepare the statement:        
-        $stmt = $conn->prepare("UPDATE user SET name=? ,dob=?,nationality=?, bio=? WHERE email=?");
+        $stmt = $conn->prepare("UPDATE user SET name=? ,dob=?,nationality=?, bio=?, profile_picture=? WHERE email=?");
         // Bind & execute the query statement:        
-        $stmt->bind_param("sssss", $name, $dob, $nationality, $bio,$email);
+        $stmt->bind_param("ssssss", $name, $dob, $nationality, $bio, $profilepic, $email);
         if (!$stmt->execute()) {
             $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
             $success = false;
@@ -107,7 +144,9 @@ $success = true;
         if ($success)
         {
             echo "<h2>Profile has been updated successfully!</h2>";
-            echo "<h4>Name : " . $name . "</h4>";
+            echo "<h4>Name : " . $name . "</h4>";?>
+            <img src="profileimages/<?php echo $profilepic?>" width="150" height="150">
+            <?php
             echo "<h4>Date Of Birth : " . $dob . "</h4>";
             echo "<h4>Nationality : " . $nationality . "</h4>";
             echo"<h4>About Yourself : " . $bio . "</h4>";

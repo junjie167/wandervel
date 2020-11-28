@@ -8,8 +8,9 @@
 
 $e = $_SESSION["email"];
 $id = $_SESSION["user_id"];
+$uname = $_SESSION["name"];
 
-echo "Welcome, " . $_SESSION["email"];
+echo "Welcome, " . $_SESSION["name"];
 
 // if user isn't logged in, will redirect them back to login page
 if(!isset($_SESSION["user_id"]))
@@ -72,13 +73,16 @@ $conn->close();
                 <div class="form-group">
                         <label for="profile_picture"><a>Profile Picture:</a></label>
                         <br>
-                        <input type="file" name="image"  value="<?php echo $profilepic; ?>"/>
+                        <p>
+                        <input type="file" name="fileToUpload" id="fileToUpload"/>
+                        </p>
                     </div>
 
                     <div class="form-group">
                         <label for="name"><a>Name:</a></label>
                         <input class="form-control" type="text" name="name"  value="<?php echo $name ?>"/>
                     </div>
+             
 
                     <div class="form-group">
                         <label for="gender"><a>Gender:</a></label>
