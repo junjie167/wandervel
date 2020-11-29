@@ -72,6 +72,7 @@ $(document).ready(function(){
 						reply_textarea.val('');
                                                 console.log(comment_id);
                                                 console.log(data);
+                                                $('#comment_reply_form_' + comment_id).remove();
                                                 //$('.comment_reply_form_' + comment_id).hide();
 					}
 				}
@@ -79,27 +80,7 @@ $(document).ready(function(){
 		});
 	});
         
-        $(document).on('click', '#btn_submit', function(e) {
-		e.preventDefault();
-		var id = $(this).attr("data-id");
-		console.log(id);
-                $.ajax({
-			url: "function.php",
-			type: "POST",
-			data: {
-				id: id
-			},      
-			success: function(data){
-                                   if (data === "error") {
-						alert('There was an error displaying reply. Please try again');
-					} else {
-						$('#comment_reply_form_' + id).remove();
-					}
-                                        
-			}
-                        
-                 });       
-	});
+        
 });
 
 

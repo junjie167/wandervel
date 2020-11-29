@@ -20,7 +20,7 @@
 				
 				<!-- comment -->
 				<div class="comment clearfix">
-					<img src="<?php echo getCUserPicById($comment['comment_id']) ?>" alt="pic" class="profile_pic">
+					<img src="profileimages/<?php echo getCUserPicById($comment['comment_id']) ?>" alt="pic" class="profile_pic">
 					<div class="comment-details">
 						<span class="comment-name"><?php echo getUsernameById($comment['user_id']) ?></span>
 						<span class="comment-date"><?php echo date("F j, Y, g:i a", strtotime($comment["comment_date"])); ?></span>
@@ -40,7 +40,7 @@
 							<?php foreach ($replies as $reply): ?>
 								<!-- reply -->
 								<div class="comment reply clearfix">
-									<img src="<?php echo getRUserPicById($reply['reply_id']) ?>" alt="pic" class="profile_pic">
+									<img src="profileimages/<?php echo getRUserPicById($reply['reply_id']) ?>" alt="pic" class="profile_pic">
 									<div class="comment-details">
 										<span class="comment-name"><?php echo getUsernameById($reply['user_id']) ?></span>
 										<span class="comment-date"><?php echo date("F j, Y, g:i a", strtotime($reply["reply_date"])); ?></span>
