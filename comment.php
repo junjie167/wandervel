@@ -1,8 +1,8 @@
 
 <!--<!DOCTYPE html>-->
-<html lang="en">
+<!--<html lang="en">-->
 
-<body>
+<!--<body>-->
 <div class="container">
 	<div class="row">
             <div class="col-md-6 col-md-offset-3 comments-section" id="comment_list">
@@ -66,5 +66,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script src="js/script.js"></script>
-</body>
-</html>
+<!--</body>
+</html>-->

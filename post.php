@@ -6,10 +6,6 @@ include "head.php";
 <?php
 include "include/postDB.php";
 ?>
-<head>
-<link rel="stylesheet" href="css/favouritepost.css">
-<link rel="stylesheet" href="css/viewpost.css">
-</head>
 <body>
     <header>
         <?php
