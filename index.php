@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+include "include/postDB.php";
+?>
     
     <?php
     include "head.php";
@@ -10,6 +12,7 @@
     </head>
     
     <body>
+        <main>
         <header>
         <?php
         include "indexnavbar.php";
@@ -37,63 +40,10 @@
                 </div>
                
                 <div class="all-blog-posts">
-                    <h2 class="text-center">Blog</h2>
+                    <h1 class="text-center">Latest Blog</h1>
                     <br>
                     <div class="row">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="blog-post">
-                                <div class="blog-thumb">
-                                    <img src="assets/images/blog-4-720x480.jpg" alt="">
-                                </div>
-                                <div class="down-content">
-                                    <a href="blog-details.html"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4></a>
-
-                                    <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-
-                                    <ul class="post-info">
-                                        <li><a href="#">John Doe</a></li>
-                                        <li><a href="#">10.07.2020 10:20</a></li>
-                                        <li><a href="#"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="blog-post">
-                                <div class="blog-thumb">
-                                    <img src="assets/images/blog-5-720x480.jpg" alt="">
-                                </div>
-                                <div class="down-content">
-                                    <a href="blog-details.html"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4></a>
-
-                                    <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-
-                                    <ul class="post-info">
-                                        <li><a href="#">John Doe</a></li>
-                                        <li><a href="#">10.07.2020 10:20</a></li>
-                                        <li><a href="#"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="blog-post">
-                                <div class="blog-thumb">
-                                    <img src="assets/images/blog-6-720x480.jpg" alt="">
-                                </div>
-                                <div class="down-content">
-                                    <a href="blog-details.html"><h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4></a>
-
-                                    <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-
-                                    <ul class="post-info">
-                                        <li><a href="#">John Doe</a></li>
-                                        <li><a href="#">10.07.2020 10:20</a></li>
-                                        <li><a href="#"><i class="fa fa-comments" title="Comments"></i> 12</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <?php latestPost();?>
                     </div>
                 </div>
             </div>

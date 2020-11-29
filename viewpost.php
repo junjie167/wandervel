@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <?php
 include "head.php";
 ?>
@@ -7,13 +7,6 @@ include "head.php";
 include "include/postDB.php";
 ?>
 <?php include "function.php"; ?>
-<head>
-    <link rel="stylesheet" href="css/viewpost.css">
-    <link rel="stylesheet" href="css/favouritepost.css">
-    <script defer src="js/viewpost.js"></script>
-    <link rel="stylesheet" href="css/comment.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
     <body>
         <header>
             <?php
@@ -63,10 +56,12 @@ include "include/postDB.php";
                             ?>
                     </div>
                 </div>
+               
             </section>
         </main>
+        <?php include "footer.php"; ?>
     </body>
-<?php include "footer.php"; ?>
+
 
 
 </html>

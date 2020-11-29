@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include "head.php";?>
-<head>
-<link rel="stylesheet" href="css/createpost.css">
-<script defer src="js/createpost.js"></script>
-</head>
+<body>
     <header>
     <?php include "navbar.php"; ?> 
     </header>
-<body>
+
 <main>
     <section class="blog-posts grid-system">
         <div class="container">
@@ -23,7 +20,7 @@
                 </div>   
                 <div class="form-group">   
                     <label for="content">Share your post with everyone!</label>  
-                    <textarea rows="10"class="form-control" type="text" id="content"          
+                    <textarea rows="10" class="form-control" type="text" id="content"          
                     name="content"></textarea>   
                 </div>  
                 <div>
@@ -46,6 +43,7 @@
         </div>
     </section>  
 </main>    
-    <?php    include "footer.php";    ?></body>
+    <?php  include "footer.php"; ?>
+</body>
 </html>
 
