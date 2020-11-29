@@ -99,7 +99,7 @@ function display()
                 $date = date("jS M Y",strtotime($row["p_publish_date"]));
                 $content = substr($row["p_content"],0,100);
                 echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["p_post_id"].'>';
-                echo '<div class="blog post effect">';
+                echo '<div class="blog  effect">';
                 echo '<div class="blog-image">';
                 echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                 echo '</div>';
@@ -470,11 +470,11 @@ function display()
                     $date = date("jS M Y",strtotime($row["p_publish_date"]));
                     $content = substr($row["p_content"],0,100);
                     echo '<div class="col-md-4 col-sm-6">';
-                    echo '<span class="blog post effect cross">';
+                    echo '<span class="blog  effect cross">';
                     //echo '<label for="'.$row["f_post_id"].'"></label>';
                     echo '<input  class="checkmate" type="checkbox" value='.$row["f_post_id"].' aria-label="'.$row["f_post_id"].'" name="fav">';
                     echo '</span>';
-                    echo '<div class="blog post effect click" data-id='.$row["f_post_id"].'>';
+                    echo '<div class="blog  effect click" data-id='.$row["f_post_id"].'>';
                     echo '<div class="blog-image">';
                     echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                     echo '</div>';
@@ -555,13 +555,13 @@ function display()
                     $date = date("jS M Y",strtotime($row["p_publish_date"]));
                     $content = substr($row["p_content"],0,100);
                     echo '<div class="col-md-4 col-sm-6 " >';
-                    echo '<span class="blog post effect del">';
+                    echo '<span class="blog  effect del">';
                     echo '<input class="checkmate" type="checkbox" value='.$row["p_post_id"].' aria-label="'.$row["p_post_id"].'" name="delete">';
                     echo '</span>';
-                    echo '<span class="blog post effect cross">';
+                    echo '<span class="blog  effect cross">';
                     echo '<input class="radio" type="radio" value='.$row["p_post_id"].' aria-label="'.$row["p_post_id"].'" name="edit">';
                     echo '</span>';
-                    echo '<div class="blog post effect click" data-id='.$row["p_post_id"].'>';
+                    echo '<div class="blog  effect click" data-id='.$row["p_post_id"].'>';
                     echo '<div class="blog-image">';
                     echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                     echo '</div>';
@@ -596,7 +596,7 @@ function display()
             $success = false;
         }else
         {
-            $stmt = $conn->prepare("SELECT  p.post_id AS p_post_id, p.user_id AS p_user_id, p.author AS p_author,
+            $stmt = $conn->prepare("SELECT p.post_id AS p_post_id, p.user_id AS p_user_id, p.author AS p_author,
             p.title AS p_title, p.content AS p_content, p.publish_date AS p_publish_date,
             picture.image AS picture_image FROM post p LEFT JOIN image AS picture
             ON picture.post_id = p.post_id ORDER BY p.post_id DESC LIMIT 3");
@@ -615,7 +615,7 @@ function display()
                     $date = date("jS M Y",strtotime($row["p_publish_date"]));
                     $content = substr($row["p_content"],0,100);
                     echo '<div class="col-md-4 col-sm-6 " >';
-                    echo '<div class="blog post effect click" data-id='.$row["p_post_id"].'>';
+                    echo '<div class="blog effect click" data-id='.$row["p_post_id"].'>';
                     echo '<div class="blog-image">';
                     echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                     echo '</div>';

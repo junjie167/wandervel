@@ -7,13 +7,6 @@ include "head.php";
 <?php
 include "include/postDB.php";
 ?>
-<head>
-    <link rel="stylesheet" href="css/viewpost.css">
-    <link rel="stylesheet" href="css/favouritepost.css">
-    <link rel="stylesheet" href="css/mypost.css">
-    <script defer src="js/favouritepost.js"></script>
-    <script defer src="js/mypost.js"></script>
-</head>
     <body>
         <header>
             <?php
@@ -78,6 +71,7 @@ include "include/postDB.php";
                 </div>
             </section>
         </main>
+        <?php include "footer.php"; ?>
     </body>
-    <?php include "footer.php"; ?>
+
 </html>

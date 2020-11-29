@@ -54,10 +54,6 @@ $_SESSION['post_id'] = $post_id;
       }
       $conn->close();
 }?>
-<head>
-<link rel="stylesheet" href="css/createpost.css">
-<script defer src="js/createpost.js"></script>
-</head>
     <body>
         <header>
             <?php
@@ -78,7 +74,7 @@ $_SESSION['post_id'] = $post_id;
                         </div>   
                         <div class="form-group">   
                             <label for="content">Share your post with everyone!</label>  
-                            <textarea rows="10"class="form-control" id="content"          
+                            <textarea rows="10" class="form-control" id="content"          
                             name="content"><?php echo $content?></textarea>   
                         </div>  
                         <div class="form-group">  

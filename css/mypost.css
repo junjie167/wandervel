@@ -1,0 +1,19 @@
+.delete-button{
+    margin-right: 30px;;
+}
+
+#mypost-done{
+    display: none;
+}
+
+.del{
+    display: none;
+}
+
+#mypost-cancel{
+    display: none;
+}
+#myproceed{
+    width: 100%;
+    color:white;
+}
