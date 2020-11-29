@@ -1,0 +1,11 @@
+.carousel-caption
+{
+    color: black;
+    top: 220px;
+    bottom: auto;
+    background-color: #e6f2ff;
+    font-family:Impact;
+    position: absolute;
+    display: block;
+}
+
