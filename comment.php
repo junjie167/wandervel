@@ -19,7 +19,11 @@
                         <h2><span id="comments_count"><?php echo count($comments) ?></span> Comment(s)</h2>
 			<hr>
 			<!-- comments wrapper -->
-			<div id="comments-wrapper">
+                        <?php if (count($comments) < 3): ?>
+                            <div id="comments-wrapper">
+                        <?php else: ?>
+                            <div id="comments-wrapper" class="scrolling">
+                        <?php endif ?>
 			<?php if (isset($comments)): ?>
 				<!-- Display comments -->
 				<?php foreach ($comments as $comment): ?>
@@ -65,6 +69,7 @@
 				<h2>Be the first to comment on this post</h2>
 			<?php endif ?>
 			</div><!-- comments wrapper -->
+                        
 		</div><!-- // all comments -->
 	</div>
 </div>
