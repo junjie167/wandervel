@@ -66,7 +66,7 @@ $conn->close();
  <body>
         <section>
             <main class="container"> 
-                <h1>Welcome, <?php echo $_SESSION["name"]?></h1>
+                <h1>User Profile</h1>
                 <form action="editprofileProcess.php" method="post" enctype="multipart/form-data">
                    
                 <div class="form-group">
@@ -77,6 +77,7 @@ $conn->close();
                         <input type="file" name="fileToUpload" id="fileToUpload"/>
                         </p>
                     </div>
+               
 
                     <div class="form-group">
                         <label for="name"><a>Name:</a></label>
