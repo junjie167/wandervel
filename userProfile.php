@@ -10,7 +10,6 @@ $e = $_SESSION["email"];
 $id = $_SESSION["user_id"];
 $uname = $_SESSION["name"];
 
-echo "Welcome, " . $_SESSION["name"];
 
 // if user isn't logged in, will redirect them back to login page
 if(!isset($_SESSION["user_id"]))
@@ -67,7 +66,7 @@ $conn->close();
  <body>
         <section>
             <main class="container"> 
-                <h1>My Profile</h1>
+                <h1>Welcome, <?php echo $_SESSION["name"]?></h1>
                 <form action="editprofileProcess.php" method="post" enctype="multipart/form-data">
                    
                 <div class="form-group">
