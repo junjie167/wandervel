@@ -95,7 +95,7 @@ if (isset($_POST['comment_posted'])) {
             $res = mysqli_query($conn, "SELECT * FROM comment ORDER BY comment_id DESC LIMIT 1");
             $inserted_comment = mysqli_fetch_assoc($res);
             $comment = "<div class='comment clearfix'>
-					<img src=". getCUserPicById($inserted_comment['comment_id']) . " alt='pic' class='profile_pic'>
+					<img src='". getCUserPicById($inserted_comment['comment_id']) . "' alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_id']) . "</span>
 						<span class='comment-date'>" . date('F j, Y, g:i a', strtotime($inserted_comment['comment_date'])) . "</span>
@@ -107,6 +107,7 @@ if (isset($_POST['comment_posted'])) {
 						<textarea class='form-control' name='reply_text' id='reply_text' cols='30' rows='2'></textarea>
 						<button class='btn btn-primary btn-xs pull-right submit-reply'>Submit reply</button>
 					</form>
+                                         <div class='replies_wrapper_". $inserted_comment['comment_id'] ."'></div>
 				</div>";
                 $commentCount = getCommentsCountByPostId($p_id);
 		$comment_info = array(

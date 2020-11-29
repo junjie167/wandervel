@@ -65,12 +65,13 @@ $(document).ready(function(){
 					reply_posted: 1
 				},
 				success: function(data){
-					console.log(data);
 					if (data === "error") {
 						alert('There was an error adding reply. Please try again');
 					} else {
 						$('.replies_wrapper_' + comment_id).append(data);
 						reply_textarea.val('');
+                                                console.log(comment_id);
+                                                console.log(data);
                                                 //$('.comment_reply_form_' + comment_id).hide();
 					}
 				}
@@ -89,7 +90,12 @@ $(document).ready(function(){
 				id: id
 			},      
 			success: function(data){
-                                    $('#comment_reply_form_' + id).hide();
+                                   if (data === "error") {
+						alert('There was an error displaying reply. Please try again');
+					} else {
+						$('#comment_reply_form_' + id).remove();
+					}
+                                        
 			}
                         
                  });       
