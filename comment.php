@@ -6,10 +6,16 @@
 <div class="container">
 	<div class="row">
             <div class="col-md-6 col-md-offset-3 comments-section" id="comment_list">
+                <?php if (isset($_SESSION['user_id'])): ?>
 				<form class="clearfix" action="comment.php" method="post" id="comment_form">
 					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3" required></textarea>
 					<button <?php echo 'data-id='.$_GET['id'].'' ?> class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
 				</form>
+                <?php else: ?>
+				<div class="well" style="margin-top: 20px;">
+                                    <h4 class="text-center"><a href="login.php">Sign in</a> to post a comment</h4>
+				</div>
+			<?php endif ?>
                         <h2><span id="comments_count"><?php echo count($comments) ?></span> Comment(s)</h2>
 			<hr>
 			<!-- comments wrapper -->
@@ -25,7 +31,9 @@
 						<span class="comment-name"><?php echo getUsernameById($comment['user_id']) ?></span>
 						<span class="comment-date"><?php echo date("F j, Y, g:i a", strtotime($comment["comment_date"])); ?></span>
 						<p><?php echo $comment['comment']; ?></p>
+                                                <?php if (isset($_SESSION['user_id'])): ?>
 						<a class="reply-btn" href="#" data-id="<?php echo $comment['comment_id']; ?>">reply</a>
+                                                <?php endif ?>
 					</div>
 					<!-- reply form -->
 					<form action="comment.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment['comment_id'] ?>" data-id="<?php echo $comment['comment_id']; ?>">
