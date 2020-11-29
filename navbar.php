@@ -16,23 +16,39 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="post.php?page=1">Posts</a>
                             </li>
+                            
+                             <li class="nav-item">
+                            <a class="nav-link" href="tips.php">Tips</a>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" href="favourite.php?page=1">My Favourites</a>
                             </li>
+                            
+                            <!--<li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">perm_identity</i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                     <a class="dropdown-item" href="userProfile.php">My Profile</a>
+                                    <a class="dropdown-item" href="mypost.php?page=1">My Posts</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="logout.php">Log Out</a>
+                                </div>
+                            </li>-->
 
                         </ul>
 
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">                
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">perm_identity</i>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown1">
-                                    <a class="dropdown-item" href="userProfile.php">My Profile</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                     <a class="dropdown-item" href="userProfile.php">My Profile</a>
                                     <a class="dropdown-item" href="mypost.php?page=1">My Posts</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logout.php">Log Out</a>                                                                    
+                                    <a class="dropdown-item" href="logout.php">Log Out</a>
                                 </div>
                             </li>
                         </ul> 

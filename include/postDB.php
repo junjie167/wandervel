@@ -585,6 +585,63 @@ function display()
         $conn->close();
     }
 
+    //display the latest 3 post
+    function latestPost()
+    {
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        }else
+        {
+            $stmt = $conn->prepare("SELECT  p.post_id AS p_post_id, p.user_id AS p_user_id, p.author AS p_author,
+            p.title AS p_title, p.content AS p_content, p.publish_date AS p_publish_date,
+            picture.image AS picture_image FROM post p LEFT JOIN image AS picture
+            ON picture.post_id = p.post_id ORDER BY p.post_id DESC LIMIT 3");
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0)
+            {
+                while($row = mysqli_fetch_array($result))
+                {
+                    if ($row["picture_image"] == NULL)
+                    {
+                        $row["picture_image"] = "defaultimg.png";
+                    }
+
+                    $date = date("jS M Y",strtotime($row["p_publish_date"]));
+                    $content = substr($row["p_content"],0,100);
+                    echo '<div class="col-md-4 col-sm-6 " >';
+                    echo '<div class="blog post effect click" data-id='.$row["p_post_id"].'>';
+                    echo '<div class="blog-image">';
+                    echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
+                    echo '</div>';
+                    echo '<div class="blog-title">';
+                    echo '<h2>' . $row["p_title"] . '</h2>';
+                    echo '</div>';
+                    echo '<div class="blog-content">' . $content . ' ... 
+                    <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
+                    echo '<div class="blog-footer">';
+                    echo '<ul class="post-info">';
+                    echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
+                    echo '<li><i class="material-icons edit">create</i>' . $row["p_author"] . '</li>';
+                    echo '</ul>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+                $stmt->close();
+
+            }
+
+
+        }
+        $conn->close();
+    }
+
     //Count number of comments
     function Numofcomment()
     {
