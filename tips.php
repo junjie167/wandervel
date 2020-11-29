@@ -32,7 +32,8 @@ function displayTips() {
                 echo "<li>";
                 echo $category;
 
-                $stmt2 = $conn->prepare("SELECT * from tips");
+                $stmt2 = $conn->prepare("SELECT * from tips WHERE category=?");
+                $stmt2->bind_param("s", $category);
                 $stmt2->execute();
                 $result2 = $stmt2->get_result();
 
