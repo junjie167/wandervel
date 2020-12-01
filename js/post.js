@@ -25,6 +25,10 @@ $(document).ready(function(){
         window.location.href = "createPost.php";
     })
 
+    $(document).on('click','#gologin',function(){
+        window.location.href = "login.php";
+    })
+
    
 
     activePage();
