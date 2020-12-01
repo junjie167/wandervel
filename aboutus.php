@@ -52,4 +52,10 @@ include "include/postDB.php";
 
 
 </body>
+
+
+<?php
+include "footer.php";
+?>
+
         </html>
