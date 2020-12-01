@@ -34,16 +34,22 @@ include "include/postDB.php";
                             </div>
                         </div>
                     </div>
-                    <div class="row mar">
-                        <div class="col-md-12 col-sm-6">
-                            <ul class="popup-button fr">
-                                <li><button id="mypost-delete" class="btn btn-outline-danger delete-button"><i class="material-icons edit">delete</i> Delete</button></li>
-                                <li><button id="mypost-done" class="btn btn-outline-success delete-button"><i class="material-icons edit">done</i> Done</button></li>
-                                <li><button id="mypost-edit" class="btn btn-outline-secondary"><i class="material-icons edit">edit</i>Edit</button></li>
-                                <li><button id="mypost-cancel" class="btn btn-outline-danger"><i class="material-icons edit">clear</i>Cancel</button></li>
-                            </ul>
-                        </div>
-                    </div>   
+                    <?php
+                        if(checkmypost())
+                        {
+                            echo '<div class="row mar">';
+                                echo '<div class="col-md-12 col-sm-6">';
+                                    echo '<ul class="popup-button fr">';
+                                        echo '<li><button id="mypost-delete" class="btn btn-danger delete-button"><i class="material-icons edit">delete</i> Delete</button></li>';
+                                        echo '<li><button id="mypost-done" class="btn btn-success delete-button"><i class="material-icons edit">done</i> Done</button></li>';
+                                        echo '<li><button id="mypost-edit" class="btn btn-secondary"><i class="material-icons edit">edit</i>Edit</button></li>';
+                                        echo '<li><button id="mypost-cancel" class="btn btn-danger"><i class="material-icons edit">clear</i>Cancel</button></li>';
+                                    echo '</ul>';
+                                echo '</div>';
+                            echo '</div>';
+                        }
+                   
+                    ?>   
                     <div class="row">
                         <?php
                             display_mypost();

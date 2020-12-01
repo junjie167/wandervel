@@ -44,7 +44,10 @@ include "include/postDB.php";
                     <?php
                             if(isset($_SESSION['email']))
                             {
-                            echo '<button id="createPost" class="btn btn-outline-secondary create"><i class="material-icons edit">border_color</i>Create</button>';
+                                if (checkpost())
+                                {
+                                    echo '<button id="createPost" class="btn btn-secondary create"><i class="material-icons edit">border_color</i>Create</button>';
+                                }
                             }
                         ?>
                     </div>
