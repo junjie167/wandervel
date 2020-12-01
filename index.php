@@ -15,7 +15,14 @@ include "include/postDB.php";
         <main>
         <header>
         <?php
-        include "indexnavbar.php";
+            session_start();
+            if(isset($_SESSION['email']))
+            {
+                include "navbar.php";
+            }else
+            {
+                include "indexnavbar.php";
+            }     
         ?>
         </header>
       
@@ -44,28 +51,6 @@ include "include/postDB.php";
                     <br>
                     <div class="row">
                         <?php latestPost();?>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="call-to-action">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="main-content">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <span>Lorem ipsum dolor sit amet.</span>
-                                    <h4>Sed doloribus accusantium reiciendis et officiis.</h4>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="main-button">
-                                        <a href="contact.html">Contact Us</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

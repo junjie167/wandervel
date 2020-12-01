@@ -23,7 +23,7 @@ include "include/postDB.php";
         <section class="blog-posts grid-system">
             <div class="container">
                 <div class="center">
-                    <h1 class="header-title">Post</h1>                   
+                    <h1 class="header-title">Blog</h1>                   
                 </div>
                 <div id="mypopup" class="popup">
                         <div class="popup-content">
@@ -44,7 +44,10 @@ include "include/postDB.php";
                     <?php
                             if(isset($_SESSION['email']))
                             {
-                            echo '<button id="createPost" class="btn btn-outline-secondary create"><i class="material-icons edit">border_color</i>Create</button>';
+                                if (checkpost())
+                                {
+                                    echo '<button id="createPost" class="btn btn-secondary create"><i class="material-icons edit">border_color</i>Create</button>';
+                                }
                             }
                         ?>
                     </div>

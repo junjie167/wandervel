@@ -56,6 +56,9 @@
     margin: 10px 0px 10px 0px;
     padding: 10px;
 }
+.blog-title h2{
+    font-size: 24px;
+}
 .blog-content{
     font-size: 15px;
     line-height: 150%;
@@ -97,8 +100,8 @@
     border-radius: 5px;
 }
 .paging a.active{
-    background-color: lightblue;
-    color: black;
+    background-color:green;
+    color: white;
     border-radius: 5px;
 }
 .paging a:hover:not(.active){
@@ -116,6 +119,23 @@
 #postproceed{
     width: 100%;
     color:white;
+}
+.nopost-logo h1{
+    font-size: 45px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.nopost-logo h1 em{
+    font-size: 44px;
+    font-style: normal;
+    color:#f48840;
+}
+.nopost-wrapper{
+    text-align: center;
+    width: 100%;
+}
+.button-width{
+    width: 45%;
 }
 
 

@@ -32,15 +32,21 @@ include "include/postDB.php";
                             </div>
                         </div>
                     </div>
-                    <div class="row mar">
-                        <div class="col-md-12 col-sm-6">
-                            <ul class="popup-button fr">
-                                <li><button id="favpost-delete" class="btn btn-outline-danger delete-button"><i class="material-icons edit">delete</i> Remove</button></li>
-                                <li><button id="favpost-done" class="btn btn-outline-success delete-button"><i class="material-icons edit">done</i> Done</button></li>
-                                <li><button id="favpost-cancel" class="btn btn-outline-danger"><i class="material-icons edit">clear</i>Cancel</button></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <?php 
+                        if(checkFav_wopostid())
+                        {
+                            echo '<div class="row mar">';
+                                echo'<div class="col-md-12 col-sm-6">';
+                                    echo '<ul class="popup-button fr">';
+                                        echo '<li><button id="favpost-delete" class="btn btn-danger delete-button"><i class="material-icons edit">delete</i> Remove</button></li>';
+                                        echo '<li><button id="favpost-done" class="btn btn-success delete-button"><i class="material-icons edit">done</i> Done</button></li>';
+                                        echo '<li><button id="favpost-cancel" class="btn btn-danger"><i class="material-icons edit">clear</i>Cancel</button></li>';
+                                    echo '</ul>';
+                                echo '</div>';
+                            echo '</div>';
+                        }
+                      
+                    ?>
                     <div class="row">
                     <?php
                     display_fav_post();
