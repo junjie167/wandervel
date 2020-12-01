@@ -10,6 +10,14 @@
 
         }
         
+        function sanitize_input($data)
+        {
+         $data = trim($data);
+         $data = stripslashes($data);
+         $data = htmlspecialchars($data);
+         return $data;
+        }
+        
         $result = mysqli_query($conn, "SELECT user_id FROM user WHERE email=" .$_SESSION['email'] . "");
         //$user_id = mysqli_fetch_assoc($result)['user_id'];
 
@@ -53,6 +61,10 @@
 		global $conn;
 		$result = mysqli_query($conn, "SELECT profile_picture FROM user u INNER JOIN comment c on u.user_id = c.user_id WHERE comment_id=" . $id . "");
 		// return the username
+                if (mysqli_fetch_assoc($result)['profile_picture'] == NULL)
+                {
+                    return "defaultimg.png";
+                }
 		return mysqli_fetch_assoc($result)['profile_picture'];
 	}
         
@@ -62,6 +74,10 @@
 		global $conn;
 		$result = mysqli_query($conn, "SELECT profile_picture FROM user u INNER JOIN replies r on u.user_id = r.user_id WHERE reply_id=" . $id . "");
 		// return the username
+                if (mysqli_fetch_assoc($result)['profile_picture'] == NULL)
+                {
+                    return "defaultimg.png";
+                }
 		return mysqli_fetch_assoc($result)['profile_picture'];
 	}
         
@@ -83,7 +99,7 @@ if (isset($_POST['comment_posted'])) {
 	// insert comment into database
 		$p_id = $_POST['id'];
         $stmt = $conn->prepare("INSERT INTO comment (post_id, user_id, comment, comment_date) VALUES (?, ?, ?, ?)");           
-		$stmt->bind_param("isss", $p_id, $user_id, $comment_text, $today);
+		$stmt->bind_param("isss", $p_id, $user_id, sanitize_input($comment_text), $today);
 		
         
 	// if insert was successful, get that same comment from the database and return it
@@ -130,7 +146,7 @@ if (isset($_POST['reply_posted'])) {
         $today = date("d M Y g:i a");
 	// insert reply into database
         $stmt = $conn->prepare("INSERT INTO replies (user_id, comment_id, reply, reply_date) VALUES (?, ?, ?, ?)");           
-        $stmt->bind_param("ssss", $user_id, $comment_id, $reply_text, $today);
+        $stmt->bind_param("ssss", $user_id, $comment_id, sanitize_input($reply_text), $today);
 	// if insert was successful, get that same reply from the database and return it
         
      if (!$stmt->execute()) {
