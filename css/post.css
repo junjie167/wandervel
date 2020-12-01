@@ -56,6 +56,9 @@
     margin: 10px 0px 10px 0px;
     padding: 10px;
 }
+.blog-title h2{
+    font-size: 24px;
+}
 .blog-content{
     font-size: 15px;
     line-height: 150%;

@@ -7,9 +7,6 @@ include "head.php";
 include "include/postDB.php";
 ?>
 <?php include "function.php"; ?>
-<head>
-<script src="js/script.js"></script>
-</head>
     <body>
         <header>
             <?php

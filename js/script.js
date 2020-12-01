@@ -1,5 +1,10 @@
 
 $(document).ready(function(){
+
+	var numofcomments; 
+	numofcomments = $('#comments_count').text();
+	$('countcomment').text(numofcomments);
+
 	// When user clicks on submit comment to add comment under post
 	$(document).on('click', '#submit_comment', function(e) {
 		e.preventDefault();
@@ -31,6 +36,7 @@ $(document).ready(function(){
 					$('#comments-wrapper').prepend(response.comment);
 					$('#comments_count').text(count); 
 					$('#comment_text').val('');
+					$('#countcomment').text(count);
                                         
 				}
 			}
