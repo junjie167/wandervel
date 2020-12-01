@@ -40,7 +40,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errorMsg .= "Date of Birth is required.<br>";
         $success = false;
     } else {
-        $dob = sanitize_input($_POST["dob"]);
+        $current_date = date('yyyy-m-d');
+
+        if ($_POST["dob"] > $current_date)
+        {
+            $errorMsg .= "Date cannot be in the future.<br>";
+            $success = false;
+        }else
+        {
+            $dob = sanitize_input($_POST["dob"]);
+        }
+        
     }
 
 
@@ -49,12 +59,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errorMsg .= "Password and confirmation are required.<br>";
         $success = false;
     } else {
-        if ($_POST["password"] != $_POST["confirmPassword"]) {
+        $password = $_POST["password"];
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number    = preg_match('@[0-9]@', $password);
+        $specialChars = preg_match('@[^\w]@', $password);
+        if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
+            $errorMsg .= 'Password should be at least 8 characters in length and should include at least one upper case letter, one number, and one special character.';
+            $success = false;
+        }else  if ($_POST["password"] != $_POST["confirmPassword"]) {
             $errorMsg .= "Passwords do not match.<br>";
             $success = false;
         } else {
             $pwd_hashed = password_hash($_POST["password"], PASSWORD_DEFAULT);
         }
+      
     }
     if ($success) {
         saveMemberToDB();

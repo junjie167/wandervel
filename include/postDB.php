@@ -241,7 +241,7 @@ function display()
                        
                          if (isset($_SESSION['email'])){   
                             echo '<div class="edit_delete">';
-                            if ($uid == $row["user_id"])
+                            if (($uid == $row["user_id"]) || ($_SESSION['role']=="admin"))
                             {
                                 echo '<ul>';
                                     echo '<li class="pl"><button id="viewpost-delete" class="btn btn-danger delete-button" data-id="'.$row["post_id"].'"><i class="material-icons edit">delete</i> Delete</button></li>';
@@ -321,7 +321,6 @@ function display()
                                                               
                 }
             }
-
             $stmt = $conn->prepare("SELECT * FROM post AS p WHERE p.post_id < $postid ORDER BY  p.post_id DESC LIMIT 1
             ");
             $stmt->execute();
@@ -569,7 +568,7 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">' . $content . ' ... 
+                    echo '<div class="blog-content"> 
                     <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
@@ -666,7 +665,7 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">' . $content . ' ... 
+                    echo '<div class="blog-content">
                     <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
@@ -770,7 +769,7 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">' . $content . ' ... 
+                    echo '<div class="blog-content">
                     <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
