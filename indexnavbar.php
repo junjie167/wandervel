@@ -14,11 +14,14 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="post.php?page=1">Posts</a>
+                                <a class="nav-link" href="post.php?page=1">Blog posts</a>
                                 
                             </li>
                             <li class="nav-item">
                             <a class="nav-link" href="tips.php">Tips</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="aboutus.php">About Us</a>
                             </li>
                             
                             <!--<li class="nav-item dropdown">
