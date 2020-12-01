@@ -79,7 +79,7 @@ if (isset($_POST['comment_posted'])) {
 	global $conn;
 	// grab the comment that was submitted through Ajax call
 	$comment_text = $_POST['comment_text'];
-        $today = date("F j, Y, g:i a");
+        $today = date("d M Y g:i a");
 	// insert comment into database
 		$p_id = $_POST['id'];
         $stmt = $conn->prepare("INSERT INTO comment (post_id, user_id, comment, comment_date) VALUES (?, ?, ?, ?)");           
@@ -98,14 +98,14 @@ if (isset($_POST['comment_posted'])) {
 					<img src='profileimages/". getCUserPicById($inserted_comment['comment_id']) . "' alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_id']) . "</span>
-						<span class='comment-date'>" . date('F j, Y, g:i a', strtotime($inserted_comment['comment_date'])) . "</span>
+						<span class='comment-date'>" . date('d M Y g:i a', strtotime($inserted_comment['comment_date'])) . "</span>
 						<p>" . $inserted_comment['comment'] . "</p>
 						<a class='reply-btn' href='#' data-id='" . $inserted_comment['comment_id'] . "'>reply</a>
 					</div>
 					<!-- reply form -->
 					<form action='post_details.php' class='reply_form clearfix' id='comment_reply_form_" . $inserted_comment['comment_id'] . "' data-id='" . $inserted_comment['comment_id'] . "'>
-						<textarea class='form-control' name='reply_text' id='reply_text' cols='30' rows='2'></textarea>
-						<button class='btn btn-primary btn-xs pull-right submit-reply'>Submit reply</button>
+						<textarea class='form-control' name='reply_text' id='reply_text_". $inserted_comment['comment_id'] ."' cols='30' rows='2'></textarea>
+						<button class='btn btn-primary btn-xs pull-right submit-reply' >Submit reply</button>
 					</form>
                                          <div class='replies_wrapper_". $inserted_comment['comment_id'] ."'></div>
 				</div>";
@@ -127,22 +127,24 @@ if (isset($_POST['reply_posted'])) {
 	// grab the reply that was submitted through Ajax call
 	$reply_text = $_POST['reply_text']; 
 	$comment_id = $_POST['comment_id']; 
-        $today = date("F j, Y, g:i a");
+        $today = date("d M Y g:i a");
 	// insert reply into database
         $stmt = $conn->prepare("INSERT INTO replies (user_id, comment_id, reply, reply_date) VALUES (?, ?, ?, ?)");           
         $stmt->bind_param("ssss", $user_id, $comment_id, $reply_text, $today);
 	// if insert was successful, get that same reply from the database and return it
-	if (!$stmt->execute()) {
+        
+     if (!$stmt->execute()) {
 		echo "error";
 		exit();
-        } else{
+        } 
+        else{
             $res = mysqli_query($conn, "SELECT * FROM replies ORDER BY reply_id DESC LIMIT 1");
             $inserted_reply = mysqli_fetch_assoc($res);
             $reply = "<div class='comment reply clearfix'>
 					<img src='profileimages/". getRUserPicById($inserted_reply['reply_id']) . "' alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_reply['user_id']) . "</span>
-						<span class='comment-date'>" . date('F j, Y, g:i a', strtotime($inserted_reply['reply_date'])) . "</span>
+						<span class='comment-date'>" . date('d M Y g:i a', strtotime($inserted_reply['reply_date'])) . "</span>
 						<p>" . $inserted_reply['reply'] . "</p>
 						
 					</div>
@@ -151,6 +153,4 @@ if (isset($_POST['reply_posted'])) {
                 //$("comment_reply_form_" + comment_id) "hide";
 		exit();
         }
-		
-	
-}
+ }	
