@@ -107,7 +107,7 @@ function display()
                 echo '<h2>' . $row["p_title"] . '</h2>';
                 echo '</div>';
                 echo '<div class="blog-content">' . $content . ' ... 
-                <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
+                <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                 echo '<div class="blog-footer">';
                 echo '<ul class="post-info">';
                 echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -116,16 +116,70 @@ function display()
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
+                
             }
             $stmt->close();
+        }else
+        {
+            echo '<div class="nopost-wrapper">';
+                    echo '<div class="nopost-logo">';
+                        echo '<h1>Wandervel<em>.</em></h1>';
+                    echo '</div>';
+                    echo '<div>';
+                        echo '<h2>Currently there is no blog post</h2>';
+                    echo '</div>';
+                    echo '<div>';
+                        echo '<p>You can be the first person to share your travel experience with everyone.</p>';
+                    echo '</div>';
+                    echo '<div>';
+                        if (isset($_SESSION["user_id"]))
+                        {
+                            echo '<button id="createPost" class="btn btn-secondary button-width">Create</button>';
+                        }else
+                        {
+                            echo '<button id="gologin" class="btn btn-secondary button-width">Create</button>';
+                        }
+                        
+                    echo '</div>';
+            echo '</div>';
         }
     }
     $conn->close();
 }
 
+    //check if got post
+    function checkpost()
+    {
+      
+        $postid = $_GET["id"];
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        }else
+        {
+            $stmt = $conn->prepare("SELECT * FROM post");
+
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0)
+            {
+                return true;
+            }
+            $stmt->close();
+        }
+        $conn->close();
+
+        return false;
+    }
+
 
     //Retrieve function to display post
-    function display_post()
+    function display_post($count)
     {
         global $uid;
         $postid = $_GET["id"];
@@ -149,7 +203,7 @@ function display()
                 while($row = mysqli_fetch_array($result))
                 {
                     $userImg = base64_encode($row["user_profile_picture"]);
-                    $displayImg = '<img src="data:image/jpeg;base64,'.$userImg.'"/>';
+                    $displayImg = '<img src="profileimages/'.$row["user_profile_picture"].'"/>';
                     if ($row["user_profile_picture"] == NULL)
                     {
                         
@@ -179,7 +233,7 @@ function display()
                                     echo '<li class="list-border pl">by '.$row["author"].'</li>';
                                     echo '<li class="pl list-border">'.$date.'</li>';
                                     echo '<li class="pl"><i class="material-icons resize">chat_bubble_outline</i>
-                                            '.Numofcomment().' comments</li>';
+                                            '.$count.' comments</li>';
                                 echo '</ul>';
                             echo '</div>';
                         echo '</div>';
@@ -190,8 +244,8 @@ function display()
                             if ($uid == $row["user_id"])
                             {
                                 echo '<ul>';
-                                    echo '<li class="pl"><button id="viewpost-delete" class="btn btn-outline-danger delete-button" data-id="'.$row["post_id"].'"><i class="material-icons edit">delete</i> Delete</button></li>';
-                                    echo '<li class="pl"><button id="viewpost-edit" class="btn btn-outline-secondary" data-id="'.$row["post_id"].'"><i class="material-icons edit">edit</i>Edit</button></li>';
+                                    echo '<li class="pl"><button id="viewpost-delete" class="btn btn-danger delete-button" data-id="'.$row["post_id"].'"><i class="material-icons edit">delete</i> Delete</button></li>';
+                                    echo '<li class="pl"><button id="viewpost-edit" class="btn btn-secondary" data-id="'.$row["post_id"].'"><i class="material-icons edit">edit</i>Edit</button></li>';
                                 echo '</ul>';
                             }else
                             {
@@ -412,6 +466,40 @@ function display()
         return false;
     }
 
+    //Check if the user has fav the post without post_id
+    function checkFav_wopostid()
+    {
+        if (isset($_SESSION["user_id"]))
+        {
+            $uid = $_SESSION["user_id"];
+        }
+        $postid = $_GET["id"];
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        }else
+        {
+            $stmt = $conn->prepare("SELECT * FROM favourite WHERE user_id=?");
+
+            $stmt->bind_param("i", $uid);
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0)
+            {
+                return true;
+            }
+            $stmt->close();
+        }
+        $conn->close();
+
+        return false;
+    }
+
     //Display favourite post
     function display_fav_post()
     {
@@ -482,7 +570,7 @@ function display()
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
                     echo '<div class="blog-content">' . $content . ' ... 
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
+                    <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -492,6 +580,16 @@ function display()
                     echo '</div>';
                     echo '</div>';
                 }
+            }else
+            {
+                    echo '<div class="nopost-wrapper">';
+                        echo '<div class="nopost-logo">';
+                            echo '<h1>Wandervel<em>.</em></h1>';
+                        echo '</div>';
+                        echo '<div>';
+                            echo '<h2>Currently you do not have any favourites</h2>';
+                        echo '</div>';
+                    echo '</div>';
             }
 
 
@@ -569,7 +667,7 @@ function display()
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
                     echo '<div class="blog-content">' . $content . ' ... 
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
+                    <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -580,9 +678,59 @@ function display()
                     echo '</div>';
                 }
                 $stmt->close();
+            }else
+            {
+                echo '<div class="nopost-wrapper">';
+                echo '<div class="nopost-logo">';
+                    echo '<h1>Wandervel<em>.</em></h1>';
+                echo '</div>';
+                echo '<div>';
+                    echo '<h2>Currently you do not have any blog post with us</h2>';
+                echo '</div>';
+                echo '<div>';
+                    echo '<p>Write your first blog to share your travel experience with everyone.</p>';
+                echo '</div>';
+                echo '<div>';
+                    echo '<button id="createPost" class="btn btn-secondary button-width">Create</button>';
+                echo '</div>';
+                echo '</div>';
             }
         }
         $conn->close();
+    }
+
+    //check my post
+    function checkmypost()
+    {
+        if (isset($_SESSION["user_id"]))
+        {
+            $uid = $_SESSION["user_id"];
+        }
+        $postid = $_GET["id"];
+        $config = parse_ini_file('../../private/db-config.ini');
+        $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
+            $success = false;
+        }else
+        {
+            $stmt = $conn->prepare("SELECT * FROM post WHERE user_id=?");
+
+            $stmt->bind_param("i",  $uid);
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0)
+            {
+                return true;
+            }
+            $stmt->close();
+        }
+        $conn->close();
+
+        return false;
     }
 
     //display the latest 3 post

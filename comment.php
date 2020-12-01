@@ -3,7 +3,7 @@
 <!--<html lang="en">-->
 
 <!--<body>-->
-<div class="container">
+
 	<div class="row">
             <div class="col-md-6 col-md-offset-3 comments-section" id="comment_list">
                 <?php if (isset($_SESSION['user_id'])): ?>
@@ -33,7 +33,7 @@
 					<img src="profileimages/<?php echo getCUserPicById($comment['comment_id']) ?>" alt="pic" class="profile_pic">
 					<div class="comment-details">
 						<span class="comment-name"><?php echo getUsernameById($comment['user_id']) ?></span>
-						<span class="comment-date"><?php echo date("F j, Y, g:i a", strtotime($comment["comment_date"])); ?></span>
+						<span class="comment-date"><?php echo date("d M Y g:i a", strtotime($comment["comment_date"])); ?></span>
 						<p><?php echo $comment['comment']; ?></p>
                                                 <?php if (isset($_SESSION['user_id'])): ?>
 						<a class="reply-btn" href="#" data-id="<?php echo $comment['comment_id']; ?>">reply</a>
@@ -41,8 +41,8 @@
 					</div>
 					<!-- reply form -->
 					<form action="comment.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment['comment_id'] ?>" data-id="<?php echo $comment['comment_id']; ?>">
-                                            <textarea class="form-control" name="reply_text" id="reply_text" cols="30" rows="2" required></textarea>
-						<button class="btn btn-primary btn-xs pull-right submit-reply" id="btn_submit">Submit reply</button>
+                                            <textarea class="form-control" name="reply_text" id="reply_text_<?php echo $comment['comment_id'] ?>" cols="30" rows="2" required></textarea>
+						<button class="btn btn-primary btn-xs pull-right submit-reply" >Submit reply</button>
 					</form>
 
 					<!-- GET ALL REPLIES -->
@@ -55,7 +55,7 @@
 									<img src="profileimages/<?php echo getRUserPicById($reply['reply_id']) ?>" alt="pic" class="profile_pic">
 									<div class="comment-details">
 										<span class="comment-name"><?php echo getUsernameById($reply['user_id']) ?></span>
-										<span class="comment-date"><?php echo date("F j, Y, g:i a", strtotime($reply["reply_date"])); ?></span>
+										<span class="comment-date"><?php echo date("d M Y g:i a", strtotime($reply["reply_date"])); ?></span>
 										<p><?php echo $reply['reply']; ?></p>
 									</div>
 								</div>
@@ -73,6 +73,7 @@
 		</div><!-- // all comments -->
 	</div>
 </div>
+
 <!-- Javascripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap Javascript -->
