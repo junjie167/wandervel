@@ -1,0 +1,48 @@
+.background-container{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(../indeximages/loginimage.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 170vh;
+}
+.login-border{
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    width: 40%;
+    margin: 0 auto;
+    position: relative;
+    top: 30px;
+}
+.login-title{
+    text-align: center;
+}
+.login-button{
+    text-align: center;
+}
+.login-btn-width{
+    width: 100%;
+}
+@media screen and (min-width: 400px) {
+    .login-border {
+      width: 60%;
+    }
+  }
+  @media screen and (min-width: 800px) {
+    .login-border {
+        width: 40%;
+      }
+  }
+
+ .login-or p {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1px solid #000; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+ } 
+
+ p span { 
+    background:#fff; 
+    padding:0 10px; 
+}
+

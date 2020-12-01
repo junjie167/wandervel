@@ -106,8 +106,8 @@ function display()
                 echo '<div class="blog-title">';
                 echo '<h2>' . $row["p_title"] . '</h2>';
                 echo '</div>';
-                echo '<div class="blog-content">' . $content . ' ... 
-                <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
+                echo '<div class="blog-content">
+                <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
                 echo '<div class="blog-footer">';
                 echo '<ul class="post-info">';
                 echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -203,7 +203,7 @@ function display()
                 while($row = mysqli_fetch_array($result))
                 {
                     $userImg = base64_encode($row["user_profile_picture"]);
-                    $displayImg = '<img src="profileimages/'.$row["user_profile_picture"].'"/>';
+                    $displayImg = '<img src="profileimages/'.$row["user_profile_picture"].'" alt="'.$row["user_profile_picture"].'"/>';
                     if ($row["user_profile_picture"] == NULL)
                     {
                         
@@ -233,7 +233,7 @@ function display()
                                     echo '<li class="list-border pl">by '.$row["author"].'</li>';
                                     echo '<li class="pl list-border">'.$date.'</li>';
                                     echo '<li class="pl"><i class="material-icons resize">chat_bubble_outline</i>
-                                            '.$count.' comments</li>';
+                                            <span id="countcomment">'.$count.'</span> comments</li>';
                                 echo '</ul>';
                             echo '</div>';
                         echo '</div>';
@@ -783,6 +783,26 @@ function display()
                 }
                 $stmt->close();
 
+            }else
+            {
+                echo '<div class="nopost-wrapper">';
+                    echo '<div>';
+                        echo '<h2>Currently there is no blog post</h2>';
+                    echo '</div>';
+                    echo '<div>';
+                        echo '<p>You can be the first person to share your travel experience with everyone.</p>';
+                    echo '</div>';
+                    echo '<div>';
+                        if (isset($_SESSION["user_id"]))
+                        {
+                            echo '<button id="createPost" class="btn btn-secondary button-width">Create</button>';
+                        }else
+                        {
+                            echo '<button id="gologin" class="btn btn-secondary button-width">Create</button>';
+                        }
+                        
+                    echo '</div>';
+                echo '</div>';
             }
 
 

@@ -17,7 +17,7 @@ include "include/postDB.php";
             <section class="blog-posts grid-system">
                 <div class="container">
                     <div class="center">
-                        <h1 class="header-title">My Post</h1>                   
+                        <h1 class="header-title">My Blog</h1>                   
                     </div>
                     <div id="mypopup" class="popup">
                         <div class="popup-content">
