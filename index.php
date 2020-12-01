@@ -47,7 +47,7 @@ include "include/postDB.php";
                 </div>
                
                 <div class="all-blog-posts">
-                    <h1 class="text-center">Latest Blog</h1>
+                    <h1 class="text-center">Latest Blog Posts</h1>
                     <br>
                     <div class="row">
                         <?php latestPost();?>
