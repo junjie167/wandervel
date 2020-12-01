@@ -9,7 +9,7 @@
 <?php
 
      function authenticateUser(){
-        global $uname, $email, $id, $pwd_hashed, $errorMsg, $success;
+        global $uname, $email, $id, $pwd_hashed, $errorMsg, $success,$role;
                         
                 // Create database connection
                 $config = parse_ini_file('../../private/db-config.ini');
@@ -31,6 +31,7 @@
                         // Note that email field is unique
                         $row = $result->fetch_assoc();
                         $uname = $row["name"];
+                        $role=$row["role"];
                         $pwd_hashed = $row["password"];
                         $id = $row["user_id"];              
                         
@@ -75,7 +76,8 @@ else
 authenticateUser();
 
 if ($success)
-{
+{   
+    $_SESSION["role"]=$role;
     $_SESSION["email"]=$email;
     $_SESSION["name"]=$uname;
     $_SESSION["user_id"]=$id;
@@ -86,6 +88,7 @@ else
     echo "<h1>Oops!</h1>";
     echo "<h2>The following errors were detected:</h2>";
     echo "<p>" . $errorMsg . "</p>";
+    echo "<p>" . $role . "</p>";
     echo "<p><a href='./login.php' class='btn btn-danger'>Return to log in</a>";
 }
 
@@ -97,8 +100,6 @@ function sanitize_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-
-
 
 ?>
         </main>  
