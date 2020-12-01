@@ -29,6 +29,7 @@ include "include/postDB.php";
     <h1>About Wandervel</h1>
   </div>
 </div>
+</div>
                 <div class="sub-container">
                     <br>
                     <br>
@@ -46,9 +47,6 @@ include "include/postDB.php";
     
     </h3>
 </div>
-
-
-
 
 
 </body>
