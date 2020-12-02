@@ -61,8 +61,6 @@ $conn->close();
      <!--<head>
         <link rel="stylesheet" href="css/tips.css">
         <script defer src="js/tips.js"></script>
-
-
     </head>-->
 
     <body class="tipsBody">
