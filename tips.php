@@ -30,7 +30,7 @@ function displayTips() {
 
                 echo "<ul>";
                 echo "<li>";
-                echo "<a class='text-light bg-dark' href=#>" .$category. "</a>";
+                echo "<a class='text-dark' href=#>" .$category. "</a>";
              
 
                 $stmt2 = $conn->prepare("SELECT * from tips WHERE category=?");
@@ -72,12 +72,12 @@ function displayTips() {
     <?php
     include "head.php";
     ?>
-        <head>
+       <!-- <head>
             <link rel="stylesheet" href="css/tips.css">
             <script defer src="js/tips.js"></script>
 
 
-        </head>
+        </head>-->
 
         <body class="tipsBody">
             <header>
@@ -103,7 +103,7 @@ function displayTips() {
                             }
                     ?>
                      </div> 
-                    <p id="underTitle"><em>Just a little tips and FYI from us for those wanting to travel ~</em></p>
+                    <p class="font-weight-bold" id="underTitle"><em>Just a little tips and FYI from us for those wanting to travel ~</em></p>
                     
                     
 
@@ -113,8 +113,9 @@ function displayTips() {
 
             </div>
         </section>
+            <?php
+          include "footer.php";
+            ?>
     </body>
-    <?php
-include "footer.php";
-?>
+    
 </html>

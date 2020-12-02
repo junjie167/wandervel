@@ -25,6 +25,7 @@ include "include/postDB.php";
                             </span>
                             <br>
                             <div>
+                            <h4>Are you sure you want to remove?</h4>
                                 <p>This action cannot be undone</p>
                             </div>
                             <div class="popup-footer">
