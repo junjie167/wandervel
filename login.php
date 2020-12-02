@@ -1,14 +1,13 @@
 <?php session_start(); ?>
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Login</title>
+    <!--<head>-->
+        <!--<meta charset="utf-8"/>-->
+        <!--<title>Login</title>-->
+        <!--</head>-->
         <?php include "head.php";
         ?>
-        <link rel="stylesheet" href="css/login.css">
-        <script defer src="js/login.js"></script>
-    </head>
+    
 
     <body>
         <header>

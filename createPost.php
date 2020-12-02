@@ -25,7 +25,7 @@
                 </div>  
                 <div>
                     <label for="imgImp">Image upload:</label>
-                    <input id="imgImp" type="file" name="uploadfile" value="empty"/>
+                    <input id="imgImp" type="file" accept="image/*" name="uploadfile" value="empty"/>
                 </div>
                 <div class="prelabel">
                     <label>Image Preview:</label>
