@@ -30,7 +30,12 @@
 				
 				<!-- comment -->
 				<div class="comment clearfix">
-					<img src="profileimages/<?php echo getCUserPicById($comment['comment_id']) ?>" alt="pic" class="profile_pic">
+                                    <?php if (getCUserPicById($comment['comment_id']) == NULL): ?>
+                                        <img src="image/defaultprofile.png" alt="pic" class="profile_pic">
+                                        <?php else: ?>
+                                            <img src="profileimages/<?php echo getCUserPicById($comment['comment_id']) ?>" alt="pic" class="profile_pic">
+
+                                        <?php endif ?>
 					<div class="comment-details">
 						<span class="comment-name"><?php echo getUsernameById($comment['user_id']) ?></span>
 						<span class="comment-date"><?php echo date("d M Y g:i a", strtotime($comment["comment_date"])); ?></span>
@@ -52,7 +57,12 @@
 							<?php foreach ($replies as $reply): ?>
 								<!-- reply -->
 								<div class="comment reply clearfix">
-									<img src="profileimages/<?php echo getRUserPicById($reply['reply_id']) ?>" alt="pic" class="profile_pic">
+                                                                    <?php if (getRUserPicById($reply['reply_id']) == NULL): ?>
+									<img src="image/defaultprofile.png" alt="pic" class="profile_pic">
+                                                                        <?php else: ?>
+                                                                            <img src="profileimages/<?php echo getRUserPicById($reply['reply_id']) ?>" alt="pic" class="profile_pic">
+
+                                                                        <?php endif ?>
 									<div class="comment-details">
 										<span class="comment-name"><?php echo getUsernameById($reply['user_id']) ?></span>
 										<span class="comment-date"><?php echo date("d M Y g:i a", strtotime($reply["reply_date"])); ?></span>

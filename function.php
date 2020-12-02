@@ -61,11 +61,8 @@
 		global $conn;
 		$result = mysqli_query($conn, "SELECT profile_picture FROM user u INNER JOIN comment c on u.user_id = c.user_id WHERE comment_id=" . $id . "");
 		// return the username
-                if (mysqli_fetch_assoc($result)['profile_picture'] == NULL)
-                {
-                    return "defaultimg.png";
-                }
-		return mysqli_fetch_assoc($result)['profile_picture'];
+                    return mysqli_fetch_assoc($result)['profile_picture'];
+                
 	}
         
         //Get reply user pic
@@ -74,11 +71,9 @@
 		global $conn;
 		$result = mysqli_query($conn, "SELECT profile_picture FROM user u INNER JOIN replies r on u.user_id = r.user_id WHERE reply_id=" . $id . "");
 		// return the username
-                if (mysqli_fetch_assoc($result)['profile_picture'] == NULL)
-                {
-                    return "defaultimg.png";
-                }
-		return mysqli_fetch_assoc($result)['profile_picture'];
+                    return mysqli_fetch_assoc($result)['profile_picture'];
+                
+		
 	}
         
 	// Receives a comment id and returns the username
@@ -110,8 +105,9 @@ if (isset($_POST['comment_posted'])) {
         } else{
             $res = mysqli_query($conn, "SELECT * FROM comment ORDER BY comment_id DESC LIMIT 1");
             $inserted_comment = mysqli_fetch_assoc($res);
-            $comment = "<div class='comment clearfix'>
-					<img src='profileimages/". getCUserPicById($inserted_comment['comment_id']) . "' alt='pic' class='profile_pic'>
+            if(getCUserPicById($inserted_comment['comment_id']) == NULL){
+                $comment = "<div class='comment clearfix'>
+					<img src='image/defaultprofile.png' alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_id']) . "</span>
 						<span class='comment-date'>" . date('d M Y g:i a', strtotime($inserted_comment['comment_date'])) . "</span>
@@ -119,12 +115,32 @@ if (isset($_POST['comment_posted'])) {
 						<a class='reply-btn' href='#' data-id='" . $inserted_comment['comment_id'] . "'>reply</a>
 					</div>
 					<!-- reply form -->
+                                        
 					<form action='post_details.php' class='reply_form clearfix' id='comment_reply_form_" . $inserted_comment['comment_id'] . "' data-id='" . $inserted_comment['comment_id'] . "'>
 						<textarea class='form-control' name='reply_text' id='reply_text_". $inserted_comment['comment_id'] ."' cols='30' rows='2'></textarea>
 						<button class='btn btn-primary btn-xs pull-right submit-reply' >Submit reply</button>
 					</form>
                                          <div class='replies_wrapper_". $inserted_comment['comment_id'] ."'></div>
 				</div>";
+            }
+            else{
+            $comment = "<div class='comment clearfix'>
+					<img src='". getCUserPicById($inserted_comment['comment_id']) . "' alt='pic' class='profile_pic'>
+					<div class='comment-details'>
+						<span class='comment-name'>" . getUsernameById($inserted_comment['user_id']) . "</span>
+						<span class='comment-date'>" . date('d M Y g:i a', strtotime($inserted_comment['comment_date'])) . "</span>
+						<p>" . $inserted_comment['comment'] . "</p>
+						<a class='reply-btn' href='#' data-id='" . $inserted_comment['comment_id'] . "'>reply</a>
+					</div>
+					<!-- reply form -->
+                                        
+					<form action='post_details.php' class='reply_form clearfix' id='comment_reply_form_" . $inserted_comment['comment_id'] . "' data-id='" . $inserted_comment['comment_id'] . "'>
+						<textarea class='form-control' name='reply_text' id='reply_text_". $inserted_comment['comment_id'] ."' cols='30' rows='2'></textarea>
+						<button class='btn btn-primary btn-xs pull-right submit-reply' >Submit reply</button>
+					</form>
+                                         <div class='replies_wrapper_". $inserted_comment['comment_id'] ."'></div>
+				</div>";
+            }
                 $commentCount = getCommentsCountByPostId($p_id);
 		$comment_info = array(
 			'comment' => $comment,
@@ -156,7 +172,19 @@ if (isset($_POST['reply_posted'])) {
         else{
             $res = mysqli_query($conn, "SELECT * FROM replies ORDER BY reply_id DESC LIMIT 1");
             $inserted_reply = mysqli_fetch_assoc($res);
-            $reply = "<div class='comment reply clearfix'>
+            if(getRUserPicById($inserted_reply['reply_id']) == NULL){
+                $reply = "<div class='comment reply clearfix'>
+					<img src='image/defaultprofile.png' alt='pic' class='profile_pic'>
+					<div class='comment-details'>
+						<span class='comment-name'>" . getUsernameById($inserted_reply['user_id']) . "</span>
+						<span class='comment-date'>" . date('d M Y g:i a', strtotime($inserted_reply['reply_date'])) . "</span>
+						<p>" . $inserted_reply['reply'] . "</p>
+						
+					</div>
+				</div>";
+            }
+            else{
+                $reply = "<div class='comment reply clearfix'>
 					<img src='profileimages/". getRUserPicById($inserted_reply['reply_id']) . "' alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_reply['user_id']) . "</span>
@@ -165,6 +193,8 @@ if (isset($_POST['reply_posted'])) {
 						
 					</div>
 				</div>";
+            }
+            
 		echo $reply;
                 //$("comment_reply_form_" + comment_id) "hide";
 		exit();
