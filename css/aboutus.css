@@ -1,21 +1,16 @@
 .container img {
     width: 100%;
  }
- .container .content {
-    position: absolute; /* Position the background text */
-    text-align: center;
-    bottom:0; /* At the bottom. Use top:0 to append it to the top */
-    background: rgb(0, 0, 0); /* Fallback color */
-    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-    color: #f1f1f1; /* Grey text */
-    width: 60%; /* Full width */
-    padding: 20px; /* Some padding */
-  }
 
-  .sub-container h3 {
+
+.sub-container h2 {
     text-align: center;
     font-family: "Darwin", sans-serif;
     line-height: 1.75;
     letter-spacing: 2px;
   
+}
+
+h1 {
+text-align: center;
 }
