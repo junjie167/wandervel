@@ -1,14 +1,13 @@
 <?php session_start(); ?>
 <!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Login</title>
+<html lang="en">
+    <!--<head>-->
+        <!--<meta charset="utf-8"/>-->
+        <!--<title>Login</title>-->
+        <!--</head>-->
         <?php include "head.php";
         ?>
-        <link rel="stylesheet" href="css/login.css">
-        <script defer src="js/login.js"></script>
-    </head>
+    
 
     <body>
         <header>
@@ -33,7 +32,7 @@
                                    placeholder="Enter email">
                                 </div>
                                 <div class="form-group">  
-                                <label for="password">Password:</label>
+                                <label for="pwd">Password:</label>
                                 <input class="form-control" type="password" id="pwd" required name="pwd"
                                    placeholder="Enter password">
                                 </div>
@@ -57,4 +56,5 @@
         </main>
 
 
-    </form>
+</body>
+</html>

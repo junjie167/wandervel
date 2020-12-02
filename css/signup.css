@@ -1,0 +1,39 @@
+.signup-img-border{
+    background-image:  url(../indeximages/signup.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 170vh;
+    width: 40%;
+}
+.float-child {
+    float: left;
+    padding: 20px;
+}  
+.sign-border{
+    width: 60%;
+}
+@media screen and (max-width: 600px) {
+    .float-child{
+        float: none;
+    }
+    .signup-img-border {
+      width: 100%;
+      height: 30vh;
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(../indeximages/signup.jpg);
+    }
+    .sign-border{
+        width: 100%;
+        position: relative;
+        bottom: 230px;
+    }
+    .signup-title{
+        color: white;
+    }
+  }
+  
+.signup-title{
+    text-align: center;
+}
+.signup-form-border{
+    padding: 20px;
+}

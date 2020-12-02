@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html>
-
-    <meta charset="utf-8"/>
-    <title>Registration</title>
+<html lang="en">
     <?php include "head.php";
     ?>
-
-
     <body>
         <header>
             <?php include "indexnavbar.php"; ?>
         </header>
 
         <main>
+            <div class="signup-img-border float-child">
+                </div>
 
             <section>
-                <div class="container"> 
-                    <h1 style="margin-bottom:30px; text-align:center;">Sign Up</h1>
+                <div class="container  float-child sign-border"> 
+                <div class="signup-title">
+                        <h1>Sign Up</h1>
+                    </div>
                     <form id="registerform" name="registerform" action="registerProcess.php" method="POST">
                         <div class="form-group">
                             <label style="font-size: 20px;" for="email">Email:</label>                       
@@ -234,9 +233,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label style="font-size: 20px;" for="gender">Gender:</label>
-                            <input type="radio" id="gender" name="gender" value="Male" required><label>Male</label> 
-                            <input type="radio" id="gender" name="gender" value="Female" required><label>Female</label>
+                        <input type="radio" id="male" name="gender" value="Male"><label>Male</label> 
+                        <input type="radio" id="female" name="gender" value="Female"><label>Female</label>  
                         </div>
 
 
@@ -248,7 +246,7 @@
 
 
                         <div class="form-group">  
-                            <button class="btn btn-primary" type="submit">Sign Up</button>
+                            <button class="btn btn-primary login-btn-width" type="submit">Sign Up</button>
                         </div>
                     </form>
                 </div> 

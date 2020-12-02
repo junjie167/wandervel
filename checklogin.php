@@ -4,12 +4,20 @@
 <!DOCTYPE html>
 <html>
 <body>
+      
+    <?php
+    include "head.php";
+    ?>
+<?php
+       include "navbar.php";
+          ?>
+        
 <main class="container">
 
 <?php
 
      function authenticateUser(){
-        global $uname, $email, $id, $pwd_hashed, $errorMsg, $success;
+        global $uname, $email, $id, $pwd_hashed, $errorMsg, $success,$role;
                         
                 // Create database connection
                 $config = parse_ini_file('../../private/db-config.ini');
@@ -31,6 +39,7 @@
                         // Note that email field is unique
                         $row = $result->fetch_assoc();
                         $uname = $row["name"];
+                        $role=$row["role"];
                         $pwd_hashed = $row["password"];
                         $id = $row["user_id"];              
                         
@@ -75,7 +84,8 @@ else
 authenticateUser();
 
 if ($success)
-{
+{   
+    $_SESSION["role"]=$role;
     $_SESSION["email"]=$email;
     $_SESSION["name"]=$uname;
     $_SESSION["user_id"]=$id;
@@ -83,9 +93,10 @@ if ($success)
 }
 else
 {
-    echo "<h1>Oops!</h1>";
+   
     echo "<h2>The following errors were detected:</h2>";
     echo "<p>" . $errorMsg . "</p>";
+    echo "<p>" . $role . "</p>";
     echo "<p><a href='./login.php' class='btn btn-danger'>Return to log in</a>";
 }
 
@@ -98,11 +109,15 @@ function sanitize_input($data)
     return $data;
 }
 
-
-
 ?>
         </main>  
+
+        
+        <?php
+include "footer.php";
+?>
         </body>
+
         </html>
 <!-- 
 // if ($userfound == 1)

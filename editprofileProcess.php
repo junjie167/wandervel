@@ -1,3 +1,9 @@
+<!DOCTYPE html>  
+<html lang="en">
+    <?php include"head.php"?>
+
+        
+        
 <?php
 
 $name = $nationality = $dob = $bio = $errorMsg = "";
@@ -33,22 +39,26 @@ $allowedType = array("image/gif", "image/jpeg", "image/jpg", "image/png"); //arr
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // name
-    if (!empty($_POST["name"]))
-    {
+    if (empty($_POST["name"])) {
+        $errorMsg .= "Name is required.<br>";
+        $success = false;
+    } else {
         $name = sanitize_input($_POST["name"]);
     }
     
    // dob
-    if (!empty($_POST["dob"]))
-    {
+    if (empty($_POST["dob"])) {
+        $errorMsg .= "Date of Birth is required.<br>";
+        $success = false;
+    } else {
         $dob = sanitize_input($_POST["dob"]);
-
     }
     //nationality
-    if (!empty($_POST["nationality"]))
-    {
+    if (empty($_POST["nationality"])) {
+        $errorMsg .= "Nationality is required.<br>";
+        $success = false;
+    } else {
         $nationality = sanitize_input($_POST["nationality"]);
-
     }
     //bio
     if (!empty($_POST["bio"]))
@@ -174,17 +184,18 @@ $success = true;
 
 ?>
 
+
     
-<html>
-    <head>
-        <title>Edited Profile</title>
-        <?php include"head.php"?>
-    </head>
+    
     <body>
+        <header>
         <?php
         include "navbar.php";
         ?>
+        </header>
+        <section>
         <main class="container">
+            
         <hr>
         <?php
         if ($success)
@@ -234,9 +245,11 @@ $success = true;
         ?>
        
         </main>
+            </section>
         <br>
         <?php
         include "footer.php";
         ?>
     </body>
+    
 </html>

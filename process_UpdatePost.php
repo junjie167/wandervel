@@ -5,6 +5,8 @@
 function img(){
    global $image_src,$image;
    $image_id=4;
+   session_start();
+$post_id=$_SESSION['post_id']; 
 // Create database connection.   
    $config = parse_ini_file('../../private/db-config.ini');   
    $conn = new mysqli($config['servername'], $config['username'],           
@@ -19,9 +21,9 @@ function img(){
       {        
 // Prepare the statement: 
         
-   $stmt = $conn->prepare("SELECT * FROM image WHERE image_id=?");   
+   $stmt = $conn->prepare("SELECT * FROM image WHERE post_id=?");   
    // Bind & execute the query statement:        
-   $stmt->bind_param("s", $image_id);        
+   $stmt->bind_param("i", $post_id);        
    $stmt->execute();        
    $result = $stmt->get_result();        
    if ($result->num_rows > 0)        
@@ -145,6 +147,16 @@ function sanitize_input($data)
                                 echo '<div class="pretitle center">';
                                     echo "<h1>" . $title .".</h1>";
                                 echo '</div>';
+                                echo '<div class="previmg">';
+                                    if (empty($image))
+                                    {
+                                        echo '<img class="imgdesign" src="image/defaultimg.png" alt="default"';
+                                    }else
+                                    {
+                                        echo '<img class="imgdesign" src="'.$image_src.'" alt="'.$image_src .'"';
+                                    }
+                                    
+                                echo '</div>';
                                 echo '<div class="prevcontent">';
                                     echo '<p>'.$content.'</p>';
                                 echo '</div>';
@@ -153,7 +165,7 @@ function sanitize_input($data)
                             //echo "<h4>Author name is : " . $author . ".</h4><br>";
                             //echo "<h4>New title is : " . $title . ".</h4><br>";
                             //echo "<h4>New content is : " . $content . ".</h4>";
-                            echo"<h4>New content is : " . $image_src . ".</h4>";
+                            //echo"<h4>New content is : " . $image_src . ".</h4>";
             
  
                         }
@@ -179,7 +191,6 @@ function sanitize_input($data)
                     ?>
                 </div>
             </section>
-        <img src='<?php echo $image_src;  ?>' >
         </main>
         <br>
         <?php

@@ -99,15 +99,13 @@ function display()
                 $date = date("jS M Y",strtotime($row["p_publish_date"]));
                 $content = substr($row["p_content"],0,100);
                 echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["p_post_id"].'>';
-                echo '<div class="blog  effect">';
+                echo '<div class="blog  effect  h-100">';
                 echo '<div class="blog-image">';
                 echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                 echo '</div>';
                 echo '<div class="blog-title">';
                 echo '<h2>' . $row["p_title"] . '</h2>';
                 echo '</div>';
-                echo '<div class="blog-content">
-                <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
                 echo '<div class="blog-footer">';
                 echo '<ul class="post-info">';
                 echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -241,7 +239,7 @@ function display()
                        
                          if (isset($_SESSION['email'])){   
                             echo '<div class="edit_delete">';
-                            if ($uid == $row["user_id"])
+                            if (($uid == $row["user_id"]) || ($_SESSION['role']=="admin"))
                             {
                                 echo '<ul>';
                                     echo '<li class="pl"><button id="viewpost-delete" class="btn btn-danger delete-button" data-id="'.$row["post_id"].'"><i class="material-icons edit">delete</i> Delete</button></li>';
@@ -321,7 +319,6 @@ function display()
                                                               
                 }
             }
-
             $stmt = $conn->prepare("SELECT * FROM post AS p WHERE p.post_id < $postid ORDER BY  p.post_id DESC LIMIT 1
             ");
             $stmt->execute();
@@ -569,8 +566,6 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">' . $content . ' ... 
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -666,8 +661,6 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">' . $content . ' ... 
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -770,8 +763,6 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">' . $content . ' ... 
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';

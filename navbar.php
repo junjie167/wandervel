@@ -14,7 +14,7 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="post.php?page=1">Posts</a>
+                                <a class="nav-link" href="post.php?page=1">Blog posts</a>
                             </li>
                             
                              <li class="nav-item">
@@ -23,6 +23,10 @@
 
                             <li class="nav-item">
                                 <a class="nav-link" href="favourite.php?page=1">My Favourites</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="aboutus.php">About Us</a>
                             </li>
                             
                             <!--<li class="nav-item dropdown">
