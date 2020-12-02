@@ -1,8 +1,59 @@
 /* CSS */
+
+.tipsBody {
+   min-height: 100%;
+   background-image: url("../tipsimage/dunes.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center center;
+   text-align: center;
+}
+
+#headerTips{
+    padding-bottom: 10px;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 60px;
+    color: #2093df;
+    text-align: center;
+    
+}
+
+#underTitle{
+    padding-bottom: 50px;
+   
+}
+
+
 ul li ul {
   display: none; /* Hide the nested list first */
 }
 ul li.active ul {
   display: block; /* Show the list when class 'active' is added to the li */ 
   color: red;
+}
+
+#tipsform{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.viewTips
+{
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.bgTips
+{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+#tipsTitle
+{
+    font-family: 'Brush Script MT', cursive;
+    font-size: 80px;
 }

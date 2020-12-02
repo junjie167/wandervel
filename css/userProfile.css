@@ -1,0 +1,26 @@
+.profileBody
+{
+   min-height: 100%;
+   background-image: url("../tipsimage/profilepage.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center center;
+   text-align: center;
+}
+
+#editProfile
+{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+#profileTitle
+{
+    padding-bottom: 20px;
+    color: black;
+    font-family: Times, "Times New Roman", serif;
+    background-color: #f2f2f2;
+    width: auto;
+    
+}

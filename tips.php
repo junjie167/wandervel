@@ -30,7 +30,8 @@ function displayTips() {
 
                 echo "<ul>";
                 echo "<li>";
-                echo $category;
+                echo "<a class='text-light bg-dark' href=#>" .$category. "</a>";
+             
 
                 $stmt2 = $conn->prepare("SELECT * from tips WHERE category=?");
                 $stmt2->bind_param("s", $category);
@@ -46,7 +47,7 @@ function displayTips() {
                         $content = $row['content'];
 
                         echo "<ul>";
-                        echo '<li><a href="viewtips.php?id=' . $row['tip_id'] . ' "> ' . $row['topic'] . '</a></li>';
+                        echo '<li><a class="text-info" href="viewtips.php?id=' . $row['tip_id'] . ' "> ' . $row['topic'] . '</a></li>';
                         echo "</ul>";
                     }
                 }
@@ -78,7 +79,7 @@ function displayTips() {
 
         </head>
 
-        <body>
+        <body class="tipsBody">
             <header>
     <?php
     session_start();
@@ -90,8 +91,21 @@ function displayTips() {
     ?>
             </header>
             <section>
-                <div class="container">
-                    <h1>TIPS</h1>
+                <h1 id="headerTips">TIPS</h1>
+                
+                <div class="bgTips">
+                    <div class="text-right">
+                    <?php
+                    
+                    if($_SESSION['role'] == "admin")
+                            {
+                            echo '<a href="./createTips.php"><button id="createTips" class="btn btn-outline-secondary create"><i class="material-icons edit">border_color</i>Create Tips</button></a>';
+                            }
+                    ?>
+                     </div> 
+                    <p id="underTitle"><em>Just a little tips and FYI from us for those wanting to travel ~</em></p>
+                    
+                    
 
     <?php
     displayTips();
@@ -100,4 +114,7 @@ function displayTips() {
             </div>
         </section>
     </body>
+    <?php
+include "footer.php";
+?>
 </html>

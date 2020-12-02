@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
 
 function viewTips() {
     $id = $_GET["id"];
@@ -21,49 +24,55 @@ function viewTips() {
                 $topic = $row['topic'];
                 $content = $row['content'];
 
-                
-                echo '<h3><a>' . $topic . '</a></h3><br>';
-                
-                echo  '<p>' . nl2br($content) . '</p>';
-                
+                if ($_SESSION['role'] == "admin") {
+                    echo '<div class="text-right">';
+                    echo '<a href="editTips.php?id=' . $row['tip_id'] . ' "><button id="editTips" class="btn btn-outline-secondary create"><i class="material-icons edit">border_color</i>Edit</button></a>';
+                    echo '<input name="Delete" pull-right value="Delete" type="button" class="btn btn-outline-danger" onClick="deleteme(' . $row['tip_id'] . ')">';
+                    echo '</div>';
+                    echo '<script type="text/javascript" src="js/deleteTips.js"></script>';
+                }
+                echo '<h3 id="tipsTitle">' . $topic . '</h3><br>';
+
+                echo '<p>' . nl2br($content) . '</p>';
             }
         }
     }
+    $conn->close();
 }
-
 ?>
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <?php
-    include "head.php";
-    ?>
-        <head>
-            <link rel="stylesheet" href="css/tips.css">
-            <script defer src="js/tips.js"></script>
+<?php
+include "head.php";
+?>
+    <head>
+        <link rel="stylesheet" href="css/tips.css">
+        <script defer src="js/tips.js"></script>
 
 
-        </head>
+    </head>
 
-        <body>
-            <header>
-    <?php
-    session_start();
-    if (isset($_SESSION['email'])) {
-        include "navbar.php";
-    } else {
-        include "indexnavbar.php";
-    }
-    ?>
-            </header>
-            <section>
-                <div class="container">
-                    <h1>TIPS</h1>
+    <body class="tipsBody">
+        <header>
+<?php
+if (isset($_SESSION['email'])) {
+    include "navbar.php";
+} else {
+    include "indexnavbar.php";
+}
+?>
+        </header>
+        <section>
+            <div class="container">
 
-    <?php
-        viewTips();
-    ?>
+                <!--<h1>TIPS</h1>-->
+                <article class="viewTips">
+                    <?php
+                        viewTips();
+                     ?>
 
+                </article>
             </div>
         </section>
     </body>

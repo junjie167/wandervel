@@ -176,14 +176,18 @@ $success = true;
 
     
 <html>
-    <head>
+    
+    <?php include"head.php"?>
+
         <title>Edited Profile</title>
-        <?php include"head.php"?>
-    </head>
+        
+    
     <body>
+        <header>
         <?php
         include "navbar.php";
         ?>
+        </header>
         <main class="container">
         <hr>
         <?php
@@ -235,8 +239,9 @@ $success = true;
        
         </main>
         <br>
-        <?php
+        
+    </body>
+    <?php
         include "footer.php";
         ?>
-    </body>
 </html>
