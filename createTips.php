@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <meta charset="utf-8"/>
-    <title>Create Tips</title>
+    <!--<meta charset="utf-8"/>
+    <title>Create Tips</title>-->
     <?php include "head.php";
     ?>
     <!--<head>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="form-group">
                         <label for="tipsContent"><a>Tips Content:</a></label>
-                        <textarea class="form-control" rows="10" name="tipsContent" type="text" id="tipsContent" ></textarea>
+                        <textarea class="form-control" rows="10" name="tipsContent" id="tipsContent" required></textarea>
                         </div>
                         
 

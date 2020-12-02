@@ -82,7 +82,7 @@ $conn->close();
                         </div>
                         <div class="form-group">
                             <label style="font-size: 20px;" for="tipsCat">Category:</label>
-                            <input class="form-control" id="tipsCat" type="text" name="tipsCat" value="<?php echo $category ?>"/>
+                            <input class="form-control" id="tipsCat" type="text" name="tipsCat" value="<?php echo $category ?>" required/>
                         </div>
                         <div class="form-group">
                             <label style="font-size: 20px;" for="tipsCountry">Country(Optional):</label>
@@ -91,7 +91,7 @@ $conn->close();
                         </div>
                         <div class="form-group">
                         <label for="tipsContent"><a>Tips Content:</a></label>
-                        <textarea class="form-control" rows="10" name="tipsContent" type="text" id="tipsContent" value="<?php echo $content ?>"><?php echo $content ?></textarea>
+                        <textarea class="form-control" rows="10" name="tipsContent" type="text" id="tipsContent" value="<?php echo $content ?>" required><?php echo $content ?></textarea>
                         </div>
                         
 

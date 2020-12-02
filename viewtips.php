@@ -43,38 +43,40 @@ function viewTips() {
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-include "head.php";
-?>
-   <!-- <head>
-        <link rel="stylesheet" href="css/tips.css">
-        <script defer src="js/tips.js"></script>
-
-
-    </head>-->
+    <?php
+    include "head.php";
+    ?>
+    <!-- <head>
+         <link rel="stylesheet" href="css/tips.css">
+         <script defer src="js/tips.js"></script>
+ 
+ 
+     </head>-->
 
     <body class="tipsBody">
         <header>
-<?php
-if (isset($_SESSION['email'])) {
-    include "navbar.php";
-} else {
-    include "indexnavbar.php";
-}
-?>
+            <?php
+            if (isset($_SESSION['email'])) {
+                include "navbar.php";
+            } else {
+                include "indexnavbar.php";
+            }
+            ?>
         </header>
-        <section>
-            <div class="container">
+        <main>
+            <section>
+                <div class="container">
 
-                <!--<h1>TIPS</h1>-->
-                <article class="viewTips">
-                    <?php
+                    <!--<h1>TIPS</h1>-->
+                    <article class="viewTips">
+                        <?php
                         viewTips();
-                     ?>
+                        ?>
 
-                </article>
-            </div>
-        </section>
+                    </article>
+                </div>
+            </section>
+        </main>
         <?php
         include "footer.php";
         ?>

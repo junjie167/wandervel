@@ -83,7 +83,7 @@ session_start();
 
                     <div class="form-group">
                         <label for="name"><a>Name:</a></label>
-                        <input class="form-control" type="text" name="name"  value="<?php echo $name ?>"/>
+                        <input class="form-control" type="text" name="name"  value="<?php echo $name ?>" required/>
                     </div>
 
 
@@ -93,12 +93,12 @@ session_start();
                     </div>
                     <div class="form-group">
                         <label for="dob"><a>Date of Birth:</a></label>
-                        <input class="form-control" type="date" name="dob" value="<?php echo $dob ?>"/>
+                        <input class="form-control" type="date" name="dob" value="<?php echo $dob ?>" required/>
                     </div>
                     <div class="form-group">
                         <label for="nationality"><a>Nationality:</a></label>
                         <!--<input name="nationality" value=""/>-->
-                        <select name="nationality" id="nationality" >
+                        <select name="nationality" id="nationality" required>
                             <option value="<?php echo $nationality ?>"> <?php echo $nationality ?></option>
                             <option value="Afghan">Afghan</option>
                             <option value="Albanian">Albanian</option>

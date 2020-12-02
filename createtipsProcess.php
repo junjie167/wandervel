@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+    <?php include 'head.php'; ?>
+
 <?php
 $tipsTopic = $tipsCat = $tipsCountry = $tipsContent = $errorMsg = "";
 $success = true;
@@ -82,9 +86,6 @@ function saveTipstoDB() {
     $conn->close();
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-    <?php include 'head.php'; ?>
 
     <body>
         <header>
@@ -92,7 +93,7 @@ function saveTipstoDB() {
             include "navbar.php";
             ?>
         </header>
-
+        <main>
         <section>
             <div class="container">
 
@@ -114,6 +115,7 @@ function saveTipstoDB() {
                 ?>
             </div>
         </section>
+            </main>
         <br>
     <?php
     include 'footer.php';
