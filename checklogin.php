@@ -4,6 +4,14 @@
 <!DOCTYPE html>
 <html>
 <body>
+      
+    <?php
+    include "head.php";
+    ?>
+<?php
+       include "navbar.php";
+          ?>
+        
 <main class="container">
 
 <?php
@@ -85,7 +93,7 @@ if ($success)
 }
 else
 {
-    echo "<h1>Oops!</h1>";
+   
     echo "<h2>The following errors were detected:</h2>";
     echo "<p>" . $errorMsg . "</p>";
     echo "<p>" . $role . "</p>";
@@ -103,7 +111,13 @@ function sanitize_input($data)
 
 ?>
         </main>  
+
+        
+        <?php
+include "footer.php";
+?>
         </body>
+
         </html>
 <!-- 
 // if ($userfound == 1)
