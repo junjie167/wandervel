@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 <!doctype html>
-<html>
+<html lang="en">
     <!--<head>-->
         <!--<meta charset="utf-8"/>-->
         <!--<title>Login</title>-->
@@ -32,7 +32,7 @@
                                    placeholder="Enter email">
                                 </div>
                                 <div class="form-group">  
-                                <label for="password">Password:</label>
+                                <label for="pwd">Password:</label>
                                 <input class="form-control" type="password" id="pwd" required name="pwd"
                                    placeholder="Enter password">
                                 </div>
@@ -56,4 +56,5 @@
         </main>
 
 
-    </form>
+</body>
+</html>
