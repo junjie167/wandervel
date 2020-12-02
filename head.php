@@ -47,6 +47,8 @@
         <script defer src="js/favouritepost.js"></script>
         <script defer src="js/mypost.js"></script>
         <script defer src="js/createpost.js"></script>
+        <script defer src="js/login.js"></script>
+        <script defer src="js/tips.js"></script>
         <script defer src="js/main.js"></script>
         <!-- Additional CSS Files -->
         <!--<link rel="stylesheet" href="css/fontawesome.css">-->
@@ -56,6 +58,11 @@
         <link rel="stylesheet" href="css/comment.css">
         <link rel="stylesheet" href="css/mypost.css">
         <link rel="stylesheet" href="css/createpost.css">
+        <link rel="stylesheet" href="css/signup.css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/tips.css">
+        <link rel="stylesheet" href="css/userProfile.css">
+        <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/main.css">
 

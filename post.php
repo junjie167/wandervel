@@ -52,7 +52,7 @@ include "include/postDB.php";
                         ?>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row flex-border">
                     <?php
                     display();
                     ?>

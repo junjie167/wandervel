@@ -84,6 +84,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $content = sanitize_input($_POST["content"]);
 
     }
+
+    if (!empty($filename))
+    {
+        $file_extension = pathinfo($_FILES["uploadfile"]["name"], PATHINFO_EXTENSION);
+        $allowed_image_extension = array(
+            "png",
+            "jpg",
+            "jpeg"
+        );
+        if (!in_array($file_extension, $allowed_image_extension))
+        {
+            $errorMsg .= "Upload valiid images. Only PNG and JPEG are allowed.<br>";
+            $success = false;
+        }
+    }
+    
     
     // Password
     
