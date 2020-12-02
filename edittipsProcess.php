@@ -79,9 +79,13 @@ function updateTipstoDB() {
 }
 $success = true;
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+    
     <?php include 'head.php'; ?>
-
+    <title>
+        Edited Tip
+    </title>
     <body>
         <header>
             <?php
@@ -111,9 +115,9 @@ $success = true;
             </div>
         </section>
         <br>
-
-    </body>
-    <?php
+<?php
     include 'footer.php';
     ?>
+    </body>
+    
 </html>

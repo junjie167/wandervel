@@ -46,12 +46,12 @@ function viewTips() {
 <?php
 include "head.php";
 ?>
-    <head>
+   <!-- <head>
         <link rel="stylesheet" href="css/tips.css">
         <script defer src="js/tips.js"></script>
 
 
-    </head>
+    </head>-->
 
     <body class="tipsBody">
         <header>
@@ -75,5 +75,8 @@ if (isset($_SESSION['email'])) {
                 </article>
             </div>
         </section>
+        <?php
+        include "footer.php";
+        ?>
     </body>
 </html>

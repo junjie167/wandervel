@@ -82,7 +82,8 @@ function saveTipstoDB() {
     $conn->close();
 }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <?php include 'head.php'; ?>
 
     <body>
@@ -114,9 +115,9 @@ function saveTipstoDB() {
             </div>
         </section>
         <br>
-
-    </body>
     <?php
     include 'footer.php';
     ?>
+    </body>
+    
 </html>

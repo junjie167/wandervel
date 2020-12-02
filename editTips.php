@@ -52,18 +52,18 @@ $conn->close();
 ?>
     
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <meta charset="utf-8"/>
     <title>Edit Tips</title>
     <?php include "head.php";
     ?>
-     <head>
+     <!--<head>
         <link rel="stylesheet" href="css/tips.css">
         <script defer src="js/tips.js"></script>
 
 
-    </head>
+    </head>-->
 
     <body class="tipsBody">
         <header>
@@ -105,6 +105,8 @@ $conn->close();
             </section>
         </main>
 
-
+<?php
+include "footer.php";
+?>
     </body>
 </html>
