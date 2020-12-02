@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
     <meta charset="utf-8"/>
     <title>Create Tips</title>
     <?php include "head.php";
     ?>
-    <head>
+    <!--<head>
             <link rel="stylesheet" href="css/tips.css">
             <script defer src="js/tips.js"></script>
 
 
-        </head>
+        </head>-->
 
 
         <body class="tipsBody">
@@ -54,6 +54,8 @@
             </section>
         </main>
 
-
+     <?php
+    include 'footer.php';
+    ?>
     </body>
 </html>
