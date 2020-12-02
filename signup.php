@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<html>
-
-    <meta charset="utf-8"/>
-    <title>Registration</title>
+<html lang="en">
     <?php include "head.php";
     ?>
-
-
-
     <body>
         <header>
             <?php include "indexnavbar.php"; ?>
@@ -239,9 +233,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label style="font-size: 20px;" for="gender">Gender:</label>
-                            <input type="radio" id="gender" name="gender" value="Male" required><label>Male</label> 
-                            <input type="radio" id="gender" name="gender" value="Female" required><label>Female</label>
+                        <input type="radio" id="male" name="gender" value="Male"><label>Male</label> 
+                        <input type="radio" id="female" name="gender" value="Female"><label>Female</label>  
                         </div>
 
 

@@ -106,8 +106,6 @@ function display()
                 echo '<div class="blog-title">';
                 echo '<h2>' . $row["p_title"] . '</h2>';
                 echo '</div>';
-                echo '<div class="blog-content">
-                <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
                 echo '<div class="blog-footer">';
                 echo '<ul class="post-info">';
                 echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -568,8 +566,6 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content"> 
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -665,8 +661,6 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'" aria-label="Read more about"'.$row["p_title"].'>Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';
@@ -769,8 +763,6 @@ function display()
                     echo '<div class="blog-title">';
                     echo '<h2>' . $row["p_title"] . '</h2>';
                     echo '</div>';
-                    echo '<div class="blog-content">
-                    <a href="viewpost.php?id=' .$row["p_post_id"].'">Read more</a></div>';
                     echo '<div class="blog-footer">';
                     echo '<ul class="post-info">';
                     echo '<li><i class="material-icons edit">date_range</i>' . $date . '</li>';

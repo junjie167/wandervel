@@ -42,7 +42,14 @@ session_start();
             $nationality = $row["nationality"];
             $bio = $row["bio"];
             $pwd_hashed = $row["password"];
-            $profilepic = $row["profile_picture"];
+            if (empty($row["profile_picture"]))
+            {
+                $profilepic = "defaultprofile.png";
+            }else
+            {
+                $profilepic = $row["profile_picture"];
+            }
+            
         }
     }
     $conn->close();
