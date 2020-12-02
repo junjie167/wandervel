@@ -233,10 +233,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label style="font-size: 20px;" for="gender">Gender:
-                            <input type="radio" id="male" name="gender" value="Male" required><label>Male</label> 
-                            <input type="radio" id="female" name="gender" value="Female" required><label>Female</label>
-                            </label>
+                        <input type="radio" id="male" name="gender" value="Male"><label>Male</label> 
+                        <input type="radio" id="female" name="gender" value="Female"><label>Female</label>  
                         </div>
 
 
