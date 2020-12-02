@@ -219,7 +219,14 @@ $success = true;
                     if($result->num_rows > 0){
                         // Note that email field is unique
                         $row = $result->fetch_assoc();
-                        $profilepic = $row["profile_picture"];
+                        if (empty($row["profile_picture"]))
+                        {
+                            $profilepic = "defaultprofile.png";
+                        }else
+                        {
+                            $profilepic = $row["profile_picture"];
+                        }
+                       
                     }
 
 
