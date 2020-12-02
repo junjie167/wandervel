@@ -5,10 +5,7 @@
     <title>Registration</title>
     <?php include "head.php";
     ?>
-    <head>
-        <link rel="stylesheet" href="css/signup.css">
-        <link rel="stylesheet" href="css/login.css">
-    </head>
+
 
 
     <body>

@@ -99,7 +99,7 @@ function display()
                 $date = date("jS M Y",strtotime($row["p_publish_date"]));
                 $content = substr($row["p_content"],0,100);
                 echo '<div class="col-md-4 col-sm-6 click" data-id='.$row["p_post_id"].'>';
-                echo '<div class="blog  effect">';
+                echo '<div class="blog  effect  h-100">';
                 echo '<div class="blog-image">';
                 echo '<img src="image/'.$row["picture_image"].'" alt="'.$row["picture_image"].'">';
                 echo '</div>';
