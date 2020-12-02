@@ -174,8 +174,8 @@ $success = true;
 
 ?>
 
-    
-<html>
+<!DOCTYPE html>  
+<html lang="en">
     
     <?php include"head.php"?>
 
@@ -239,9 +239,9 @@ $success = true;
        
         </main>
         <br>
-        
-    </body>
-    <?php
+        <?php
         include "footer.php";
         ?>
+    </body>
+    
 </html>

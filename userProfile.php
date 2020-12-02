@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <?php
     $e = $_SESSION["email"];
     $id = $_SESSION["user_id"];
@@ -51,12 +51,12 @@ session_start();
     <?php
     include "head.php";
     ?>
-    <head>
+    <!--<head>
     
         <link rel="stylesheet" href="css/userProfile.css">
         
         
-    </head>
+    </head>-->
     <body class="profileBody">
         <header>
     <?php
@@ -306,8 +306,9 @@ session_start();
                 </form>
             </main>
         </section>
-    </body>
-<?php
+        <?php
 include "footer.php";
 ?>
+    </body>
+
 </html> 

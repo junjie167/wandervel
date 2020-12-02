@@ -27,11 +27,13 @@
        
 $success=true;
 ?>
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+   
+    <?php include"head.php"?>
         <title>Delete</title>
-        <?php include"head.php"?>
-    </head>
+        
+    
     <body>
         <?php
         include "navbar.php";
