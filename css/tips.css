@@ -29,7 +29,7 @@ ul li ul {
 }
 ul li.active ul {
   display: block; /* Show the list when class 'active' is added to the li */ 
-  color: red;
+  
 }
 
 #tipsform{
