@@ -21,6 +21,14 @@ $(document).ready(function(){
                 setTimeout(function(){
                     $("#fav-modal").css("display","none");
                 }, 8000);
+            },
+            error: function(response){
+                $("#bookmark-text").text("Failed to add to favourite. PLease try again");
+                console.log("Failed to add post");
+                setTimeout(function(){
+                    $("#fav-modal").css("background-color", "red");
+                    $("#fav-modal").css("display","none");
+                }, 8000);
             }
         });
     })
@@ -45,6 +53,14 @@ $(document).ready(function(){
                 $("#unbookmark").css("display", "none");
                 $("#unbookmark2").css("display", "none");
                 setTimeout(function(){
+                    $("#fav-modal").css("display","none");
+                }, 8000);
+            },
+            error: function(response){
+                $("#bookmark-text").text("Failed to remove from favourite. PLease try again");
+                console.log("Failed to remove post");
+                setTimeout(function(){
+                    $("#fav-modal").css("background-color", "red");
                     $("#fav-modal").css("display","none");
                 }, 8000);
             }
@@ -74,6 +90,14 @@ $(document).ready(function(){
                 setTimeout(function(){
                     $("#fav-modal").css("display","none");
                 }, 8000);
+            },
+            error: function(response){
+                $("#bookmark-text").text("Failed to add to favourite. PLease try again");
+                console.log("Failed to add post");
+                setTimeout(function(){
+                    $("#fav-modal").css("background-color", "red");
+                    $("#fav-modal").css("display","none");
+                }, 8000);
             }
         });
     })
@@ -101,6 +125,14 @@ $(document).ready(function(){
                 }
                 $("#unbookmark").css("display", "none");                                     
                 setTimeout(function(){
+                    $("#fav-modal").css("display","none");
+                }, 8000);
+            },
+            error: function(response){
+                $("#bookmark-text").text("Failed to remove from favourite. PLease try again");
+                console.log("Failed to remove post");
+                setTimeout(function(){
+                    $("#fav-modal").css("background-color", "red");
                     $("#fav-modal").css("display","none");
                 }, 8000);
             }
@@ -134,6 +166,9 @@ $(document).ready(function(){
                 var deleted = {"deleted":"true"};
                 localStorage.setItem('success', JSON.stringify(deleted));
                 window.location.href = "post.php?page=1";
+            },
+            error: function(response){
+                console.log("failed to redirect");
             }
         });
     })
