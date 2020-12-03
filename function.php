@@ -125,7 +125,7 @@ if (isset($_POST['comment_posted'])) {
             }
             else{
             $comment = "<div class='comment clearfix'>
-					<img src='". getCUserPicById($inserted_comment['comment_id']) . "' alt='pic' class='profile_pic'>
+					<img src='profileimages/". getCUserPicById($inserted_comment['comment_id']) . "' alt='pic' class='profile_pic'>
 					<div class='comment-details'>
 						<span class='comment-name'>" . getUsernameById($inserted_comment['user_id']) . "</span>
 						<span class='comment-date'>" . date('d M Y g:i a', strtotime($inserted_comment['comment_date'])) . "</span>
