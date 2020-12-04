@@ -84,10 +84,11 @@ session_start();
             $_SESSION["user_id"] = $id;
             header("location:userProfile.php");
         } else {
-           
+           echo '<!DOCTYPE html>';
+           echo '<html lang="en">';
             include "head.php";
             echo '<header>';
-                include "navbar.php";
+                include "indexnavbar.php";
             echo '</header>';
                 echo '<main>';
                     echo '<section class="blog-posts grid-system" style="margin-bottom: 253px;">';
@@ -100,6 +101,7 @@ session_start();
                     echo '</section>';
                 echo '</main>';
                 include "footer.php";
+                echo '</html>';
            
         }
 
