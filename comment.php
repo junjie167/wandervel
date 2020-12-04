@@ -8,7 +8,7 @@
             <div class="col-md-6 col-md-offset-3 comments-section" id="comment_list">
                 <?php if (isset($_SESSION['user_id'])): ?>
 				<form class="clearfix" action="comment.php" method="post" id="comment_form">
-					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3" required></textarea>
+					<textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3" aria-label="comment" required></textarea>
 					<button <?php echo 'data-id='.$_GET['id'].'' ?> class="btn btn-primary btn-sm pull-right" id="submit_comment">Submit comment</button>
 				</form>
                 <?php else: ?>
@@ -46,7 +46,7 @@
 					</div>
 					<!-- reply form -->
 					<form action="comment.php" class="reply_form clearfix" id="comment_reply_form_<?php echo $comment['comment_id'] ?>" data-id="<?php echo $comment['comment_id']; ?>">
-                                            <textarea class="form-control" name="reply_text" id="reply_text_<?php echo $comment['comment_id'] ?>" cols="30" rows="2" required></textarea>
+                                            <textarea class="form-control" name="reply_text" id="reply_text_<?php echo $comment['comment_id'] ?>" cols="30" rows="2" aria-label="reply" required></textarea>
 						<button class="btn btn-primary btn-xs pull-right submit-reply" >Submit reply</button>
 					</form>
 
