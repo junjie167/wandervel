@@ -233,8 +233,8 @@
                         </div>
 
                         <div class="form-group">
-                        <input type="radio" id="male" name="gender" value="Male"><label>Male</label> 
-                        <input type="radio" id="female" name="gender" value="Female"><label>Female</label>  
+                        <input type="radio" id="male" name="gender" value="Male" aria-label="gender"><label>Male</label> 
+                        <input type="radio" id="female" name="gender" value="Female" aria-label="gender"><label>Female</label>  
                         </div>
 
 

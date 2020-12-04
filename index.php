@@ -7,9 +7,6 @@ include "include/postDB.php";
     <?php
     include "head.php";
     ?>
-    <head>
-        <link rel="stylesheet" href="css/index.css">
-    </head>
     
     <body>
         <main>
@@ -57,11 +54,12 @@ include "include/postDB.php";
         </section>
 
     </main>
+    <?php
+include "footer.php";
+?>
+
 
 </body>
 
-<?php
-include "footer.php";
-?>
 
 </html>

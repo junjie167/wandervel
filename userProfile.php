@@ -79,10 +79,10 @@ session_start();
                 <form id="editProfile" action="editprofileProcess.php" method="post" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <label for="profile_picture"><a>Profile Picture:</a></label>
+                        <label for="fileToUpload"><a>Profile Picture:</a></label>
 
                         <p>
-                            <img src="profileimages/<?php echo $profilepic ?>" width="150" height="150">
+                            <img src="profileimages/<?php echo $profilepic ?>" width="150" height="150" alt="profileimage">
                             <input type="file" name="fileToUpload" id="fileToUpload"/>
                         </p>
                     </div>
@@ -90,7 +90,7 @@ session_start();
 
                     <div class="form-group">
                         <label for="name"><a>Name:</a></label>
-                        <input class="form-control" type="text" name="name"  value="<?php echo $name ?>" required/>
+                        <input id="name" class="form-control" type="text" name="name"  value="<?php echo $name ?>" required/>
                     </div>
 
 
@@ -100,7 +100,7 @@ session_start();
                     </div>
                     <div class="form-group">
                         <label for="dob"><a>Date of Birth:</a></label>
-                        <input class="form-control" type="date" name="dob" value="<?php echo $dob ?>" required/>
+                        <input id="dob" class="form-control" type="date" name="dob" value="<?php echo $dob ?>" required/>
                     </div>
                     <div class="form-group">
                         <label for="nationality"><a>Nationality:</a></label>
@@ -303,7 +303,7 @@ session_start();
                     </div>
                     <div class="form-group">
                         <label for="bio"><a>About Yourself:</a></label>
-                        <textarea class="form-control" name="bio" value="<?php echo $bio ?>"><?php echo $bio ?></textarea>
+                        <textarea id="bio" class="form-control" name="bio" value="<?php echo $bio ?>"><?php echo $bio ?></textarea>
                     </div>
 
                     <div class="form-group">
